@@ -8,22 +8,22 @@ const healthSymptoms = [
   { label: "Hair Fall", file: "symptom-hairfall.png" },
   { label: "Mood Swings", file: "symptom-mood.png" },
   { label: "Irregular Cycles", file: "symptom-cycles.png" },
-  { label: "Brain Fog", file: "symptom-brainfog.png" },
+  { label: "Anxiety and Stress", file: "symptom-anxiety.png" },
   { label: "Dry Skin", file: "symptom-dryskin.png" },
   { label: "Cold & Constipation", file: "symptom-cold.png" },
   { label: "Heart Palpitations", file: "symptom-heart.png" },
 ];
 
 const lifestyleSymptoms = [
-  { label: "Poor Sleep", file: "symptom-sleep.png" },
-  { label: "Sedentary Lifestyle", file: "symptom-sedentary.png" },
-  { label: "Stress", file: "symptom-stress.png" },
-  { label: "Irregular Eating", file: "symptom-eating.png" },
-  { label: "Screen Time", file: "symptom-screen.png" },
-  { label: "Lack of Exercise", file: "symptom-exercise.png" },
-  { label: "Poor Digestion", file: "symptom-digestion.png" },
-  { label: "Hormonal Imbalance", file: "symptom-hormonal.png" },
-  { label: "Energy Depletion", file: "symptom-energy.png" },
+  { label: "Thyroid & Hormonal Health", file: "symptom-thyroid.png" },
+  { label: "Diabetes & Metabolic Health", file: "symptom-diabetes.png" },
+  { label: "Respiratory Wellness", file: "symptom-respiratory.png" },
+  { label: "Arthritis & Joint Health", file: "symptom-arthritis.png" },
+  { label: "Lupus & Autoimmune", file: "symptom-lupus.png" },
+  { label: "Gut & Digestive Health", file: "symptom-gut.png" },
+  { label: "Skin & Autoimmune Health", file: "symptom-skin-auto.png" },
+  { label: "Women's Hormonal Health", file: "symptom-womens-health.png" },
+  { label: "Preventive & Lifestyle Health", file: "symptom-preventive.png" },
 ];
 
 export default function SymptomChecker() {
@@ -36,31 +36,31 @@ export default function SymptomChecker() {
       : "Are these lifestyle patterns silently stealing your vitality?";
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#ede0bd] px-6 pb-10 pt-11 sm:px-12">
+    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#faf7f2] px-6 pb-10 pt-7 sm:px-12">
       <div className="flex w-full flex-col items-center gap-4">
         <p className="text-[11px] font-bold uppercase text-[#8b4e0a]">Looks familiar?</p>
-        <h2 className="w-80 max-w-full text-center font-serif text-2xl font-bold leading-[1.25] text-[#3d3226] sm:w-full sm:text-4xl">
+        <h2 className="w-80 max-w-full text-center text-2xl font-bold leading-[1.25] text-[#3d3226] sm:w-full sm:text-4xl">
           {heading}
         </h2>
 
-        {/* Toggle Buttons */}
-        <div className="flex gap-3">
+        {/* Toggle Slider */}
+        <div className="flex items-center gap-2 bg-[#e8dcc8] rounded-full p-1 w-fit">
           <button
             onClick={() => setActiveTab("health")}
-            className={`rounded-full px-5 py-2 text-xs font-bold uppercase transition-all ${
+            className={`px-6 py-2 text-xs font-bold uppercase rounded-full transition-all ${
               activeTab === "health"
                 ? "bg-[#8b4e0a] text-white"
-                : "border-2 border-[#8b4e0a] text-[#8b4e0a] hover:bg-[#8b4e0a] hover:text-white"
+                : "text-[#8b4e0a] hover:text-[#3d3226]"
             }`}
           >
             Health Issues
           </button>
           <button
             onClick={() => setActiveTab("lifestyle")}
-            className={`rounded-full px-5 py-2 text-xs font-bold uppercase transition-all ${
+            className={`px-6 py-2 text-xs font-bold uppercase rounded-full transition-all ${
               activeTab === "lifestyle"
                 ? "bg-[#8b4e0a] text-white"
-                : "border-2 border-[#8b4e0a] text-[#8b4e0a] hover:bg-[#8b4e0a] hover:text-white"
+                : "text-[#8b4e0a] hover:text-[#3d3226]"
             }`}
           >
             Lifestyle Diseases
@@ -89,10 +89,10 @@ export default function SymptomChecker() {
       </div>
 
       <div className="flex w-full flex-col items-center gap-1.5 text-center">
-        <p className="w-[300px] max-w-full font-serif text-lg font-bold text-[#8b4e0a] sm:w-full sm:text-2xl">
+        <p className="w-[300px] max-w-full text-lg font-bold text-[#8b4e0a] sm:w-full sm:text-2xl">
           If your answer is YES, you are not alone.
         </p>
-        <p className="w-[300px] max-w-full font-serif text-[13px] font-semibold text-[#3d3226] sm:w-full sm:text-lg">
+        <p className="w-[300px] max-w-full text-[13px] font-semibold text-[#3d3226] sm:w-full sm:text-lg">
           Divines Wellness Program helps you reset your lifestyle &amp; restore your well-being
           holistically.
         </p>

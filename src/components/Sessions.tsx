@@ -8,8 +8,8 @@ const consultants = [
     detail: "Therapeutic yoga & pranayama for strength, flexibility & vitality",
   },
   {
-    name: "Ayurveda Coach",
-    detail: "Time-tested herbal & lifestyle protocols to restore balance",
+    name: "Doctor",
+    detail: "Comprehensive health assessment, medical guidance for safe and sustainable transformation",
   },
   {
     name: "Mind Coach",
@@ -28,15 +28,15 @@ export default function Sessions() {
         }}
         aria-hidden
       />
-      <div className="flex w-full max-w-2xl flex-col gap-5 text-white">
-        <h2 className="font-serif text-[22px] font-bold leading-normal sm:text-3xl">
+      <div className="flex w-full max-w-2xl flex-col gap-5 text-white relative z-10">
+        <h2 className="text-2xl sm:text-3xl font-bold leading-normal">
           6 Consultations Each (Every 15 Days) with:
         </h2>
         <ul className="flex flex-col gap-4">
           {consultants.map(({ name, detail }) => (
-            <li key={name} className="flex gap-2.5 text-[14px] sm:text-base">
-              <span aria-hidden>•</span>
-              <p className="flex-1">
+            <li key={name} className="flex gap-2.5 text-sm sm:text-base leading-relaxed">
+              <span className="shrink-0">•</span>
+              <p>
                 <span className="font-bold">{name}</span> - {detail}
               </p>
             </li>

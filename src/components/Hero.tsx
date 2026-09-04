@@ -1,40 +1,35 @@
-import { Play } from "lucide-react";
-
 export default function Hero() {
   return (
-    <section className="flex w-full flex-col items-center justify-center bg-[#f5edde] pt-5">
-      <div className="relative h-[200px] w-[350px] max-w-[90vw] overflow-hidden rounded-2xl sm:h-[320px] sm:w-[560px] lg:h-[420px] lg:w-[740px]">
+    <section className="w-full bg-[#f5edde] flex flex-col items-center justify-center pt-3 pb-6">
+      {/* Video Thumbnail */}
+      <div className="relative h-[200px] w-[350px] max-w-[90vw] overflow-hidden rounded-[16px] mb-3">
         <img
           src="/images/video-thumbnail.png"
-          alt="Divines Wellness Program video thumbnail"
+          alt="Divines Wellness Program video"
           className="size-full object-cover"
         />
-        <button
-          aria-label="Play video"
-          className="absolute left-1/2 top-1/2 flex size-[25px] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden bg-[rgba(201,159,108,0.75)] sm:size-10"
-        >
-          <Play size={14} className="translate-x-px fill-white text-white sm:hidden" />
-          <Play size={20} className="hidden translate-x-px fill-white text-white sm:block" />
+        <button className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[rgba(122,101,66,0.75)] rounded-lg size-6 sm:size-10 flex items-center justify-center text-white hover:bg-[rgba(122,101,66,0.9)]">
+          <span className="text-sm sm:text-base">▶</span>
         </button>
       </div>
-      <p className="mt-2 text-center text-[10px] text-[#8c7d66] sm:text-xs">
-        Watch: Divines Wellness Program — what we do in simple format
+
+      {/* Caption */}
+      <p className="text-center text-[12px] text-[#4a3d2e] mb-5">
+        Watch: What we do in simple format
       </p>
 
-      <div className="flex w-full flex-col items-center gap-4 px-6 pb-10 pt-6 text-center sm:max-w-2xl sm:px-8">
-        <h1 className="w-[320px] max-w-full font-serif text-[30px] font-bold leading-[1.2] text-[#3d3226] sm:w-full sm:text-5xl">
-          Your Trusted Place for Wellness
+      {/* Content */}
+      <div className="flex flex-col gap-4 items-center text-center px-5 pb-6 pt-5 max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#3d3326] leading-tight">
+          Divines Wellness Program
         </h1>
-        <p className="w-[300px] max-w-full text-[15px] font-bold text-[#a88f6d] sm:w-full sm:text-lg">
-          Heal • Balance • Prevent • Thrive
+
+        <p className="text-base font-bold text-[#3d3326]">
+          "A More Integrated Approach to Your Wellbeing."
         </p>
-        <p className="w-[320px] max-w-full text-[13px] leading-[1.6] text-[#7b6e5d] sm:w-full sm:text-base">
-          Health is not the absence of disease—it&rsquo;s the presence of energy, clarity, and{" "}
-          <span className="font-bold">balance in everything you do. </span>
-          The Divines Health Program is a 3-month journey to restore your body,
-          <span className="font-bold"> retrain your habits</span>, and prevent{" "}
-          <span className="font-bold">disease before it starts.</span> Science-backed.
-          Holistically guided. Built for lasting change.
+
+        <p className="text-base leading-relaxed text-[#4a3d2e] max-w-sm">
+          A personalized 3-month journey bringing together medical guidance, nutrition, yoga therapy and mind coaching — thoughtfully designed for autoimmune and lifestyle disease reversal.
         </p>
       </div>
     </section>
