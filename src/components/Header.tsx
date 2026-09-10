@@ -1,41 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "#top" },
-  { label: "Stories", href: "#stories" },
-  { label: "Articles", href: "#articles" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact Us", href: "#contact" },
-  { label: "Enroll Now", href: "#enroll" },
+  { label: "Home", href: "/" },
+  { label: "Stories", href: "/stories" },
+  { label: "Articles", href: "/articles" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Enroll Now", href: "/enroll" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
-
-  const handleNavClick = (label: string, href: string) => {
-    setActiveLink(label);
-    setMenuOpen(false);
-
-    // "Home" always returns to the top of the page
-    if (href === "#top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    // Only query when there is an actual id after the "#"
-    const id = href.slice(1);
-    if (!id) return;
-
-    const element = document.getElementById(id);
-    if (element) {
-      // Offset for the 70px fixed header
-      const top = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const pathname = usePathname();
 
   return (
     <>
@@ -44,7 +24,8 @@ export default function Header() {
         <div className="flex items-center gap-2.5">
           {/* Hamburger Menu */}
           <button
-            aria-label="Open menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex flex-col gap-1 h-6 w-6 items-center justify-center text-white hover:opacity-80"
           >
@@ -54,29 +35,36 @@ export default function Header() {
           </button>
 
           {/* Logo */}
-          <div className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden">
-            <img src="/images/logo-circle.png" alt="Divines logo" className="size-full object-cover rounded-full" />
-          </div>
+          <Link
+            href="/"
+            className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="/images/logo-circle.png"
+              alt="Divines logo"
+              className="size-full object-cover rounded-full"
+            />
+          </Link>
 
           {/* Brand Name */}
-          <p className="text-white font-bold text-xl whitespace-nowrap">
+          <Link href="/" className="text-white font-bold text-xl whitespace-nowrap">
             The Divines Health
-          </p>
+          </Link>
         </div>
 
         {/* Right Section - Enroll Button */}
-        <button
-          onClick={() => handleNavClick("Enroll Now", "#enroll")}
+        <Link
+          href="/enroll"
           className="border-[1.5px] border-white rounded-[6px] px-4 py-2 text-white font-bold text-sm whitespace-nowrap hover:bg-white/10"
         >
           Enroll
-        </button>
+        </Link>
       </header>
 
       {/* Header Spacer */}
-      <div className="h-[70px]" />
+      <div className="h-[70px] shrink-0" />
 
-      {/* Mobile Menu Overlay */}
+      {/* Menu Overlay */}
       {menuOpen && (
         <div
           className="fixed inset-0 top-[70px] z-40 bg-black/40"
@@ -84,22 +72,31 @@ export default function Header() {
         />
       )}
 
-      {/* Mobile Menu - Rounded Corner Card */}
+      {/* Menu - matches Figma "Menu-*" frames (353:1064) */}
       {menuOpen && (
-        <nav className="fixed left-4 right-4 top-[85px] z-40 flex flex-col bg-[#3d2a1f] rounded-2xl shadow-lg overflow-hidden">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link.label, link.href)}
-              className={`px-5 py-4 text-sm font-semibold text-left transition-all ${
-                activeLink === link.label
-                  ? "bg-[#8b4e0a] text-white"
-                  : "text-white hover:bg-[#4a3a2a]"
-              } ${link !== navLinks[navLinks.length - 1] ? "border-b border-[#594d40]" : ""}`}
-            >
-              {link.label}
-            </button>
-          ))}
+        <nav className="fixed left-4 right-4 top-[85px] z-40 flex flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg">
+          <div className="flex w-full flex-col items-center py-[25px]">
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex w-full items-center justify-center px-8 py-3.5 text-xl transition-colors ${
+                    isActive
+                      ? "bg-white font-bold text-[#3d3226]"
+                      : "font-normal text-[#fffdf8] hover:bg-white/10"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
       )}
     </>

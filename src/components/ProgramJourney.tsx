@@ -7,7 +7,7 @@ const pillars = [
     num: "01",
     title: "Foundation",
     tagline: "Identify triggers",
-    color: "#2d4a3e",
+    color: "#7a6a55",
     focus: "The first step in your healing journey. We conduct a comprehensive assessment of your health, lifestyle, and triggers to create a personalized diagnosis and treatment plan.",
     actions: [
       "Complete Health Assessment",
@@ -27,7 +27,7 @@ const pillars = [
     num: "02",
     title: "Vitality",
     tagline: "Restore gut & energy",
-    color: "#5a7a3a",
+    color: "#8b6f47",
     focus: "Rebuild your energy and restore your gut health through personalized nutrition, therapeutic exercises, and lifestyle modifications.",
     actions: [
       "Gut Health Restoration",
@@ -47,7 +47,7 @@ const pillars = [
     num: "03",
     title: "Balance",
     tagline: "Regulate stress & hormones",
-    color: "#4a6a8a",
+    color: "#6b5a47",
     focus: "Achieve hormonal balance and manage stress through yoga therapy, meditation, and mind coaching practices tailored to your needs.",
     actions: [
       "Hormonal Regulation",
@@ -67,7 +67,7 @@ const pillars = [
     num: "04",
     title: "Liberation",
     tagline: "Sustain long-term",
-    color: "#8a4a6a",
+    color: "#a0845a",
     focus: "Lock in your gains and build sustainable habits that empower you to maintain your wellness for life.",
     actions: [
       "Long-term Sustainability",
@@ -87,6 +87,15 @@ const pillars = [
 
 export default function ProgramJourney() {
   const [selectedPillar, setSelectedPillar] = useState<typeof pillars[0] | null>(null);
+
+  const closeModal = (p: typeof pillars[0] | null) => {
+    setSelectedPillar(p);
+    if (!p) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  };
 
   return (
     <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10">
@@ -109,7 +118,7 @@ export default function ProgramJourney() {
         {pillars.map((pillar) => (
           <button
             key={pillar.num}
-            onClick={() => setSelectedPillar(pillar)}
+            onClick={() => closeModal(pillar)}
             className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:-translate-y-0.5"
           >
             <div className="relative h-[140px] w-full shrink-0">
@@ -140,7 +149,7 @@ export default function ProgramJourney() {
       {/* Modal */}
       {selectedPillar && (
         <div
-          onClick={() => setSelectedPillar(null)}
+          onClick={() => closeModal(null)}
           className="fixed inset-0 z-50 flex items-end justify-center bg-black/60"
         >
           <div
@@ -162,7 +171,7 @@ export default function ProgramJourney() {
               />
               {/* Close Button */}
               <button
-                onClick={() => setSelectedPillar(null)}
+                onClick={() => closeModal(null)}
                 className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/35 hover:bg-black/50 flex items-center justify-center text-white text-base transition-colors"
               >
                 ✕
