@@ -87,7 +87,7 @@ export default function ContactForm() {
     return (
       <div
         role="status"
-        className="flex w-full max-w-md flex-col items-center gap-3 rounded-[20px] border border-[#ebe3cf] bg-[#fffdf8] px-6 py-10 text-center shadow-[0_8px_24px_rgba(61,50,38,0.06)]"
+        className="flex w-full max-w-md flex-col items-center gap-3 rounded-[20px] border border-[#ebe3cf] bg-[#fffdf8] px-6 py-10 text-center shadow-[0_8px_24px_rgba(61,50,38,0.06)] lg:max-w-lg"
       >
         <CheckCircle2 size={40} strokeWidth={1.75} className="text-[#8b4e0a]" aria-hidden="true" />
         <h3 className="text-lg font-bold text-[#3d3326]">Thank you, {name.trim().split(" ")[0]}.</h3>
@@ -110,7 +110,7 @@ export default function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="flex w-full max-w-md flex-col gap-5 rounded-[20px] border border-[#ebe3cf] bg-[#fffdf8] p-6 shadow-[0_8px_24px_rgba(61,50,38,0.06)]"
+      className="flex w-full max-w-md flex-col gap-5 rounded-[20px] border border-[#ebe3cf] bg-[#fffdf8] p-6 shadow-[0_8px_24px_rgba(61,50,38,0.06)] lg:max-w-lg lg:p-8"
     >
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-name" className="text-sm font-semibold text-[#3d3326]">

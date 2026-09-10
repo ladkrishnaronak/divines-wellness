@@ -19,46 +19,48 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#262016] px-4 py-3.5 h-[70px]">
-        {/* Left Section */}
-        <div className="flex items-center gap-2.5">
-          {/* Hamburger Menu */}
-          <button
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col gap-1 h-6 w-6 items-center justify-center text-white hover:opacity-80"
-          >
-            <div className="h-0.5 w-4.5 bg-white rounded-sm" />
-            <div className="h-0.5 w-4.5 bg-white rounded-sm" />
-            <div className="h-0.5 w-4.5 bg-white rounded-sm" />
-          </button>
+      <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#262016] px-4 py-3.5 h-[70px] sm:px-8 lg:px-12">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+          {/* Left Section */}
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            {/* Hamburger Menu */}
+            <button
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex flex-col gap-1 h-6 w-6 items-center justify-center text-white hover:opacity-80"
+            >
+              <div className="h-0.5 w-4.5 bg-white rounded-sm" />
+              <div className="h-0.5 w-4.5 bg-white rounded-sm" />
+              <div className="h-0.5 w-4.5 bg-white rounded-sm" />
+            </button>
 
-          {/* Logo */}
+            {/* Logo */}
+            <Link
+              href="/"
+              className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden sm:size-10"
+            >
+              <img
+                src="/images/logo-icon.png"
+                alt="Divines logo"
+                className="size-full object-cover rounded-full"
+              />
+            </Link>
+
+            {/* Brand Name */}
+            <Link href="/" className="text-white font-bold text-xl whitespace-nowrap sm:text-2xl">
+              The Divines Health
+            </Link>
+          </div>
+
+          {/* Right Section - Enroll Button */}
           <Link
-            href="/"
-            className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden"
+            href="/enroll"
+            className="border-[1.5px] border-white rounded-[6px] px-4 py-2 text-white font-bold text-sm whitespace-nowrap hover:bg-white/10 sm:px-5 sm:text-base"
           >
-            <img
-              src="/images/logo-icon.png"
-              alt="Divines logo"
-              className="size-full object-cover rounded-full"
-            />
-          </Link>
-
-          {/* Brand Name */}
-          <Link href="/" className="text-white font-bold text-xl whitespace-nowrap">
-            The Divines Health
+            Enroll
           </Link>
         </div>
-
-        {/* Right Section - Enroll Button */}
-        <Link
-          href="/enroll"
-          className="border-[1.5px] border-white rounded-[6px] px-4 py-2 text-white font-bold text-sm whitespace-nowrap hover:bg-white/10"
-        >
-          Enroll
-        </Link>
       </header>
 
       {/* Header Spacer */}
@@ -74,7 +76,7 @@ export default function Header() {
 
       {/* Menu - matches Figma "Menu-*" frames (353:1064) */}
       {menuOpen && (
-        <nav className="fixed left-4 right-4 top-[85px] z-40 flex flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg">
+        <nav className="fixed left-4 right-4 top-[85px] z-40 flex flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg sm:left-1/2 sm:right-auto sm:w-[320px] sm:-translate-x-1/2">
           <div className="flex w-full flex-col items-center py-[25px]">
             {navLinks.map((link) => {
               const isActive =

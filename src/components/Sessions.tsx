@@ -19,7 +19,7 @@ const consultants = [
 
 export default function Sessions() {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#3d3226] px-6 py-11 sm:px-12">
+    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#3d3226] px-6 py-11 sm:px-12 lg:px-20 lg:py-16">
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{
@@ -28,11 +28,11 @@ export default function Sessions() {
         }}
         aria-hidden
       />
-      <div className="flex w-full max-w-2xl flex-col gap-5 text-white relative z-10">
-        <h2 className="text-2xl sm:text-3xl font-bold leading-normal">
+      <div className="flex w-full max-w-2xl flex-col gap-5 text-white relative z-10 lg:max-w-5xl">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-normal">
           6 Consultations Each (Every 15 Days) with:
         </h2>
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-5">
           {consultants.map(({ name, detail }) => (
             <li key={name} className="flex gap-2.5 text-sm sm:text-base leading-relaxed">
               <span className="shrink-0">•</span>

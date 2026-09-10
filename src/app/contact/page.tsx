@@ -29,9 +29,9 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 bg-[rgba(60,40,20,0.55)]" />
 
-        <div className="relative flex w-full max-w-2xl flex-col items-center justify-center gap-5 px-7 py-12 text-white sm:py-16">
+        <div className="relative flex w-full max-w-2xl flex-col items-center justify-center gap-5 px-7 py-12 text-white sm:py-16 lg:max-w-3xl lg:py-24">
           <p className="text-xs font-medium leading-[1.4] tracking-[0.5px]">Begin Today</p>
-          <h1 className="max-w-[300px] text-center text-[32px] font-bold leading-[1.2] tracking-[-0.5px] sm:max-w-none sm:text-[40px]">
+          <h1 className="max-w-[300px] text-center text-[32px] font-bold leading-[1.2] tracking-[-0.5px] sm:max-w-none sm:text-[40px] lg:text-[48px]">
             Ready to begin your journey?
           </h1>
           <p className="max-w-[300px] text-center text-sm leading-[1.6] sm:max-w-md">

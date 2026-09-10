@@ -36,7 +36,7 @@ export default function SymptomChecker() {
       : "Are these lifestyle patterns silently stealing your vitality?";
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#faf7f2] px-6 pb-10 pt-7 sm:px-12">
+    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#faf7f2] px-6 pb-10 pt-7 sm:px-12 lg:px-16 lg:py-14">
       <div className="flex w-full flex-col items-center gap-4">
         <p className="text-[11px] font-bold uppercase text-[#8b4e0a]">Looks familiar?</p>
         <h2 className="w-80 max-w-full text-center text-2xl font-bold leading-[1.25] text-[#3d3226] sm:w-full sm:text-4xl">
@@ -73,7 +73,7 @@ export default function SymptomChecker() {
       </div>
 
       {/* Symptom Grid with Swap Animation */}
-      <div className="grid w-full max-w-2xl grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid w-full max-w-2xl grid-cols-3 gap-4 sm:gap-6 lg:max-w-4xl lg:gap-8">
         {currentSymptoms.map(({ label, file }) => (
           <button
             key={label}
@@ -83,7 +83,7 @@ export default function SymptomChecker() {
             <div className="aspect-[102/108] w-full overflow-hidden rounded-[20px]">
               <img src={`/images/${file}`} alt={label} className="size-full object-cover" />
             </div>
-            <span className="text-[11px] font-semibold text-[#3d3226] sm:text-sm">{label}</span>
+            <span className="text-[11px] font-semibold text-[#3d3226] sm:text-sm lg:text-base">{label}</span>
           </button>
         ))}
       </div>

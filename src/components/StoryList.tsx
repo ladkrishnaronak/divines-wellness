@@ -35,7 +35,7 @@ export default function StoryList() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-5 px-5 pb-14">
+    <div className="grid w-full max-w-2xl grid-cols-1 gap-5 px-5 pb-14 lg:max-w-6xl lg:grid-cols-3 lg:gap-6">
       {stories.map((story, idx) => {
         const isExpanded = expandedIndex === idx;
 

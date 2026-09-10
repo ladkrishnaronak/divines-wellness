@@ -23,7 +23,7 @@ export default function Founders() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
-    <section id="stories" className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12">
+    <section id="stories" className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12 lg:px-16 lg:py-16">
       <div className="flex flex-col items-center gap-3 w-full">
         <h2 className="text-2xl sm:text-3xl font-bold uppercase text-[#3d3326] text-center">
           Meet The Founders
@@ -34,10 +34,10 @@ export default function Founders() {
       </div>
 
       {/* Founders Cards */}
-      <div className="flex w-full max-w-lg flex-col gap-4">
+      <div className="grid w-full max-w-lg grid-cols-1 gap-4 lg:max-w-4xl lg:grid-cols-2 lg:gap-6">
         {founders.map((founder, idx) => (
-          <div key={founder.name}>
-            <div className="flex flex-col gap-4 rounded-[20px] bg-white px-5 py-0 shadow-[0_8px_24px_rgba(61,50,38,0.06)] border border-[#ebe3cf] overflow-hidden">
+          <div key={founder.name} className="lg:h-full">
+            <div className="flex h-full flex-col gap-4 rounded-[20px] bg-white px-5 py-0 shadow-[0_8px_24px_rgba(61,50,38,0.06)] border border-[#ebe3cf] overflow-hidden">
               {/* Image */}
               <div className="h-48 -mx-5 -mt-0 w-[calc(100%+40px)] rounded-b-[20px] overflow-hidden">
                 <img src={`/images/${founder.file}`} alt={founder.name} className="size-full object-cover" />
@@ -86,7 +86,7 @@ export default function Founders() {
       </p>
 
       {/* Action Buttons */}
-      <div id="enroll" className="flex h-11 w-full max-w-xl gap-3">
+      <div id="enroll" className="flex h-11 w-full max-w-xl gap-3 lg:h-14 lg:max-w-2xl">
         <button className="flex-1 rounded-[16px] border-[1.5px] border-[#3d3326] text-sm font-bold text-[#3d3326] hover:bg-[#3d3326] hover:text-white transition-colors sm:text-base">
           Explore story
         </button>

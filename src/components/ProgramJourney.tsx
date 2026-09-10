@@ -98,7 +98,7 @@ export default function ProgramJourney() {
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10">
+    <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10 lg:px-16 lg:py-16">
       <div className="flex w-full flex-col items-center gap-2.5">
         <div className="bg-[#f0e8d6] px-3.5 py-1.5 rounded-[20px]">
           <p className="text-xs font-medium text-[#4a3d2e] uppercase tracking-[0.5px]">
@@ -113,8 +113,8 @@ export default function ProgramJourney() {
         </p>
       </div>
 
-      {/* 2x2 Grid */}
-      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6">
+      {/* 2x2 Grid on mobile/tablet, single row of 4 on large screens */}
+      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6 lg:max-w-6xl lg:grid-cols-4">
         {pillars.map((pillar) => (
           <button
             key={pillar.num}
@@ -150,11 +150,11 @@ export default function ProgramJourney() {
       {selectedPillar && (
         <div
           onClick={() => closeModal(null)}
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/60"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-lg rounded-t-3xl bg-[#faf3e0] overflow-hidden max-h-[88vh] overflow-y-auto"
+            className="w-full max-w-lg rounded-t-3xl bg-[#faf3e0] overflow-hidden max-h-[88vh] overflow-y-auto sm:rounded-3xl sm:max-h-[85vh]"
           >
             {/* Photo Hero */}
             <div className="relative h-52 w-full shrink-0">

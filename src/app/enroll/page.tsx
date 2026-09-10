@@ -34,7 +34,7 @@ export default function EnrollPage() {
   return (
     <div className="flex w-full flex-1 flex-col bg-[#f5edd9]">
       {/* Onboarding card — full-bleed sheet on mobile, centered card on larger screens */}
-      <section className="w-full self-center rounded-t-[28px] bg-[#fffcf7] px-6 pb-12 pt-8 shadow-[0px_-10px_12px_rgba(50,37,26,0.04)] sm:my-10 sm:max-w-lg sm:rounded-[28px] sm:shadow-[0px_8px_24px_rgba(50,37,26,0.08)]">
+      <section className="w-full self-center rounded-t-[28px] bg-[#fffcf7] px-6 pb-12 pt-8 shadow-[0px_-10px_12px_rgba(50,37,26,0.04)] sm:my-10 sm:max-w-lg sm:rounded-[28px] sm:shadow-[0px_8px_24px_rgba(50,37,26,0.08)] lg:max-w-xl lg:px-9">
         <h1 className="text-xs font-medium leading-[1.4] tracking-[0.5px] text-[#4a3d2e]">
           What Happens Next
         </h1>
