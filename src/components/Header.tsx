@@ -40,7 +40,7 @@ export default function Header() {
             className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden"
           >
             <img
-              src="/images/logo-circle.png"
+              src="/images/logo-icon.png"
               alt="Divines logo"
               className="size-full object-cover rounded-full"
             />
