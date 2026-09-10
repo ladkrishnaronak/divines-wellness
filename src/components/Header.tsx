@@ -77,9 +77,10 @@ export default function Header() {
         />
       )}
 
-      {/* Menu - matches Figma "Menu-*" frames (353:1064) */}
+      {/* Menu - matches Figma "Menu-*" frames (353:1064): a compact 217px-wide
+          dropdown anchored under the hamburger, not a full-width bar. */}
       {menuOpen && (
-        <nav className="fixed left-4 right-4 top-[85px] z-40 flex flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg sm:left-1/2 sm:right-auto sm:w-[320px] sm:-translate-x-1/2">
+        <nav className="fixed left-4 top-[85px] z-40 flex w-[217px] flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg">
           <div className="flex w-full flex-col items-center py-[25px]">
             {navLinks.map((link) => {
               const isActive =

@@ -8,17 +8,16 @@ const pillars = [
     title: "Foundation",
     tagline: "Identify triggers",
     color: "#7a6a55",
-    focus: "The first step in your healing journey. We conduct a comprehensive assessment of your health, lifestyle, and triggers to create a personalized diagnosis and treatment plan.",
+    focus: "Comprehensive assessment & root-cause analysis",
     actions: [
-      "Complete Health Assessment",
-      "Identify Root Causes",
-      "Personalized Diagnosis",
-      "Baseline Measurements",
+      "Complete comprehensive health assessment",
+      "Identify lifestyle & dietary triggers",
+      "Baseline lab review & symptom mapping",
     ],
     outcomes: [
-      "Clear understanding of your unique health profile",
-      "Personalized treatment roadmap",
-      "Foundation for structured healing",
+      "Clear understanding of root causes",
+      "Personalized healing roadmap",
+      "Awareness of key triggers",
     ],
     tags: "Assess • Diagnose • Personalize",
     file: "pillar-foundation.png",
@@ -146,50 +145,47 @@ export default function ProgramJourney() {
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Modal — centered card matching Figma's pillar detail reference,
+          not a bottom sheet: margin on all sides, fully rounded, visible
+          backdrop, and a clearly visible close button. */}
       {selectedPillar && (
         <div
           onClick={() => closeModal(null)}
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-8"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-lg rounded-t-3xl bg-[#faf3e0] overflow-hidden max-h-[88vh] overflow-y-auto sm:rounded-3xl sm:max-h-[85vh]"
+            className="w-full max-w-sm overflow-hidden rounded-2xl bg-[#faf3e0] shadow-2xl max-h-[85vh] overflow-y-auto"
           >
             {/* Photo Hero */}
-            <div className="relative h-52 w-full shrink-0">
+            <div className="relative h-44 w-full shrink-0">
               <img
                 src={`/images/${selectedPillar.file}`}
                 alt={selectedPillar.title}
                 className="size-full object-cover"
               />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `linear-gradient(to bottom, transparent 25%, ${selectedPillar.color}f0)`,
-                }}
-              />
+              {/* Pillar badge */}
+              <span className="absolute left-3 top-3 rounded-full bg-[#f5edd9] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#3d3326]">
+                Pillar {selectedPillar.num}
+              </span>
               {/* Close Button */}
               <button
                 onClick={() => closeModal(null)}
-                className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/35 hover:bg-black/50 flex items-center justify-center text-white text-base transition-colors"
+                aria-label="Close"
+                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#3d3326] shadow-md transition-colors hover:bg-white/90"
               >
                 ✕
               </button>
-              <div className="absolute bottom-4 left-4 right-4">
-                <div
-                  className="inline-block rounded-full px-3 py-1 mb-1.5 text-[10px] font-bold text-white uppercase tracking-widest"
-                  style={{ background: "rgba(255,255,255,0.2)" }}
-                >
-                  Pillar {selectedPillar.num} · 4D Journey
-                </div>
-                <h2 className="text-2xl font-bold text-white mb-1">{selectedPillar.title}</h2>
-                <p className="text-sm italic text-white/85">{selectedPillar.tagline}</p>
-              </div>
             </div>
 
             {/* Body */}
             <div className="flex flex-col gap-5 px-4.5 py-5 pb-8">
+              {/* Title + tagline */}
+              <div>
+                <h2 className="text-xl font-bold text-[#3d3326]">{selectedPillar.title}</h2>
+                <p className="text-sm italic text-[#7a6a55]">{selectedPillar.tagline}</p>
+              </div>
+
               {/* Focus */}
               <div
                 className="rounded-xl p-3.5"
@@ -202,7 +198,7 @@ export default function ProgramJourney() {
                   className="text-[10px] font-bold uppercase tracking-widest mb-1"
                   style={{ color: selectedPillar.color }}
                 >
-                  About This Phase
+                  Core Focus Area
                 </div>
                 <p className="text-sm leading-relaxed text-[#3a2010]">{selectedPillar.focus}</p>
               </div>
