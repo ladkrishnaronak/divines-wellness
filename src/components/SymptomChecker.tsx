@@ -43,24 +43,24 @@ export default function SymptomChecker() {
           {heading}
         </h2>
 
-        {/* Toggle Slider */}
-        <div className="flex items-center gap-2 bg-[#e8dcc8] rounded-full p-1 w-fit">
+        {/* Toggle Slider — matches Figma "Toggle" component (413:1013) */}
+        <div className="flex items-center bg-[#ebe4da] rounded-full p-1 w-fit">
           <button
             onClick={() => setActiveTab("health")}
-            className={`px-6 py-2 text-xs font-bold uppercase rounded-full transition-all ${
+            className={`rounded-[20px] px-[14px] py-[9px] text-xs font-medium transition-colors sm:px-[18px] sm:py-[10px] sm:text-sm ${
               activeTab === "health"
-                ? "bg-[#8b4e0a] text-white"
-                : "text-[#8b4e0a] hover:text-[#3d3226]"
+                ? "bg-[#3d3326] text-white"
+                : "text-[#3d3326] hover:bg-black/5"
             }`}
           >
             Health Issues
           </button>
           <button
             onClick={() => setActiveTab("lifestyle")}
-            className={`px-6 py-2 text-xs font-bold uppercase rounded-full transition-all ${
+            className={`rounded-[20px] px-[14px] py-[9px] text-xs font-medium transition-colors sm:px-[18px] sm:py-[10px] sm:text-sm ${
               activeTab === "lifestyle"
-                ? "bg-[#8b4e0a] text-white"
-                : "text-[#8b4e0a] hover:text-[#3d3226]"
+                ? "bg-[#3d3326] text-white"
+                : "text-[#3d3326] hover:bg-black/5"
             }`}
           >
             Lifestyle Diseases

@@ -20,15 +20,15 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#262016] px-4 py-3.5 h-[70px] sm:px-8 lg:px-12">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
           {/* Left Section */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3.5">
             {/* Hamburger Menu */}
             <button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col gap-1 h-6 w-6 items-center justify-center text-white hover:opacity-80"
+              className="flex shrink-0 flex-col gap-1 h-6 w-6 items-center justify-center text-white hover:opacity-80"
             >
               <div className="h-0.5 w-4.5 bg-white rounded-sm" />
               <div className="h-0.5 w-4.5 bg-white rounded-sm" />
@@ -38,7 +38,7 @@ export default function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="border border-[#e6c594] rounded-full p-0.5 size-9 flex items-center justify-center overflow-hidden sm:size-10"
+              className="border border-[#e6c594] rounded-full size-9 flex shrink-0 items-center justify-center overflow-hidden sm:size-10"
             >
               <img
                 src="/images/logo-icon.png"
@@ -48,7 +48,10 @@ export default function Header() {
             </Link>
 
             {/* Brand Name */}
-            <Link href="/" className="text-white font-bold text-xl whitespace-nowrap sm:text-2xl">
+            <Link
+              href="/"
+              className="min-w-0 truncate text-base font-bold text-white sm:text-xl lg:text-2xl"
+            >
               The Divines Health
             </Link>
           </div>
@@ -56,7 +59,7 @@ export default function Header() {
           {/* Right Section - Enroll Button */}
           <Link
             href="/enroll"
-            className="border-[1.5px] border-white rounded-[6px] px-4 py-2 text-white font-bold text-sm whitespace-nowrap hover:bg-white/10 sm:px-5 sm:text-base"
+            className="shrink-0 whitespace-nowrap rounded-[6px] border-[1.5px] border-white px-3 py-1.5 text-xs font-bold text-white hover:bg-white/10 sm:px-5 sm:py-2 sm:text-base"
           >
             Enroll
           </Link>
