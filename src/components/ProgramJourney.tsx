@@ -209,11 +209,8 @@ export default function ProgramJourney() {
 
               {/* Actions */}
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-[#8b4e0a]">
-                  <span className="w-5 h-5 rounded-full bg-[#8b4e0a] text-white text-[9px] inline-flex items-center justify-center">
-                    ▸
-                  </span>
-                  What You'll Get
+                <div className="text-sm font-bold mb-3 text-[#3d3326]">
+                  Action Steps
                 </div>
                 <div className="space-y-0">
                   {selectedPillar.actions.map((action, i) => (
@@ -226,9 +223,9 @@ export default function ProgramJourney() {
                       }}
                     >
                       <div
-                        className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-[11px] font-bold"
+                        className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-[11px] font-bold border-[1.5px]"
                         style={{
-                          background: "rgba(139,78,10,0.1)",
+                          borderColor: "#c9a86a",
                           color: "#8b4e0a",
                         }}
                       >
@@ -242,10 +239,7 @@ export default function ProgramJourney() {
 
               {/* Outcomes */}
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-[#8fae88]">
-                  <span className="w-5 h-5 rounded-full bg-[#8fae88] text-white text-[9px] inline-flex items-center justify-center">
-                    ✓
-                  </span>
+                <div className="text-sm font-bold mb-3 text-[#2d6a4f]">
                   Expected Outcomes
                 </div>
                 <div className="space-y-0">
@@ -258,7 +252,7 @@ export default function ProgramJourney() {
                           i < selectedPillar.outcomes.length - 1 ? "1px solid rgba(139,78,10,0.1)" : "none",
                       }}
                     >
-                      <span className="text-[#8fae88] flex-shrink-0 text-lg leading-none">✦</span>
+                      <span className="text-[#2d6a4f] flex-shrink-0 text-sm leading-relaxed">✓</span>
                       <p className="text-sm leading-relaxed text-[#3a2010]">{outcome}</p>
                     </div>
                   ))}
