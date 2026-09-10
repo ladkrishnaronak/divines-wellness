@@ -33,50 +33,31 @@ const items = [
   },
 ];
 
-function StatButton({ item, onClick }: { item: (typeof items)[0]; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex w-20 flex-col items-center justify-center gap-[3px] py-1 sm:w-24 lg:w-28"
-    >
-      <div className="flex size-9 items-center justify-center rounded-full border-[1.5px] border-[#b89a5a] bg-[#f5edd8] lg:size-11">
-        <item.Icon size={18} strokeWidth={1.75} className="text-[#7a6a55] lg:size-5" />
-      </div>
-      <p className="w-[76px] text-center text-[9px] font-semibold uppercase tracking-[0.3px] text-[#8c7a5e] sm:w-full lg:text-[11px]">
-        {item.label}
-      </p>
-      <p className="w-[76px] text-center text-[13px] font-bold text-[#3d3226] sm:w-full lg:text-[15px]">
-        {item.value}
-      </p>
-    </button>
-  );
-}
-
 export default function ProgramOverview() {
   const [selectedItem, setSelectedItem] = useState<(typeof items)[0] | null>(null);
 
   return (
     <>
-      <section className="w-full bg-white flex flex-col items-center px-4 py-3.5 shadow-[0px_2px_4px_rgba(0,0,0,0.04)] sm:py-5 lg:py-7">
-        {/* Row 1 on mobile: Duration / Mode / 1:1 Call. From `sm` up, all 4 join one row. */}
-        <div className="flex w-full max-w-md items-center justify-center sm:max-w-2xl lg:max-w-4xl">
-          {items.slice(0, 3).map((item, i) => (
-            <div key={item.label} className="flex items-center">
-              {i > 0 && (
-                <div className="h-10 w-px bg-[#c9b89a] opacity-60 mx-2 sm:mx-5 lg:mx-8" />
-              )}
-              <StatButton item={item} onClick={() => setSelectedItem(item)} />
-            </div>
+      <section className="w-full bg-white flex items-center justify-center px-3 py-3.5 shadow-[0px_2px_4px_rgba(0,0,0,0.04)] sm:px-6 sm:py-5 lg:py-7">
+        {/* Single row, matches Figma "Program Overview" card-duration/card-mode/card-paid/card-location */}
+        <div className="flex w-full max-w-md items-center justify-center gap-2 sm:max-w-2xl sm:gap-5 lg:max-w-3xl lg:gap-8">
+          {items.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => setSelectedItem(item)}
+              className="flex w-1/4 max-w-[92px] flex-1 flex-col items-center justify-center gap-[3px] rounded-[8px] border border-[#e8dcc8] bg-white py-[7px] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-[#f5edd8]/40 sm:py-2.5 lg:py-3.5"
+            >
+              <div className="flex size-[27px] items-center justify-center rounded-full border-[1.5px] border-[#b89a5a] bg-[#f5edd9] sm:size-9 lg:size-10">
+                <item.Icon size={14} strokeWidth={1.75} className="text-[#7a6a55] sm:size-[18px] lg:size-5" />
+              </div>
+              <p className="w-full text-center text-[9px] font-medium uppercase tracking-[0.3px] text-[#4a3d2e] sm:text-xs lg:text-sm">
+                {item.label}
+              </p>
+              <p className="w-full text-center text-[11px] font-bold leading-tight text-[#3d3326] sm:text-sm lg:text-base">
+                {item.value}
+              </p>
+            </button>
           ))}
-          <div className="hidden h-10 w-px bg-[#c9b89a] opacity-60 mx-5 sm:block lg:mx-8" />
-          <div className="hidden sm:block">
-            <StatButton item={items[3]} onClick={() => setSelectedItem(items[3])} />
-          </div>
-        </div>
-
-        {/* Row 2 on mobile only: Location, centered */}
-        <div className="mt-2 flex justify-center sm:hidden">
-          <StatButton item={items[3]} onClick={() => setSelectedItem(items[3])} />
         </div>
       </section>
 
