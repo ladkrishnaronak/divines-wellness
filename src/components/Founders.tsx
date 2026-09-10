@@ -23,7 +23,7 @@ export default function Founders() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12">
+    <section id="stories" className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12">
       <div className="flex flex-col items-center gap-3 w-full">
         <h2 className="text-2xl sm:text-3xl font-bold uppercase text-[#3d3326] text-center">
           Meet The Founders
@@ -54,25 +54,26 @@ export default function Founders() {
                 {/* Divider */}
                 <div className="h-px bg-[#ebe3cf]" />
 
-                {/* Bio Text */}
-                <div className="text-sm text-[#4a3d2e] leading-relaxed">
-                  <p className="line-clamp-3">{founder.fullBio}</p>
-                </div>
-
-                {/* Read More Button */}
-                <button
-                  onClick={() => setExpandedId(expandedId === idx ? null : idx)}
-                  className="text-sm font-medium text-[#7a6642] hover:underline text-left"
-                >
-                  {expandedId === idx ? "Read Less ↑" : "Read More ↓"}
-                </button>
-
-                {/* Expanded Bio */}
-                {expandedId === idx && (
-                  <div className="text-sm text-[#4a3d2e] leading-relaxed border-t border-[#ebe3cf] pt-4">
-                    {founder.fullBio}
+                {/* Bio Text - Show clamped or full based on state */}
+                {expandedId !== idx && (
+                  <div className="text-sm text-[#4a3d2e] leading-relaxed">
+                    <p className="line-clamp-3">{founder.fullBio}</p>
                   </div>
                 )}
+
+                {expandedId === idx && (
+                  <div className="text-sm text-[#4a3d2e] leading-relaxed">
+                    <p>{founder.fullBio}</p>
+                  </div>
+                )}
+
+                {/* Read More/Less Button */}
+                <button
+                  onClick={() => setExpandedId(expandedId === idx ? null : idx)}
+                  className="text-sm font-medium text-[#7a6642] hover:underline text-left mt-1"
+                >
+                  {expandedId === idx ? "Show Less ↑" : "Read More ↓"}
+                </button>
               </div>
             </div>
           </div>
