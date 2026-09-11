@@ -19,7 +19,7 @@ const consultants = [
 
 export default function Sessions() {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#3d3226] px-6 py-11 sm:px-12 lg:px-20 lg:py-16">
+    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#3d3326] px-6 py-11 sm:px-12 lg:px-20 lg:py-16">
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{

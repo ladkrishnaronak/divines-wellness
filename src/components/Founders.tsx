@@ -48,7 +48,7 @@ export default function Founders() {
                 <p className="text-xs font-bold uppercase text-[#7a6642] tracking-[1.5px]">
                   {idx === 0 ? "Founder & Director" : "Co-Founder"}
                 </p>
-                <p className="text-lg font-bold text-[#3d3226]">{founder.name}</p>
+                <p className="text-lg font-bold text-[#3d3326]">{founder.name}</p>
                 <p className="text-sm text-[#7d6e5e]">{founder.role}</p>
 
                 {/* Divider */}

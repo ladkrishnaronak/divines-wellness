@@ -39,7 +39,7 @@ export default function SymptomChecker() {
     <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#faf7f2] px-6 pb-10 pt-7 sm:px-12 lg:px-16 lg:py-14">
       <div className="flex w-full flex-col items-center gap-4">
         <p className="text-[11px] font-bold uppercase text-[#8b4e0a]">Looks familiar?</p>
-        <h2 className="w-80 max-w-full text-center text-2xl font-bold leading-[1.25] text-[#3d3226] sm:w-full sm:text-4xl">
+        <h2 className="w-80 max-w-full text-center text-2xl font-bold leading-[1.25] text-[#3d3326] sm:w-full sm:text-4xl">
           {heading}
         </h2>
 
@@ -83,7 +83,7 @@ export default function SymptomChecker() {
             <div className="aspect-[102/108] w-full overflow-hidden rounded-[20px]">
               <img src={`/images/${file}`} alt={label} className="size-full object-cover" />
             </div>
-            <span className="text-[11px] font-semibold text-[#3d3226] sm:text-sm lg:text-base">{label}</span>
+            <span className="text-[11px] font-semibold text-[#3d3326] sm:text-sm lg:text-base">{label}</span>
           </button>
         ))}
       </div>
@@ -92,7 +92,7 @@ export default function SymptomChecker() {
         <p className="w-[300px] max-w-full text-lg font-bold text-[#8b4e0a] sm:w-full sm:text-2xl">
           If your answer is YES, you are not alone.
         </p>
-        <p className="w-[300px] max-w-full text-[13px] font-semibold text-[#3d3226] sm:w-full sm:text-lg">
+        <p className="w-[300px] max-w-full text-[13px] font-semibold text-[#3d3326] sm:w-full sm:text-lg">
           Divines Wellness Program helps you reset your lifestyle &amp; restore your well-being
           holistically.
         </p>

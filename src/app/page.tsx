@@ -7,7 +7,7 @@ import Founders from "@/components/Founders";
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-col items-center bg-[#f5edd8]">
+    <div className="flex w-full flex-col items-center bg-[#f5edd9]">
       <Hero />
       <ProgramOverview />
       <SymptomChecker />

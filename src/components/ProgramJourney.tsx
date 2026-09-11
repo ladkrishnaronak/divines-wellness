@@ -25,17 +25,16 @@ const pillars = [
   {
     num: "02",
     title: "Vitality",
-    tagline: "Restore gut & energy",
+    tagline: "Heal your gut, feed your cells",
     color: "#8b6f47",
-    focus: "Rebuild your energy and restore your gut health through personalized nutrition, therapeutic exercises, and lifestyle modifications.",
+    focus: "Restore gut health & cellular energy",
     actions: [
-      "Gut Health Restoration",
-      "Energy Optimization",
-      "Nutrition Planning",
-      "Detoxification Protocol",
+      "Gut-healing, anti-inflammatory nutrition protocol",
+      "Micronutrient & metabolic optimization",
+      "Structured yoga, pranayama & sleep correction",
     ],
     outcomes: [
-      "Improved digestion and sustained energy",
+      "Improved digestion & sustained energy",
       "Better weight regulation",
       "Enhanced overall vitality",
     ],
@@ -45,18 +44,17 @@ const pillars = [
   {
     num: "03",
     title: "Balance",
-    tagline: "Regulate stress & hormones",
+    tagline: "Align mind, body & hormones",
     color: "#6b5a47",
-    focus: "Achieve hormonal balance and manage stress through yoga therapy, meditation, and mind coaching practices tailored to your needs.",
+    focus: "Regulate stress & hormonal rhythm",
     actions: [
-      "Hormonal Regulation",
-      "Stress Management",
-      "Emotional Balance",
-      "Sleep Optimization",
+      "Stress assessment with mind coaching",
+      "Meditation & nervous system regulation",
+      "Hormone-supportive lifestyle practices",
     ],
     outcomes: [
-      "Reduced anxiety and better sleep",
-      "Stable mood and emotional resilience",
+      "Reduced anxiety, better sleep",
+      "Stable mood & emotional resilience",
       "Improved hormonal balance",
     ],
     tags: "Regulate • Calm • Stabilize",
@@ -65,19 +63,18 @@ const pillars = [
   {
     num: "04",
     title: "Liberation",
-    tagline: "Sustain long-term",
+    tagline: "Clear boundaries, sustain results",
     color: "#a0845a",
-    focus: "Lock in your gains and build sustainable habits that empower you to maintain your wellness for life.",
+    focus: "Sustain long-term stability",
     actions: [
-      "Long-term Sustainability",
-      "Habit Formation",
-      "Relapse Prevention",
-      "Ongoing Support",
+      "Correct hidden lifestyle barriers",
+      "Detox-support & anti-inflammatory strategies",
+      "Long-term nutrition & relapse-prevention plan",
     ],
     outcomes: [
-      "Sustainable wellness practices",
-      "Confidence in self-managing health",
-      "Long-term vitality and freedom",
+      "Sustainable thyroid & hormonal balance",
+      "Long-term energy & weight stability",
+      "Confidence in self-managing your health",
     ],
     tags: "Sustain • Protect • Empower",
     file: "pillar-liberation.png",
@@ -137,7 +134,7 @@ export default function ProgramJourney() {
               </span>
             </div>
             <div className="flex flex-col gap-1 px-3 pb-3.5 pt-3">
-              <h3 className="text-base font-bold text-[#8b4e0a]">{pillar.title}</h3>
+              <h3 className="text-base font-bold text-[#3d3326]">{pillar.title}</h3>
               <p className="text-xs italic text-[#7a5030]">{pillar.tagline}</p>
               <p className="text-xs text-[#6a4010]">{pillar.tags}</p>
             </div>
@@ -157,12 +154,18 @@ export default function ProgramJourney() {
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-sm overflow-hidden rounded-2xl bg-[#faf3e0] shadow-2xl max-h-[85vh] overflow-y-auto"
           >
-            {/* Photo Hero */}
+            {/* Photo Hero — badge, close, title & tagline all overlay the image */}
             <div className="relative h-44 w-full shrink-0">
               <img
                 src={`/images/${selectedPillar.file}`}
                 alt={selectedPillar.title}
                 className="size-full object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(to bottom, transparent 40%, ${selectedPillar.color}e6)`,
+                }}
               />
               {/* Pillar badge */}
               <span className="absolute left-3 top-3 rounded-full bg-[#f5edd9] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#3d3326]">
@@ -176,16 +179,15 @@ export default function ProgramJourney() {
               >
                 ✕
               </button>
+              {/* Title + tagline, bottom of image */}
+              <div className="absolute bottom-3 left-4 right-4">
+                <h2 className="text-xl font-bold text-white">{selectedPillar.title}</h2>
+                <p className="text-sm italic text-white/85">{selectedPillar.tagline}</p>
+              </div>
             </div>
 
             {/* Body */}
             <div className="flex flex-col gap-5 px-4.5 py-5 pb-8">
-              {/* Title + tagline */}
-              <div>
-                <h2 className="text-xl font-bold text-[#3d3326]">{selectedPillar.title}</h2>
-                <p className="text-sm italic text-[#7a6a55]">{selectedPillar.tagline}</p>
-              </div>
-
               {/* Focus */}
               <div
                 className="rounded-xl p-3.5"

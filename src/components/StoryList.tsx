@@ -42,7 +42,7 @@ export default function StoryList() {
         return (
           <article
             key={story.title}
-            className="flex w-full flex-col overflow-hidden rounded-[20px] border border-[#eae2cf] bg-white shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)]"
+            className="flex w-full flex-col overflow-hidden rounded-[20px] border border-[#ebe3cf] bg-white shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)]"
           >
             {/* Story media */}
             <div className="relative h-[190px] w-full overflow-hidden rounded-[16px] sm:h-[260px]">

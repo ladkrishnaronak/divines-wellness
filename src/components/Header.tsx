@@ -80,7 +80,7 @@ export default function Header() {
       {/* Menu - matches Figma "Menu-*" frames (353:1064): a compact 217px-wide
           dropdown anchored under the hamburger, not a full-width bar. */}
       {menuOpen && (
-        <nav className="fixed left-4 top-[85px] z-40 flex w-[217px] flex-col overflow-hidden rounded-[25px] bg-[#3d3226] shadow-lg">
+        <nav className="fixed left-4 top-[85px] z-40 flex w-[217px] flex-col overflow-hidden rounded-[25px] bg-[#3d3326] shadow-lg">
           <div className="flex w-full flex-col items-center py-[25px]">
             {navLinks.map((link) => {
               const isActive =
@@ -94,7 +94,7 @@ export default function Header() {
                   aria-current={isActive ? "page" : undefined}
                   className={`flex w-full items-center justify-center px-8 py-3.5 text-xl transition-colors ${
                     isActive
-                      ? "bg-white font-bold text-[#3d3226]"
+                      ? "bg-white font-bold text-[#3d3326]"
                       : "font-normal text-[#fffdf8] hover:bg-white/10"
                   }`}
                 >
