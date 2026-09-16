@@ -94,7 +94,7 @@ export default function ProgramJourney() {
   };
 
   return (
-    <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10 lg:px-16 lg:py-16">
+    <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10 md:px-12 md:py-14 lg:px-16 lg:py-16">
       <div className="flex w-full flex-col items-center gap-2.5">
         <div className="bg-[#f0e8d6] px-3.5 py-1.5 rounded-[20px]">
           <p className="text-xs font-medium text-[#4a3d2e] uppercase tracking-[0.5px]">
@@ -109,8 +109,8 @@ export default function ProgramJourney() {
         </p>
       </div>
 
-      {/* 2x2 Grid on mobile/tablet, single row of 4 on large screens */}
-      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6 lg:max-w-6xl lg:grid-cols-4">
+      {/* 2x2 Grid on mobile, single row of 4 from tablet up */}
+      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6 md:max-w-4xl md:grid-cols-4 md:gap-4 lg:max-w-6xl lg:gap-6">
         {pillars.map((pillar) => (
           <button
             key={pillar.num}

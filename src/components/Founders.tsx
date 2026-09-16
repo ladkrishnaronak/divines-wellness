@@ -23,7 +23,7 @@ export default function Founders() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
-    <section id="stories" className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12 lg:px-16 lg:py-16">
+    <section id="stories" className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12 md:px-14 md:py-14 lg:px-16 lg:py-16">
       <div className="flex flex-col items-center gap-3 w-full">
         <h2 className="text-2xl sm:text-3xl font-bold uppercase text-[#3d3326] text-center">
           Meet The Founders
@@ -34,7 +34,7 @@ export default function Founders() {
       </div>
 
       {/* Founders Cards */}
-      <div className="grid w-full max-w-lg grid-cols-1 gap-4 lg:max-w-4xl lg:grid-cols-2 lg:gap-6">
+      <div className="grid w-full max-w-lg grid-cols-1 gap-4 md:max-w-3xl md:grid-cols-2 md:gap-5 lg:max-w-4xl lg:gap-6">
         {founders.map((founder, idx) => (
           <div key={founder.name} className="lg:h-full">
             <div className="flex h-full flex-col gap-4 rounded-[20px] bg-white px-5 py-0 shadow-[0_8px_24px_rgba(61,50,38,0.06)] border border-[#ebe3cf] overflow-hidden">
