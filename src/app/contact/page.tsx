@@ -121,65 +121,64 @@ export default function ContactPage() {
         ))}
       </div>
 
-      {/* Rising-sun outer layer — the sun's horizon arc IS the white→cream section
-          edge (like the wave divider on satvicmovement.org/contact, redrawn here
-          as a sunrise in this site's own gold/terracotta palette). The band behind
-          the rays/disc stays white (matching the section above) so the cream dome
-          path — drawn last, on top — reads as the actual curved seam where white
-          becomes cream, with the sun rising up out of that curve. Rays + disc
-          gently pulse via CSS keyframes so the motif reads as alive, not static. */}
+      {/* Rising-sun outer layer — this time the boundary line ITSELF is the sun:
+          no separate disc sitting on top of a plain curve. A single wavy path
+          (multiple ups and downs, like the wave divider on
+          satvicmovement.org/contact) is filled with the sunrise gradient and
+          traced with a glowing gold line, so the white→cream seam reads as a
+          band of sunlight. The whole wave gently bobs up and down via CSS
+          keyframes — genuine motion, not a static shape. */}
       <div className="relative w-full bg-[#f2ede3]">
         <style>{`
-          @keyframes risingSunRayPulse {
-            0%, 100% { opacity: 0.55; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.045); }
+          @keyframes risingSunBob {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(7px); }
           }
-          @keyframes risingSunDiscGlow {
-            0%, 100% { filter: drop-shadow(0 0 6px rgba(181,111,74,0.35)); }
-            50% { filter: drop-shadow(0 0 20px rgba(181,111,74,0.65)); }
+          @keyframes risingSunGlowPulse {
+            0%, 100% { opacity: 0.65; filter: drop-shadow(0 0 4px rgba(181,111,74,0.4)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 16px rgba(181,111,74,0.75)); }
           }
-          .rising-sun-ray {
-            transform-box: fill-box;
-            transform-origin: center;
-            animation: risingSunRayPulse 4.5s ease-in-out infinite;
+          .rising-sun-wave-group {
+            animation: risingSunBob 6s ease-in-out infinite;
           }
-          .rising-sun-ray--2 { animation-delay: 0.35s; }
-          .rising-sun-ray--3 { animation-delay: 0.7s; }
-          .rising-sun-ray--4 { animation-delay: 1.05s; }
-          .rising-sun-disc {
-            transform-box: fill-box;
-            transform-origin: center;
-            animation: risingSunDiscGlow 4.5s ease-in-out infinite;
+          .rising-sun-glow-line {
+            animation: risingSunGlowPulse 4s ease-in-out infinite;
           }
           @media (prefers-reduced-motion: reduce) {
-            .rising-sun-ray, .rising-sun-disc { animation: none; }
+            .rising-sun-wave-group, .rising-sun-glow-line { animation: none; }
           }
         `}</style>
         <svg
-          viewBox="0 0 1440 280"
+          viewBox="0 0 1440 220"
           preserveAspectRatio="none"
-          className="block h-[130px] w-full overflow-hidden bg-white sm:h-[160px] md:h-[200px] lg:h-[230px]"
+          className="block h-[110px] w-full overflow-hidden bg-white sm:h-[140px] md:h-[170px] lg:h-[190px]"
           aria-hidden="true"
         >
           <defs>
-            <linearGradient id="risingSunGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f0dfb0" />
+            <linearGradient id="risingSunGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#e6c594" />
+              <stop offset="45%" stopColor="#d9a765" />
               <stop offset="100%" stopColor="#b56f4a" />
             </linearGradient>
           </defs>
 
-          {/* Concentric rays, centered above the horizon peak */}
-          <path className="rising-sun-ray rising-sun-ray--1" d="M 460 160 A 260 260 0 0 1 980 160" fill="none" stroke="#e6c594" strokeWidth="2" opacity="0.35" />
-          <path className="rising-sun-ray rising-sun-ray--2" d="M 520 160 A 200 200 0 0 1 920 160" fill="none" stroke="#d4b482" strokeWidth="2" opacity="0.45" />
-          <path className="rising-sun-ray rising-sun-ray--3" d="M 570 160 A 150 150 0 0 1 870 160" fill="none" stroke="#c9a86a" strokeWidth="2.5" opacity="0.6" />
-          <path className="rising-sun-ray rising-sun-ray--4" d="M 610 160 A 110 110 0 0 1 830 160" fill="none" stroke="#b89959" strokeWidth="2.5" opacity="0.75" />
-
-          {/* Sun disc, peeking up from behind the horizon */}
-          <circle className="rising-sun-disc" cx="720" cy="160" r="130" fill="url(#risingSunGradient)" />
-
-          {/* The horizon itself — this curve is the actual white→cream section
-              boundary, drawn on top so the sun/rays appear to rise out of it. */}
-          <path d="M0,280 L0,160 C 360,40 1080,40 1440,160 L1440,280 Z" fill="#f2ede3" />
+          <g className="rising-sun-wave-group">
+            {/* The wave IS the sun: filled with the sunrise gradient, rising and
+                dipping across the width instead of a single flat dome. */}
+            <path
+              d="M0,220 L0,150 C 120,90 240,90 360,150 C 480,210 600,210 720,120 C 840,30 960,30 1080,120 C 1200,210 1320,210 1440,150 L1440,220 Z"
+              fill="url(#risingSunGradient)"
+            />
+            {/* Glowing line traced along the same wave crest — the "lit edge" */}
+            <path
+              className="rising-sun-glow-line"
+              d="M0,150 C 120,90 240,90 360,150 C 480,210 600,210 720,120 C 840,30 960,30 1080,120 C 1200,210 1320,210 1440,150"
+              fill="none"
+              stroke="url(#risingSunGradient)"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+          </g>
         </svg>
 
         {/* Content pushed down below the curve so it never collides with it */}
