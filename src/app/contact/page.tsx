@@ -88,15 +88,15 @@ const socials = [
 export default function ContactPage() {
   return (
     <div className="flex w-full flex-col items-center bg-white">
-      {/* Title */}
-      <div className="flex w-full max-w-2xl flex-col items-start gap-0.5 px-6 pb-2 pt-6 md:max-w-3xl md:px-10 lg:max-w-4xl">
-        <h1 className="text-[22px] font-bold text-[#1a140f]">Contact Us</h1>
-        <p className="text-sm font-medium text-[#7a6642]">
-          The Divines Health · Internationally Registered Yoga School
-        </p>
+      {/* Title — Figma node 797:906: H2 (Poppins SemiBold 24px, tracking -0.2px).
+          The design has no subtitle under the title, so none is shown here. */}
+      <div className="flex w-full max-w-2xl flex-col items-start pb-2 pt-6 px-6 md:max-w-3xl md:px-10 lg:max-w-4xl">
+        <h1 className="w-full text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f]">
+          Contact Us
+        </h1>
       </div>
 
-      {/* Contact rows */}
+      {/* Contact rows — Figma node 797:908 ("row-list") */}
       <div className="flex w-full max-w-2xl flex-col gap-6 px-6 pb-6 pt-5 md:max-w-3xl md:px-10 lg:max-w-4xl">
         {contactRows.map(({ Icon, label, lines }) => (
           <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4">
@@ -104,14 +104,14 @@ export default function ContactPage() {
               <Icon size={20} strokeWidth={2} className="text-white" aria-hidden="true" />
             </div>
             <div className="flex min-w-0 flex-1 flex-col gap-1">
-              <p className="text-[15px] font-bold text-[#1a140f]">{label}</p>
+              <p className="text-xl font-semibold leading-[1.4] text-[#1a140f]">{label}</p>
               {lines.map(({ text, href }) => (
                 <a
                   key={text}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-sm leading-[1.4] text-[#2e261c] underline decoration-[#2e261c]/25 underline-offset-2 transition-colors hover:text-[#b56f4a] hover:decoration-[#b56f4a]"
+                  className="text-sm leading-[1.6] text-[#2e261c] underline decoration-[#2e261c]/25 underline-offset-2 transition-colors hover:text-[#b56f4a] hover:decoration-[#b56f4a]"
                 >
                   {text}
                 </a>
@@ -121,102 +121,41 @@ export default function ContactPage() {
         ))}
       </div>
 
-      {/* Rising-sun outer layer — this time the boundary line ITSELF is the sun:
-          no separate disc sitting on top of a plain curve. A single wavy path
-          (multiple ups and downs, like the wave divider on
-          satvicmovement.org/contact) is filled with the sunrise gradient and
-          traced with a glowing gold line, so the white→cream seam reads as a
-          band of sunlight. The whole wave gently bobs up and down via CSS
-          keyframes — genuine motion, not a static shape. */}
-      <div className="relative w-full bg-[#f2ede3]">
-        <style>{`
-          @keyframes risingSunBob {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(7px); }
-          }
-          @keyframes risingSunGlowPulse {
-            0%, 100% { opacity: 0.65; filter: drop-shadow(0 0 4px rgba(181,111,74,0.4)); }
-            50% { opacity: 1; filter: drop-shadow(0 0 16px rgba(181,111,74,0.75)); }
-          }
-          .rising-sun-wave-group {
-            animation: risingSunBob 6s ease-in-out infinite;
-          }
-          .rising-sun-glow-line {
-            animation: risingSunGlowPulse 4s ease-in-out infinite;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .rising-sun-wave-group, .rising-sun-glow-line { animation: none; }
-          }
-        `}</style>
-        <svg
-          viewBox="0 0 1440 220"
-          preserveAspectRatio="none"
-          className="block h-[110px] w-full overflow-hidden bg-white sm:h-[140px] md:h-[170px] lg:h-[190px]"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="risingSunGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#e6c594" />
-              <stop offset="45%" stopColor="#d9a765" />
-              <stop offset="100%" stopColor="#b56f4a" />
-            </linearGradient>
-          </defs>
-
-          <g className="rising-sun-wave-group">
-            {/* The wave IS the sun: filled with the sunrise gradient, rising and
-                dipping across the width instead of a single flat dome. */}
-            <path
-              d="M0,220 L0,150 C 120,90 240,90 360,150 C 480,210 600,210 720,120 C 840,30 960,30 1080,120 C 1200,210 1320,210 1440,150 L1440,220 Z"
-              fill="url(#risingSunGradient)"
-            />
-            {/* Glowing line traced along the same wave crest — the "lit edge" */}
-            <path
-              className="rising-sun-glow-line"
-              d="M0,150 C 120,90 240,90 360,150 C 480,210 600,210 720,120 C 840,30 960,30 1080,120 C 1200,210 1320,210 1440,150"
-              fill="none"
-              stroke="url(#risingSunGradient)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </g>
-        </svg>
-
-        {/* Content pushed down below the curve so it never collides with it */}
-        <div className="relative flex w-full flex-col items-center gap-6 px-6 pb-8 pt-3 sm:pt-5 md:pt-7">
-          <div className="flex w-full flex-col items-center gap-3">
-            <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#b56f4a]">
-              Connect with us
-            </p>
-            <div className="flex items-center justify-center gap-3.5">
-              {socials.map(({ Icon, label, href }) =>
-                href ? (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
-                  >
-                    <Icon size={18} className="text-white" />
-                  </a>
-                ) : (
-                  <div
-                    key={label}
-                    aria-label={`${label} (coming soon)`}
-                    title="Link coming soon"
-                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
-                  >
-                    <Icon size={18} className="text-white" />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-          <p className="text-center text-[11px] font-medium tracking-[0.5px] text-[#2e261c] opacity-80">
-            © 2026 The Divines Health. All rights reserved.
+      {/* Bottom: socials + copyright — Figma node 797:931 ("bottom-container") */}
+      <div className="flex w-full flex-col items-center gap-[15px] bg-[#f2ede3] pb-1.5 pt-[15px]">
+        <div className="flex w-full flex-col items-center gap-3">
+          <p className="text-base font-medium leading-[1.5] tracking-[0.1px] text-[#b56f4a]">
+            Connect with us
           </p>
+          <div className="flex items-center justify-center gap-3.5">
+            {socials.map(({ Icon, label, href }) =>
+              href ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
+                >
+                  <Icon size={18} className="text-white" />
+                </a>
+              ) : (
+                <div
+                  key={label}
+                  aria-label={`${label} (coming soon)`}
+                  title="Link coming soon"
+                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
+                >
+                  <Icon size={18} className="text-white" />
+                </div>
+              )
+            )}
+          </div>
         </div>
+        <p className="text-center text-[11px] font-medium leading-[1.4] tracking-[0.3px] text-[#2e261c] opacity-80">
+          © 2026 The Divines Health. All rights reserved.
+        </p>
       </div>
     </div>
   );
