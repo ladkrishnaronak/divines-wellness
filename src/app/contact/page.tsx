@@ -121,51 +121,44 @@ export default function ContactPage() {
         ))}
       </div>
 
-      {/* Bottom: socials + copyright */}
-      <div className="flex w-full flex-col items-center gap-6 bg-[#f2ede3] pb-8 pt-5">
-        <div className="flex w-full flex-col items-center gap-3">
-          <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#b56f4a]">
-            Connect with us
-          </p>
-          <div className="flex items-center justify-center gap-3.5">
-            {socials.map(({ Icon, label, href }) =>
-              href ? (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
-                >
-                  <Icon size={18} className="text-white" />
-                </a>
-              ) : (
-                <div
-                  key={label}
-                  aria-label={`${label} (coming soon)`}
-                  title="Link coming soon"
-                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
-                >
-                  <Icon size={18} className="text-white" />
-                </div>
-              )
-            )}
-          </div>
-        </div>
-        <p className="text-center text-[11px] font-medium tracking-[0.5px] text-[#2e261c] opacity-80">
-          © 2026 The Divines Health. All rights reserved.
-        </p>
-      </div>
-
-      {/* Rising-sun closing flourish — inspired by the sunrise motif on
-          satvicmovement.org/contact, redrawn in this site's own gold/terracotta
-          palette instead of their green. */}
-      <div className="flex w-full justify-center overflow-hidden bg-[#f2ede3] px-6 pb-0 pt-8">
+      {/* Rising-sun outer layer — the sun's horizon arc IS the white→cream section
+          edge (like the wave divider on satvicmovement.org/contact, redrawn here
+          as a sunrise in this site's own gold/terracotta palette). The band behind
+          the rays/disc stays white (matching the section above) so the cream dome
+          path — drawn last, on top — reads as the actual curved seam where white
+          becomes cream, with the sun rising up out of that curve. Rays + disc
+          gently pulse via CSS keyframes so the motif reads as alive, not static. */}
+      <div className="relative w-full bg-[#f2ede3]">
+        <style>{`
+          @keyframes risingSunRayPulse {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.045); }
+          }
+          @keyframes risingSunDiscGlow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(181,111,74,0.35)); }
+            50% { filter: drop-shadow(0 0 20px rgba(181,111,74,0.65)); }
+          }
+          .rising-sun-ray {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: risingSunRayPulse 4.5s ease-in-out infinite;
+          }
+          .rising-sun-ray--2 { animation-delay: 0.35s; }
+          .rising-sun-ray--3 { animation-delay: 0.7s; }
+          .rising-sun-ray--4 { animation-delay: 1.05s; }
+          .rising-sun-disc {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: risingSunDiscGlow 4.5s ease-in-out infinite;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .rising-sun-ray, .rising-sun-disc { animation: none; }
+          }
+        `}</style>
         <svg
-          viewBox="0 0 400 180"
-          preserveAspectRatio="xMidYMax meet"
-          className="h-auto w-full max-w-2xl"
+          viewBox="0 0 1440 280"
+          preserveAspectRatio="none"
+          className="block h-[130px] w-full overflow-hidden bg-white sm:h-[160px] md:h-[200px] lg:h-[230px]"
           aria-hidden="true"
         >
           <defs>
@@ -174,12 +167,57 @@ export default function ContactPage() {
               <stop offset="100%" stopColor="#b56f4a" />
             </linearGradient>
           </defs>
-          <path d="M 20 180 A 180 180 0 0 1 380 180" fill="none" stroke="#e6c594" strokeWidth="1.5" opacity="0.35" />
-          <path d="M 55 180 A 145 145 0 0 1 345 180" fill="none" stroke="#d4b482" strokeWidth="1.5" opacity="0.45" />
-          <path d="M 90 180 A 110 110 0 0 1 310 180" fill="none" stroke="#c9a86a" strokeWidth="2" opacity="0.6" />
-          <path d="M 125 180 A 75 75 0 0 1 275 180" fill="none" stroke="#b89959" strokeWidth="2" opacity="0.75" />
-          <path d="M 150 180 A 50 50 0 0 1 250 180 Z" fill="url(#risingSunGradient)" />
+
+          {/* Concentric rays, centered above the horizon peak */}
+          <path className="rising-sun-ray rising-sun-ray--1" d="M 460 160 A 260 260 0 0 1 980 160" fill="none" stroke="#e6c594" strokeWidth="2" opacity="0.35" />
+          <path className="rising-sun-ray rising-sun-ray--2" d="M 520 160 A 200 200 0 0 1 920 160" fill="none" stroke="#d4b482" strokeWidth="2" opacity="0.45" />
+          <path className="rising-sun-ray rising-sun-ray--3" d="M 570 160 A 150 150 0 0 1 870 160" fill="none" stroke="#c9a86a" strokeWidth="2.5" opacity="0.6" />
+          <path className="rising-sun-ray rising-sun-ray--4" d="M 610 160 A 110 110 0 0 1 830 160" fill="none" stroke="#b89959" strokeWidth="2.5" opacity="0.75" />
+
+          {/* Sun disc, peeking up from behind the horizon */}
+          <circle className="rising-sun-disc" cx="720" cy="160" r="130" fill="url(#risingSunGradient)" />
+
+          {/* The horizon itself — this curve is the actual white→cream section
+              boundary, drawn on top so the sun/rays appear to rise out of it. */}
+          <path d="M0,280 L0,160 C 360,40 1080,40 1440,160 L1440,280 Z" fill="#f2ede3" />
         </svg>
+
+        {/* Content pushed down below the curve so it never collides with it */}
+        <div className="relative flex w-full flex-col items-center gap-6 px-6 pb-8 pt-3 sm:pt-5 md:pt-7">
+          <div className="flex w-full flex-col items-center gap-3">
+            <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#b56f4a]">
+              Connect with us
+            </p>
+            <div className="flex items-center justify-center gap-3.5">
+              {socials.map(({ Icon, label, href }) =>
+                href ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
+                  >
+                    <Icon size={18} className="text-white" />
+                  </a>
+                ) : (
+                  <div
+                    key={label}
+                    aria-label={`${label} (coming soon)`}
+                    title="Link coming soon"
+                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
+                  >
+                    <Icon size={18} className="text-white" />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <p className="text-center text-[11px] font-medium tracking-[0.5px] text-[#2e261c] opacity-80">
+            © 2026 The Divines Health. All rights reserved.
+          </p>
+        </div>
       </div>
     </div>
   );
