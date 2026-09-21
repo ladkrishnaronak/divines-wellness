@@ -33,6 +33,13 @@ function YoutubeIcon(props: { size: number; className?: string }) {
     </svg>
   );
 }
+function TwitterIcon(props: { size: number; className?: string }) {
+  return (
+    <svg width={props.size} height={props.size} viewBox="0 0 24 24" fill="none" className={props.className} aria-hidden="true">
+      <path d="M3 3l7.5 9.5L3.3 21H6l5.2-6 4.7 6H21l-7.8-10L20.2 3H17.5l-4.8 5.6L8.4 3H3z" fill="currentColor" />
+    </svg>
+  );
+}
 
 // Content below follows the Figma "Divines Wellness - Contact Us (Mobile)"
 // frame (node 25:376) for layout/style, with the real business details the
@@ -72,6 +79,9 @@ const socials = [
     label: "Instagram",
     href: "https://www.instagram.com/invites/contact/?i=1av3a52keth46&utm_content=4b0h5gf",
   },
+  // TODO: Twitter/X handle not supplied yet — icon kept per Figma, wire up
+  // once the real profile URL is shared.
+  { Icon: TwitterIcon, label: "Twitter", href: null },
   { Icon: YoutubeIcon, label: "YouTube", href: "https://youtu.be/bMEUZrYnqrw?si=5jBQVGaUv7vLEcXg" },
 ];
 
@@ -118,23 +128,58 @@ export default function ContactPage() {
             Connect with us
           </p>
           <div className="flex items-center justify-center gap-3.5">
-            {socials.map(({ Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
-              >
-                <Icon size={18} className="text-white" />
-              </a>
-            ))}
+            {socials.map(({ Icon, label, href }) =>
+              href ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
+                >
+                  <Icon size={18} className="text-white" />
+                </a>
+              ) : (
+                <div
+                  key={label}
+                  aria-label={`${label} (coming soon)`}
+                  title="Link coming soon"
+                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
+                >
+                  <Icon size={18} className="text-white" />
+                </div>
+              )
+            )}
           </div>
         </div>
         <p className="text-center text-[11px] font-medium tracking-[0.5px] text-[#2e261c] opacity-80">
           © 2026 The Divines Health. All rights reserved.
         </p>
+      </div>
+
+      {/* Rising-sun closing flourish — inspired by the sunrise motif on
+          satvicmovement.org/contact, redrawn in this site's own gold/terracotta
+          palette instead of their green. */}
+      <div className="flex w-full justify-center overflow-hidden bg-[#f2ede3] px-6 pb-0 pt-8">
+        <svg
+          viewBox="0 0 400 180"
+          preserveAspectRatio="xMidYMax meet"
+          className="h-auto w-full max-w-2xl"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="risingSunGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#f0dfb0" />
+              <stop offset="100%" stopColor="#b56f4a" />
+            </linearGradient>
+          </defs>
+          <path d="M 20 180 A 180 180 0 0 1 380 180" fill="none" stroke="#e6c594" strokeWidth="1.5" opacity="0.35" />
+          <path d="M 55 180 A 145 145 0 0 1 345 180" fill="none" stroke="#d4b482" strokeWidth="1.5" opacity="0.45" />
+          <path d="M 90 180 A 110 110 0 0 1 310 180" fill="none" stroke="#c9a86a" strokeWidth="2" opacity="0.6" />
+          <path d="M 125 180 A 75 75 0 0 1 275 180" fill="none" stroke="#b89959" strokeWidth="2" opacity="0.75" />
+          <path d="M 150 180 A 50 50 0 0 1 250 180 Z" fill="url(#risingSunGradient)" />
+        </svg>
       </div>
     </div>
   );
