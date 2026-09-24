@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us | Divines Wellness Program",
@@ -44,31 +44,29 @@ function TwitterIcon(props: { size: number; className?: string }) {
 // Content below follows the Figma "Divines Wellness - Contact Us (Mobile)"
 // frame (node 25:376) for layout/style, with the real business details the
 // Divines Wellness team supplied: address, phone/WhatsApp numbers, Google
-// Maps link, and social profile URLs. Each line links to the matching action
-// (map, call, WhatsApp chat, email) instead of the row as a whole.
+// Maps link, and social profile URLs. The round icon in each row is the link
+// (map, call, email); the text beside it is plain.
 const contactRows = [
   {
     Icon: MapPin,
     label: "Our Location",
-    lines: [
-      {
-        text: "319-321, 4th Floor, Highfield Ascot, VIP Road, Vesu, Surat 395007",
-        href: "https://maps.app.goo.gl/hE52bo27C2eADaPAA",
-      },
-    ],
+    action: "Open location in Google Maps",
+    href: "https://maps.app.goo.gl/hE52bo27C2eADaPAA",
+    lines: ["319-321, 4th Floor, Highfield Ascot, VIP Road, Vesu, Surat 395007"],
   },
   {
     Icon: Phone,
     label: "Call or WhatsApp",
-    lines: [
-      { text: "+91 78620 83619 (WhatsApp)", href: "https://wa.me/917862083619" },
-      { text: "+91 70161 00775 (Call)", href: "tel:+917016100775" },
-    ],
+    action: "Call +91 70161 00775",
+    href: "tel:+917016100775",
+    lines: ["+91 78620 83619 (WhatsApp)", "+91 70161 00775 (Call)"],
   },
   {
     Icon: Mail,
     label: "Email Us",
-    lines: [{ text: "thedivineshealth@gmail.com", href: "mailto:thedivineshealth@gmail.com" }],
+    action: "Email thedivineshealth@gmail.com",
+    href: "mailto:thedivineshealth@gmail.com",
+    lines: ["thedivineshealth@gmail.com"],
   },
 ];
 
@@ -98,27 +96,32 @@ export default function ContactPage() {
 
       {/* Contact rows — Figma node 797:908 ("row-list") */}
       <div className="flex w-full max-w-2xl flex-col gap-6 px-6 pb-6 pt-5 md:max-w-3xl md:px-10 lg:max-w-4xl">
-        {contactRows.map(({ Icon, label, lines }) => (
-          <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4">
-            <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#b56f4a] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15),0px_2px_12px_0px_rgba(181,111,74,0.35)]">
-              <Icon size={20} strokeWidth={2} className="text-white" aria-hidden="true" />
+        {contactRows.map(({ Icon, label, action, href, lines }) => {
+          const external = href.startsWith("http");
+          return (
+            <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4">
+              {/* The round icon is the tap target: opens Maps / dialer / email app */}
+              
+                href={href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                aria-label={action}
+                title={action}
+                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#b56f4a] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15),0px_2px_12px_0px_rgba(181,111,74,0.35)] transition-transform hover:scale-105 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b56f4a]"
+              >
+                <Icon size={20} strokeWidth={2} className="text-white" aria-hidden="true" />
+              </a>
+              <div className="flex min-w-0 flex-1 flex-col gap-1">
+                <p className="text-xl font-semibold leading-[1.4] text-[#1a140f]">{label}</p>
+                {lines.map((text) => (
+                  <p key={text} className="text-sm leading-[1.6] text-[#2e261c]">
+                    {text}
+                  </p>
+                ))}
+              </div>
             </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
-              <p className="text-xl font-semibold leading-[1.4] text-[#1a140f]">{label}</p>
-              {lines.map(({ text, href }) => (
-                <a
-                  key={text}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-sm leading-[1.6] text-[#2e261c] underline decoration-[#2e261c]/25 underline-offset-2 transition-colors hover:text-[#b56f4a] hover:decoration-[#b56f4a]"
-                >
-                  {text}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Bottom: socials + copyright — Figma node 797:931 ("bottom-container") */}
@@ -130,7 +133,7 @@ export default function ContactPage() {
           <div className="flex items-center justify-center gap-3.5">
             {socials.map(({ Icon, label, href }) =>
               href ? (
-                <a
+                
                   key={label}
                   href={href}
                   target="_blank"

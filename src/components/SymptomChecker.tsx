@@ -3,15 +3,15 @@
 import { useState } from "react";
 
 const healthSymptoms = [
-  { label: "Constant Fatigue", file: "symptom-fatigue.png" },
-  { label: "Weight Gain", file: "symptom-weight.png" },
-  { label: "Hair Fall", file: "symptom-hairfall.png" },
-  { label: "Mood Swings", file: "symptom-mood.png" },
-  { label: "Irregular Cycles", file: "symptom-cycles.png" },
-  { label: "Anxiety and Stress", file: "symptom-anxiety.png" },
-  { label: "Dry Skin", file: "symptom-dryskin.png" },
-  { label: "Cold & Constipation", file: "symptom-cold.png" },
-  { label: "Heart Palpitations", file: "symptom-heart.png" },
+  { label: "Constant Fatigue", file: "symptom-fatigue.jpg" },
+  { label: "Weight Gain", file: "symptom-weight.jpg" },
+  { label: "Hair Fall", file: "symptom-hairfall.jpg" },
+  { label: "Irregular Cycles", file: "symptom-cycles.jpg" },
+  { label: "Anxiety and Stress", file: "symptom-anxiety.jpg" },
+  { label: "Dry Skin", file: "symptom-dryskin.jpg" },
+  { label: "Mood Swings", file: "symptom-mood.jpg" },
+  { label: "Heart Palpitations", file: "symptom-heart.jpg" },
+  { label: "Cold & Constipation", file: "symptom-cold.jpg" },
 ];
 
 const lifestyleSymptoms = [

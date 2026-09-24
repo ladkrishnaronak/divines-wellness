@@ -104,22 +104,22 @@ export default function FaqList() {
   return (
     <>
       {/* Search */}
-      <div className="flex w-full items-start justify-center px-6 pb-7">
-        <div className="flex w-full max-w-md flex-1 items-center gap-2.5 rounded-[12px] border border-[#e8d9be] bg-[#fffcf7] px-3.5 py-3 shadow-[0px_2px_4px_rgba(0,0,0,0.05)] lg:max-w-xl">
-          <Search size={18} strokeWidth={2} className="shrink-0 text-[#bfa882]" />
+      <div className="flex w-full max-w-md items-start justify-center px-6 pb-7 lg:max-w-2xl">
+        <div className="flex w-full flex-1 items-center gap-2.5 rounded-[12px] border border-[#b8a180] bg-[#fffcf7] px-3.5 py-3">
+          <Search size={18} strokeWidth={2} className="shrink-0 text-[#594d3d]" aria-hidden="true" />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search FAQs..."
             aria-label="Search frequently asked questions"
-            className="w-full bg-transparent text-sm leading-[1.6] text-[#4a3d2e] outline-none placeholder:text-[#bfa882]"
+            className="w-full bg-transparent text-sm font-semibold leading-5 tracking-[0.1px] text-[#2e261c] outline-none placeholder:text-[#594d3d]"
           />
         </div>
       </div>
 
       {/* Accordion list */}
-      <div className="flex w-full max-w-md flex-col gap-2.5 px-5 pb-10 lg:max-w-2xl">
+      <div className="flex w-full max-w-md flex-col gap-2.5 px-6 pb-10 lg:max-w-2xl">
         {visible.length === 0 && (
           <p className="py-8 text-center text-sm text-[#7d6e5e]">
             No questions match &ldquo;{query}&rdquo;. Try a different word.
@@ -140,11 +140,11 @@ export default function FaqList() {
                 aria-expanded={isOpen}
                 className="flex w-full items-center justify-between gap-3 p-[18px] text-left"
               >
-                <span className="text-sm leading-[1.6] text-[#4a3d2e]">{faq.q}</span>
+                <span className="text-[13px] font-semibold leading-[1.4] text-[#2e261c]">{faq.q}</span>
                 <ChevronDown
                   size={16}
                   strokeWidth={2}
-                  className={`size-4 shrink-0 text-[#4a3d2e] transition-transform duration-200 ${
+                  className={`size-4 shrink-0 text-[#2e261c] transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -152,7 +152,7 @@ export default function FaqList() {
 
               {isOpen && (
                 <div className="border-t border-[#e8d9be] px-[18px] pb-[18px] pt-3.5">
-                  <p className="text-sm leading-[1.7] text-[#4a3d2e]">{faq.a}</p>
+                  <p className="text-[13px] leading-[1.6] text-[#2e261c]">{faq.a}</p>
                 </div>
               )}
             </div>

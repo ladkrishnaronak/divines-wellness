@@ -10,13 +10,10 @@ export const metadata: Metadata = {
 export default function StoriesPage() {
   return (
     <div className="flex w-full flex-col items-center bg-[#f5edd9]">
-      {/* Page Title */}
-      <div className="flex w-full max-w-2xl flex-col items-start gap-1 px-5 pb-5 pt-5 md:max-w-4xl md:px-8 lg:max-w-6xl">
-        <p className="text-xs font-medium leading-[1.4] tracking-[0.5px] text-[#4a3d2e]">
-          Stories
-        </p>
-        <h1 className="text-2xl font-bold leading-[1.3] tracking-[-0.2px] text-[#3d3326]">
-          Real people, real change
+      {/* Page Title — Figma node 119:24 */}
+      <div className="flex w-full max-w-2xl flex-col items-start px-5 pb-5 pt-5 md:max-w-4xl md:px-8">
+        <h1 className="text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f]">
+          What Our Students Say
         </h1>
       </div>
 

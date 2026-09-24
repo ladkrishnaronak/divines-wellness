@@ -12,7 +12,7 @@ export default function FaqPage() {
     <div className="flex w-full flex-col items-center bg-[#f5edd9]">
       {/* Page Title */}
       <div className="flex w-full flex-col items-center px-6 pb-8 pt-[52px]">
-        <h1 className="w-[300px] max-w-full text-center text-[32px] font-bold leading-[1.2] tracking-[-0.5px] text-[#3d3326]">
+        <h1 className="w-[300px] max-w-full text-center text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px] text-[#1a140f]">
           Frequently Asked Questions
         </h1>
       </div>
