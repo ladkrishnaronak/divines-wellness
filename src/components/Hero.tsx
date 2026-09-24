@@ -28,15 +28,15 @@ export default function Hero() {
 
         {/* Content */}
         <div className="flex flex-col gap-4 items-center text-center px-5 pb-[15px] pt-[10px] max-w-2xl md:items-start md:text-left md:px-0 md:py-0 lg:items-start lg:text-left lg:px-0 lg:py-0">
-          <h1 className="max-w-[320px] text-[32px] sm:text-4xl md:max-w-none md:text-[44px] lg:text-5xl font-bold text-[#1a140f] leading-[1.2] tracking-[-0.5px]">
+          <h1 className="max-w-[320px] text-[32px] sm:text-4xl md:max-w-none md:text-[44px] lg:text-5xl font-extrabold text-[#1a140f] leading-[1.2] tracking-[-0.5px]">
             Divines Wellness Program
           </h1>
 
-          <p className="max-w-[300px] text-base leading-6 tracking-[0.15px] md:max-w-none md:text-lg font-medium text-[#1a140f]">
+          <p className="max-w-[300px] text-lg leading-6 tracking-[0.15px] md:max-w-none font-bold text-[#1a140f]">
             "A More Integrated Approach to Your Well being."
           </p>
 
-          <p className="max-w-[320px] text-base leading-6 tracking-[0.5px] text-[#2e261c] md:max-w-md lg:max-w-lg">
+          <p className="max-w-[320px] text-base font-medium leading-6 tracking-[0.5px] text-[#2e261c] md:max-w-md lg:max-w-lg">
             A personalised 3-month journey bringing together medical guidance, nutrition, yoga therapy, and mind coaching — thoughtfully designed to support those navigating autoimmune and lifestyle-related conditions, with a focus on recovery, balance, and long-term well-being.
           </p>
         </div>
