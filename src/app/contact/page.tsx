@@ -101,7 +101,7 @@ export default function ContactPage() {
           return (
             <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4">
               {/* The round icon is the tap target: opens Maps / dialer / email app */}
-              
+              <a
                 href={href}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
@@ -133,7 +133,7 @@ export default function ContactPage() {
           <div className="flex items-center justify-center gap-3.5">
             {socials.map(({ Icon, label, href }) =>
               href ? (
-                
+                <a
                   key={label}
                   href={href}
                   target="_blank"
