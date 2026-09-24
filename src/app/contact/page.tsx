@@ -124,66 +124,48 @@ export default function ContactPage() {
         })}
       </div>
 
-      {/* Rising-sun footer: a warm sun lifts over a soft horizon, which becomes
-          the cream footer. Pinned to the bottom of the screen via mt-auto. */}
-      <footer className="relative mt-auto w-full">
+      {/* Rising-sun footer: the footer box itself is the sun. Its domed top edge
+          is the sun's curve, the fill is sunlight fading into cream, and glow
+          rings radiate out from the edge. Pinned to the bottom via mt-auto. */}
+      <footer
+        className="relative mt-auto w-full rounded-t-[50%_90px] bg-[radial-gradient(120%_85%_at_50%_0%,#eccb8f_0%,#f0d9ac_28%,#f2e6cf_52%,#f2ede3_72%)] pt-[62px] sm:rounded-t-[50%_118px] sm:pt-[84px] lg:rounded-t-[50%_141px] lg:pt-[100px]"
+      >
+        {/* Glow rings + sunlit edge. The SVG spans the ring space above the
+            footer plus the dome height, so its ellipses share the dome's centre. */}
         <svg
-          viewBox="0 0 1440 200"
-          preserveAspectRatio="xMidYMax slice"
-          className="block h-[120px] w-full sm:h-[150px] lg:h-[170px]"
+          viewBox="0 0 1000 160"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute -top-[70px] left-0 h-[160px] w-full sm:-top-[92px] sm:h-[210px] lg:-top-[109px] lg:h-[250px]"
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="sunDisc" cx="50%" cy="45%" r="55%">
-              <stop offset="0%" stopColor="#f9e2b4" />
-              <stop offset="50%" stopColor="#e6c594" />
-              <stop offset="100%" stopColor="#d49a5c" />
-            </radialGradient>
-            <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#e6c594" stopOpacity="0.9" />
-              <stop offset="60%" stopColor="#e6c594" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#e6c594" stopOpacity="0" />
-            </radialGradient>
-            <linearGradient id="horizonEdge" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#e6c594" stopOpacity="0" />
-              <stop offset="30%" stopColor="#d9a765" />
+            <linearGradient id="ringFade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+              <stop offset="0%" stopColor="#d9a765" stopOpacity="0" />
+              <stop offset="30%" stopColor="#d9a765" stopOpacity="0.55" />
+              <stop offset="50%" stopColor="#c98a55" stopOpacity="0.9" />
+              <stop offset="70%" stopColor="#d9a765" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#d9a765" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="sunEdge" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+              <stop offset="0%" stopColor="#e6c594" />
               <stop offset="50%" stopColor="#b56f4a" />
-              <stop offset="70%" stopColor="#d9a765" />
-              <stop offset="100%" stopColor="#e6c594" stopOpacity="0" />
+              <stop offset="100%" stopColor="#e6c594" />
             </linearGradient>
           </defs>
-
-          {/* Sun: halo, rays and disc rise together on page load */}
           <g className="sun-rise">
-            <circle className="sun-glow" cx="720" cy="128" r="185" fill="url(#sunHalo)" />
-            <g stroke="#d49a5c" strokeWidth="4" strokeLinecap="round" opacity="0.6">
-                <line x1="812.7" y1="103.2" x2="845.6" y2="94.4" />
-                <line x1="803.1" y1="80.0" x2="832.6" y2="63.0" />
-                <line x1="787.9" y1="60.1" x2="811.9" y2="36.1" />
-                <line x1="768.0" y1="44.9" x2="785.0" y2="15.4" />
-                <line x1="744.8" y1="35.3" x2="753.6" y2="2.4" />
-                <line x1="720.0" y1="32.0" x2="720.0" y2="-2.0" />
-                <line x1="695.2" y1="35.3" x2="686.4" y2="2.4" />
-                <line x1="672.0" y1="44.9" x2="655.0" y2="15.4" />
-                <line x1="652.1" y1="60.1" x2="628.1" y2="36.1" />
-                <line x1="636.9" y1="80.0" x2="607.4" y2="63.0" />
-                <line x1="627.3" y1="103.2" x2="594.4" y2="94.4" />
+            <g className="sun-glow" fill="none" stroke="url(#ringFade)" vectorEffect="non-scaling-stroke">
+              <path d="M-20,160 A520,106 0 0 1 1020,160" strokeWidth="2.5" opacity="0.9" vectorEffect="non-scaling-stroke" />
+              <path d="M-40,160 A540,122 0 0 1 1040,160" strokeWidth="2" opacity="0.65" vectorEffect="non-scaling-stroke" />
+              <path d="M-60,160 A560,138 0 0 1 1060,160" strokeWidth="1.75" opacity="0.45" vectorEffect="non-scaling-stroke" />
+              <path d="M-80,160 A580,154 0 0 1 1080,160" strokeWidth="1.5" opacity="0.3" vectorEffect="non-scaling-stroke" />
             </g>
-            <circle cx="720" cy="128" r="76" fill="url(#sunDisc)" />
           </g>
-
-          {/* Horizon: the footer's cream surface, with a sunlit edge */}
-          <path d="M0,200 L0,142 C 360,108 1080,108 1440,142 L1440,200 Z" fill="#f2ede3" />
-          <path
-            d="M0,142 C 360,108 1080,108 1440,142"
-            fill="none"
-            stroke="url(#horizonEdge)"
-            strokeWidth="3"
-          />
+          {/* Sunlit rim along the footer's own top edge */}
+          <path d="M0,160 A500,90 0 0 1 1000,160" fill="none" stroke="url(#sunEdge)" strokeWidth="3" vectorEffect="non-scaling-stroke" />
         </svg>
 
         {/* Socials + copyright, on the same cream as the horizon */}
-        <div className="relative -mt-5 flex w-full flex-col items-center gap-[15px] bg-[#f2ede3] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-0">
+        <div className="relative flex w-full flex-col items-center gap-[15px] px-6 pb-[max(16px,env(safe-area-inset-bottom))]">
           <div className="flex w-full flex-col items-center gap-3">
             <p className="text-base font-medium leading-[1.5] tracking-[0.1px] text-[#b56f4a]">
               Connect with us
