@@ -7,6 +7,7 @@ const pillars = [
     num: "01",
     title: "Foundation",
     tagline: "Identify triggers",
+    cardLine: "Identify triggers", // Figma Pillar Card (927:658) second line
     color: "#7a6a55",
     focus: "Comprehensive assessment & root-cause analysis",
     actions: [
@@ -26,6 +27,7 @@ const pillars = [
     num: "02",
     title: "Vitality",
     tagline: "Heal your gut, feed your cells",
+    cardLine: "Restore gut & energy", // Figma Pillar Card (927:658) second line
     color: "#8b6f47",
     focus: "Restore gut health & cellular energy",
     actions: [
@@ -45,6 +47,7 @@ const pillars = [
     num: "03",
     title: "Balance",
     tagline: "Align mind, body & hormones",
+    cardLine: "Regulate stress & hormones", // Figma Pillar Card (927:658) second line
     color: "#6b5a47",
     focus: "Regulate stress & hormonal rhythm",
     actions: [
@@ -64,6 +67,7 @@ const pillars = [
     num: "04",
     title: "Liberation",
     tagline: "Clear boundaries, sustain results",
+    cardLine: "Sustain long-term", // Figma Pillar Card (927:658) second line
     color: "#a0845a",
     focus: "Sustain long-term stability",
     actions: [
@@ -115,28 +119,23 @@ export default function ProgramJourney() {
           <button
             key={pillar.num}
             onClick={() => closeModal(pillar)}
-            className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:-translate-y-0.5"
+            className="group flex flex-col overflow-hidden rounded-[14px] bg-white text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
           >
-            <div className="relative h-[140px] w-full shrink-0">
+            {/* Photo + badge — Figma Pillar Card (927:658) */}
+            <div className="relative h-[140px] w-full shrink-0 overflow-hidden">
               <img
                 src={`/images/${pillar.file}`}
                 alt={pillar.title}
                 className="size-full object-cover"
               />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `linear-gradient(to bottom, transparent 40%, ${pillar.color}cc)`,
-                }}
-              />
-              <span className="absolute bottom-2.5 left-2.5 bg-[#2d4a3e] px-2 py-1 text-[9px] font-bold uppercase text-white rounded-md">
+              <span className="absolute bottom-2.5 left-2.5 rounded-[6px] bg-[#2d4a3e] px-2 py-1 text-xs font-semibold leading-[1.4] tracking-[1.5px] text-white">
                 Pillar {pillar.num}
               </span>
             </div>
-            <div className="flex flex-col gap-1 px-3 pb-3.5 pt-3">
-              <h3 className="text-base font-bold text-[#3d3326]">{pillar.title}</h3>
-              <p className="text-xs italic text-[#7a5030]">{pillar.tagline}</p>
-              <p className="text-xs text-[#6a4010]">{pillar.tags}</p>
+            <div className="flex w-full flex-col items-start gap-1 px-3 pb-3.5 pt-3 text-[#2e261c]">
+              <h3 className="text-lg font-bold leading-6 tracking-[0.15px]">{pillar.title}</h3>
+              <p className="text-xs font-medium leading-4 tracking-[0.5px]">{pillar.cardLine}</p>
+              <p className="text-xs font-medium leading-4 tracking-[0.5px]">{pillar.tags}</p>
             </div>
           </button>
         ))}

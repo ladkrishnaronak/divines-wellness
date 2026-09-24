@@ -85,7 +85,7 @@ const socials = [
 
 export default function ContactPage() {
   return (
-    <div className="flex w-full flex-col items-center bg-white">
+    <div className="flex w-full flex-1 flex-col items-center bg-white">
       {/* Title — Figma node 797:906: H2 (Poppins SemiBold 24px, tracking -0.2px).
           The design has no subtitle under the title, so none is shown here. */}
       <div className="flex w-full max-w-2xl flex-col items-start pb-2 pt-6 px-6 md:max-w-3xl md:px-10 lg:max-w-4xl">
@@ -124,42 +124,101 @@ export default function ContactPage() {
         })}
       </div>
 
-      {/* Bottom: socials + copyright — Figma node 797:931 ("bottom-container") */}
-      <div className="flex w-full flex-col items-center gap-[15px] bg-[#f2ede3] pb-1.5 pt-[15px]">
-        <div className="flex w-full flex-col items-center gap-3">
-          <p className="text-base font-medium leading-[1.5] tracking-[0.1px] text-[#b56f4a]">
-            Connect with us
-          </p>
-          <div className="flex items-center justify-center gap-3.5">
-            {socials.map(({ Icon, label, href }) =>
-              href ? (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
-                >
-                  <Icon size={18} className="text-white" />
-                </a>
-              ) : (
-                <div
-                  key={label}
-                  aria-label={`${label} (coming soon)`}
-                  title="Link coming soon"
-                  className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
-                >
-                  <Icon size={18} className="text-white" />
-                </div>
-              )
-            )}
+      {/* Rising-sun footer: a warm sun lifts over a soft horizon, which becomes
+          the cream footer. Pinned to the bottom of the screen via mt-auto. */}
+      <footer className="relative mt-auto w-full">
+        <svg
+          viewBox="0 0 1440 200"
+          preserveAspectRatio="xMidYMax slice"
+          className="block h-[120px] w-full sm:h-[150px] lg:h-[170px]"
+          aria-hidden="true"
+        >
+          <defs>
+            <radialGradient id="sunDisc" cx="50%" cy="45%" r="55%">
+              <stop offset="0%" stopColor="#f9e2b4" />
+              <stop offset="50%" stopColor="#e6c594" />
+              <stop offset="100%" stopColor="#d49a5c" />
+            </radialGradient>
+            <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#e6c594" stopOpacity="0.9" />
+              <stop offset="60%" stopColor="#e6c594" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#e6c594" stopOpacity="0" />
+            </radialGradient>
+            <linearGradient id="horizonEdge" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#e6c594" stopOpacity="0" />
+              <stop offset="30%" stopColor="#d9a765" />
+              <stop offset="50%" stopColor="#b56f4a" />
+              <stop offset="70%" stopColor="#d9a765" />
+              <stop offset="100%" stopColor="#e6c594" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Sun: halo, rays and disc rise together on page load */}
+          <g className="sun-rise">
+            <circle className="sun-glow" cx="720" cy="128" r="185" fill="url(#sunHalo)" />
+            <g stroke="#d49a5c" strokeWidth="4" strokeLinecap="round" opacity="0.6">
+                <line x1="812.7" y1="103.2" x2="845.6" y2="94.4" />
+                <line x1="803.1" y1="80.0" x2="832.6" y2="63.0" />
+                <line x1="787.9" y1="60.1" x2="811.9" y2="36.1" />
+                <line x1="768.0" y1="44.9" x2="785.0" y2="15.4" />
+                <line x1="744.8" y1="35.3" x2="753.6" y2="2.4" />
+                <line x1="720.0" y1="32.0" x2="720.0" y2="-2.0" />
+                <line x1="695.2" y1="35.3" x2="686.4" y2="2.4" />
+                <line x1="672.0" y1="44.9" x2="655.0" y2="15.4" />
+                <line x1="652.1" y1="60.1" x2="628.1" y2="36.1" />
+                <line x1="636.9" y1="80.0" x2="607.4" y2="63.0" />
+                <line x1="627.3" y1="103.2" x2="594.4" y2="94.4" />
+            </g>
+            <circle cx="720" cy="128" r="76" fill="url(#sunDisc)" />
+          </g>
+
+          {/* Horizon: the footer's cream surface, with a sunlit edge */}
+          <path d="M0,200 L0,142 C 360,108 1080,108 1440,142 L1440,200 Z" fill="#f2ede3" />
+          <path
+            d="M0,142 C 360,108 1080,108 1440,142"
+            fill="none"
+            stroke="url(#horizonEdge)"
+            strokeWidth="3"
+          />
+        </svg>
+
+        {/* Socials + copyright, on the same cream as the horizon */}
+        <div className="relative -mt-5 flex w-full flex-col items-center gap-[15px] bg-[#f2ede3] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-0">
+          <div className="flex w-full flex-col items-center gap-3">
+            <p className="text-base font-medium leading-[1.5] tracking-[0.1px] text-[#b56f4a]">
+              Connect with us
+            </p>
+            <div className="flex items-center justify-center gap-3.5">
+              {socials.map(({ Icon, label, href }) =>
+                href ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)] transition-colors hover:bg-[#b56f4a]"
+                  >
+                    <Icon size={18} className="text-white" />
+                  </a>
+                ) : (
+                  <div
+                    key={label}
+                    aria-label={`${label} (coming soon)`}
+                    title="Link coming soon"
+                    className="flex size-10 items-center justify-center rounded-full bg-[#2e261c] opacity-50 shadow-[0px_3px_6px_0px_rgba(0,0,0,0.1),0px_2px_10px_0px_rgba(181,111,74,0.3)]"
+                  >
+                    <Icon size={18} className="text-white" />
+                  </div>
+                )
+              )}
+            </div>
           </div>
+          <p className="text-center text-[11px] font-medium leading-[1.4] tracking-[0.3px] text-[#2e261c] opacity-80">
+            © 2026 The Divines Health. All rights reserved.
+          </p>
         </div>
-        <p className="text-center text-[11px] font-medium leading-[1.4] tracking-[0.3px] text-[#2e261c] opacity-80">
-          © 2026 The Divines Health. All rights reserved.
-        </p>
-      </div>
+      </footer>
     </div>
   );
 }

@@ -26,3 +26,11 @@
 body {
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
+
+
+/* Contact page rising-sun footer */
+@keyframes sunRise { from { transform: translateY(46px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
+@keyframes sunGlow { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.9; } }
+.sun-rise { animation: sunRise 1.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.sun-glow { animation: sunGlow 5s ease-in-out 1.8s infinite; }
+@media (prefers-reduced-motion: reduce) { .sun-rise, .sun-glow { animation: none; } }
