@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enroll | Divines Wellness Program</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>:root{--cream:#f5edd9;--ivory:#fffcf7;--ink:#262016;--strip:#3d3326;--text:#2e261c;--head:#1a140f;--muted:#544738;--accent:#594724;--bronze:#7a6542;--gold:#e6c594;--gold2:#d9a765;--line:#ebe3cf;--field-border:#8c7a5c;--opt-border:#9c8a68;--btn:#3d3326;--btn-off-bg:#e9e0cc;--btn-off-text:#544738;
+--ok:#2d4a3e;--okbg:#e4ede3;--bad:#9c3d24;--badbg:#f7e2d9;--wa:#1f7a4d;--lock:#c4b49a;--lockt:#6b5d48;--field:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--cream:#1d1812;--ivory:#28211a;--text:#efe4cc;--head:#f5edd9;--muted:#c8b48f;--bronze:#d9c29a;--gold:#8a7248;--line:#3b3226;--ok:#9cc49a;--okbg:#1f3026;--bad:#f0a488;--badbg:#3a2119;--lock:#5a4c3a;--lockt:#cbbd9f;--field:#211b15;--accent:#e6c594;--field-border:#a8946f;--opt-border:#8f7d5f;--btn:#e6c594;--btn-off-bg:#3b3226;--btn-off-text:#cbbd9f}}
+:root[data-theme="dark"]{--cream:#1d1812;--ivory:#28211a;--text:#efe4cc;--head:#f5edd9;--muted:#c8b48f;--bronze:#d9c29a;--gold:#8a7248;--line:#3b3226;--ok:#9cc49a;--okbg:#1f3026;--bad:#f0a488;--badbg:#3a2119;--lock:#5a4c3a;--lockt:#cbbd9f;--field:#211b15;--accent:#e6c594;--field-border:#a8946f;--opt-border:#8f7d5f;--btn:#e6c594;--btn-off-bg:#3b3226;--btn-off-text:#cbbd9f}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--cream);color:var(--text);font-family:"Poppins","Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:14px;line-height:20px;letter-spacing:.25px}
+button,input,textarea,select{font:inherit;color:inherit}
+[hidden]{display:none!important}
+img{max-width:100%}
+.app{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--cream)}
+.ribbon{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 16px;background:#e6c594;color:#262016;font-size:11.5px;font-weight:500}
+.ribbon button{background:none;border:0;padding:2px 0;text-decoration:underline;cursor:pointer;font-weight:600;color:#262016}
+.brand{display:flex;align-items:center;gap:10px;height:70px;padding:14px 16px;background:#262016;color:#fff;position:relative;z-index:6}
+.brand img{width:36px;height:36px;border-radius:50%;border:1px solid #e6c594;background:#fff;padding:2px;flex:none}
+.brand .home{display:flex;align-items:center;gap:10px;flex:1;min-width:0;color:#fff;text-decoration:none}
+.brand .home:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.brand strong{font-size:clamp(16px,5vw,20px);font-weight:600;line-height:1.4;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.burger{width:24px;height:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;border:0;padding:0;cursor:pointer;flex:none}
+.burger i{display:block;width:18px;height:2px;border-radius:1px;background:#fff;transition:transform .2s,opacity .2s}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.enroll{flex:none;background:none;border:1.5px solid #fff;color:#fff;border-radius:6px;padding:8px 16px;font-size:14px;font-weight:600;line-height:1.4;letter-spacing:.2px;cursor:pointer}
+.enroll:hover{background:rgba(255,255,255,.1)}
+.burger:focus-visible,.enroll:focus-visible,.menu a:focus-visible,.backbtn:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.scrim{position:fixed;inset:70px 0 0 0;background:rgba(0,0,0,.4);z-index:4}
+.menu{position:fixed;left:max(16px,calc(50% - 204px));top:85px;z-index:5;width:217px;display:flex;flex-direction:column;overflow:hidden;border-radius:25px;background:#3d3326;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.menu a{display:flex;justify-content:center;padding:14px 32px;font-size:20px;line-height:1.4;color:#fffdf8;text-decoration:none}
+.menu a:hover{background:rgba(255,255,255,.1)}
+.menu a.active{background:#fff;color:#3d3326;font-weight:700}
+.backrow{background:var(--ivory);padding:6px 12px 0}
+.backbtn{display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 8px;background:none;border:0;color:var(--accent);font-size:14px;font-weight:600;letter-spacing:.1px;cursor:pointer}
+.backbtn svg{width:18px;height:18px}
+main{flex:1;display:flex;flex-direction:column}
+.screen{display:none;flex-direction:column;flex:1}
+.screen.on{display:flex}
+.sheet{background:var(--ivory);padding:28px 22px 32px;display:flex;flex-direction:column;gap:18px;flex:1;box-shadow:0 -10px 12px rgba(50,37,26,.04)}
+[tabindex="-1"]:focus{outline:none}
+.eyebrow{margin:0;font-size:12px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+h1{margin:0;font-size:24px;font-weight:600;line-height:1.3;letter-spacing:-.2px;color:var(--head)}
+.lede{margin:-8px 0 0;color:var(--muted);font-size:14px;line-height:20px;letter-spacing:.25px}
+.footbar{height:54px;display:flex;align-items:center;justify-content:center;background:#3d3326;color:#fff;font-size:12px;font-weight:500;letter-spacing:.5px}
+.footbar span{opacity:.8}
+/* program choice */
+.choice{position:relative;display:block;cursor:pointer}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice .box{display:flex;gap:14px;align-items:flex-start;background:var(--ivory);border:1.5px solid var(--bronze);border-radius:16px;padding:16px;box-shadow:0 6px 8px rgba(50,37,26,.04)}
+.choice .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--bronze);flex:none;margin-top:2px;display:grid;place-items:center}
+.choice input:checked+.box{border-color:var(--ink);box-shadow:0 0 0 1.5px var(--ink)}
+.choice input:checked+.box .dot::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--ink)}
+.choice input:focus-visible+.box{outline:3px solid var(--gold2);outline-offset:2px}
+.choice .body{flex:1;min-width:0}
+.choice b{display:block;font-size:18px;font-weight:700;line-height:24px;letter-spacing:.15px;color:var(--text)}
+.choice .desc{font-size:12px;font-weight:500;line-height:16px;letter-spacing:.5px;color:var(--muted);margin-top:4px}
+.choice .price{text-align:right;flex:none}
+.choice .price b{font-size:18px}
+.choice .price small{display:block;font-size:11px;color:var(--muted)}
+.perk{display:flex;gap:6px;margin-top:8px;font-size:11px;line-height:16px;letter-spacing:.5px;color:var(--accent)}
+.perk svg{width:14px;height:14px;flex:none;margin-top:2px}
+/* buttons */
+.btn{appearance:none;border:0;border-radius:16px;min-height:48px;padding:12px 16px;font-weight:600;font-size:14px;line-height:1.4;letter-spacing:.2px;cursor:pointer;width:100%;background:var(--btn);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center}
+.btn[disabled]{background:var(--btn-off-bg);color:var(--btn-off-text);border:1px dashed var(--opt-border);cursor:not-allowed;opacity:1}
+.btn.wa{background:var(--wa)}
+.btn.bronze{background:#7a6542}
+.btn.ghost{background:var(--ivory);color:var(--head);border:1.5px solid var(--btn)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn:focus-visible,.tab:focus-visible,.sc-head:focus-visible,.copy:focus-visible,.chip:focus-visible,.link:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.link{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:600;text-decoration:underline;cursor:pointer;font-size:13px;align-self:center}
+/* step cards (Figma: Onboarding / Step Card) */
+.steps{display:flex;flex-direction:column;gap:12px}
+.stepcard{background:var(--ivory);border:1.5px solid #7a6542;border-radius:16px;box-shadow:0 6px 8px rgba(50,37,26,.04);overflow:hidden}
+.stepcard.locked{background:var(--cream);border:1px solid var(--lock);box-shadow:none}
+.stepcard.done{border-color:var(--ok)}
+.sc-head{display:flex;align-items:center;gap:12px;width:100%;padding:16px;background:none;border:0;text-align:left;cursor:pointer;color:inherit}
+.stepcard.locked .sc-head{cursor:not-allowed}
+.num{width:40px;height:40px;border-radius:50%;background:#262016;color:#fff;display:grid;place-items:center;font-weight:600;font-size:16px;flex:none}
+.stepcard.locked .num{background:var(--lock)}
+.stepcard.done .num{background:var(--ok)}
+.sc-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sc-t b{font-size:16px;font-weight:600;color:var(--text)}
+.sc-t small{font-size:11px;line-height:16px;letter-spacing:.5px;color:var(--accent);display:flex;align-items:center;gap:4px}
+.stepcard.locked .sc-t b{color:var(--lockt)}.stepcard.locked .sc-t small{color:var(--lockt)}
+.stepcard.done .sc-t small{color:var(--ok)}
+.sc-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none;color:var(--accent)}
+.req{background:#262016;color:#e6c594;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;border-radius:6px;padding:5px 10px}
+.donebadge{background:var(--okbg);color:var(--ok);font-size:10.5px;font-weight:700;border-radius:6px;padding:4px 9px}
+.chev{width:16px;height:16px;transition:transform .25s}
+.sc-head[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.ico20{width:20px;height:20px}
+.sc-body{padding:4px 16px 16px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line)}
+.amountline{display:flex;justify-content:space-between;align-items:baseline;background:#262016;color:#fff;border-radius:12px;padding:12px 14px;margin-top:12px}
+.amountline span{font-size:12.5px;color:#e6c594}
+.amountline b{font-size:22px;font-weight:600}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--cream);padding:4px;border-radius:12px}
+.tab{min-height:42px;border-radius:9px;border:0;background:transparent;font-size:13.5px;font-weight:500;cursor:pointer;color:var(--text)}
+.tab[aria-selected="true"]{background:#262016;color:#fff}
+.panel{display:none;flex-direction:column;gap:10px}.panel.on{display:flex}
+.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.qr{width:184px;height:184px;padding:10px;background:#fff;border-radius:12px;border:1px solid var(--gold);display:grid;place-items:center}
+.qr img,.qr canvas{width:162px!important;height:162px!important;display:block}
+.payee{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text)}
+.payee svg{width:16px;height:16px;color:var(--ok)}
+.upi{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.copy{background:var(--cream);border:1px solid var(--gold);border-radius:8px;font-size:11.5px;padding:4px 9px;cursor:pointer;color:var(--text);font-weight:500}
+.pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.pill{font-size:11px;background:var(--cream);border-radius:999px;padding:4px 10px}
+.note{font-size:12px;color:var(--muted);background:var(--cream);border-radius:10px;padding:10px 12px;margin:0}
+.safe{display:flex;gap:10px;align-items:flex-start;background:var(--okbg);color:var(--ok);border-radius:12px;padding:12px;font-size:12.5px}
+.safe svg{width:18px;height:18px;flex:none;margin-top:1px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;cursor:pointer;color:var(--text)}
+.agree input{width:19px;height:19px;margin:1px 0 0;accent-color:#262016;flex:none}
+.trust{display:flex;gap:8px;font-size:11.5px;color:var(--muted);align-items:flex-start}
+.trust svg{width:15px;height:15px;flex:none;margin-top:1px;color:#7a6542}
+/* upload */
+.drop{position:relative;border:2px dashed var(--gold2);border-radius:14px;background:var(--cream);min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:16px;cursor:pointer;margin-top:12px}
+.drop:focus-within{outline:3px solid var(--gold2);outline-offset:2px}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop .ic{width:46px;height:46px;border-radius:50%;background:#262016;display:grid;place-items:center;color:#e6c594}
+.drop .ic svg{width:22px;height:22px}
+.drop b{color:var(--text);font-size:14px}
+.preview{display:none;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--gold);background:#fff;margin-top:12px}
+.preview.on{display:block}
+.preview img{display:block;width:100%;max-height:300px;object-fit:contain}
+.preview .swap{position:absolute;right:8px;top:8px;background:rgba(38,32,22,.85);color:#fff;border:0;border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer}
+.samples{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.samples span{width:100%;font-size:11.5px;color:var(--muted)}
+.chip{border:1px dashed #7a6542;background:transparent;border-radius:999px;padding:6px 11px;font-size:12px;cursor:pointer}
+/* fields */
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld>span{font-size:12px;font-weight:500;line-height:16px;letter-spacing:.5px;color:var(--text)}
+.fld>span i{color:var(--bad);font-style:normal}
+.fld small{font-size:11px;line-height:16px;letter-spacing:.5px;color:var(--muted)}
+.fld input,.fld textarea{border:1.5px solid var(--field-border);background:var(--field);border-radius:12px;padding:12px 14px;font-size:15px;min-height:48px;width:100%}
+.fld textarea{min-height:90px;resize:vertical}
+.fld select{appearance:none;-webkit-appearance:none;border:1.5px solid var(--field-border);background:var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a6542' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;border-radius:12px;padding:12px 40px 12px 14px;font-size:15px;min-height:48px;width:100%;cursor:pointer}
+.fld select:focus{outline:3px solid var(--gold2);outline-offset:1px;border-color:#7a6542}
+.fld.bad select{border-color:var(--bad)}
+.phone{display:grid;grid-template-columns:132px 1fr;gap:8px}
+.phone select{padding-right:30px;background-position:right 10px center;font-size:14px}
+.customcode{display:flex;align-items:center;gap:6px;max-width:160px}
+.customcode span{font-weight:600;font-size:16px;color:var(--text)}
+.customcode input{min-height:44px;border:1.5px solid var(--field-border);background:var(--field);border-radius:12px;padding:10px 12px;font-size:15px;width:100%}
+.customcode input:focus{outline:3px solid var(--gold2);outline-offset:1px}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+.suggest{align-self:flex-start;background:var(--okbg);color:var(--ok);border:0;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600;cursor:pointer}
+.fld input:focus,.fld textarea:focus{outline:3px solid var(--gold2);outline-offset:1px;border-color:#7a6542}
+.fld input[readonly]{background:var(--cream);color:var(--muted)}
+.fld .err,.q .err{font-size:12px;color:var(--bad);font-weight:500}
+.fld.bad input,.fld.bad textarea{border-color:var(--bad)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.unit{position:relative}.unit input{padding-right:44px}.unit em{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--muted);font-size:13px}
+/* answer options (Figma AnswerOption) */
+.q{display:flex;flex-direction:column;gap:8px;padding:2px 0}
+.q legend{font-size:14px;font-weight:600;line-height:20px;letter-spacing:.1px;color:var(--text);padding:0;margin-bottom:4px}
+.q legend i{color:var(--bad);font-style:normal}
+.q fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+::placeholder{color:#6f6352;opacity:1}
+.opt span{display:flex;align-items:center;gap:10px;min-height:46px;padding:10px 14px;border:1.5px solid var(--opt-border);background:var(--ivory);border-radius:12px;font-size:14px}
+.opt span::before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid #7a6542;flex:none}
+.opt input[type=checkbox]+span::before{border-radius:5px}
+.opt input:checked+span{background:#262016;border-color:#262016;color:#f5edd9}
+.opt input:checked+span::before{border-color:#e6c594;background:radial-gradient(circle,#e6c594 45%,transparent 50%)}
+.opt input[type=checkbox]:checked+span::before{background:#e6c594 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23262016' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat}
+.opt input:focus-visible+span{outline:3px solid var(--gold2);outline-offset:2px}
+.opts.inline .opt{flex:1;min-width:120px}
+.q.bad .opts span{border-color:var(--bad)}
+/* wizard */
+.wiz-top{display:flex;flex-direction:column;gap:8px;position:sticky;top:0;background:var(--ivory);padding:14px 22px 10px;z-index:3;border-bottom:1px solid var(--line)}
+.wiz-top .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#7a6542;width:0;transition:width .35s}
+.wiz-title{margin:0;font-size:20px;font-weight:600;line-height:1.4;color:var(--head)}
+.wiz-body{padding:18px 22px 8px;display:flex;flex-direction:column;gap:18px;background:var(--ivory);flex:1}
+.wiz-foot{position:sticky;bottom:0;display:grid;grid-template-columns:auto 1fr;gap:8px;padding:12px 22px calc(12px + env(safe-area-inset-bottom,0px));background:var(--ivory);border-top:1px solid var(--line)}
+.wiz-foot .ghost{padding:12px 18px}
+.summary{background:var(--cream);border-radius:12px;padding:6px 14px}
+.summary .r{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13px;border-bottom:1px solid var(--line)}
+.summary .r:last-child{border-bottom:0}
+.summary .r span{color:var(--muted)}.summary .r b{font-weight:600;text-align:right}
+.private{display:flex;gap:8px;font-size:12px;color:var(--muted);align-items:flex-start}
+.private svg{width:15px;height:15px;flex:none;margin-top:2px;color:#7a6542}
+.formerr{margin:0;font-size:12.5px;color:var(--bad);font-weight:500}
+/* verify */
+.vbox{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--gold);background:#fff}
+.vbox img{display:block;width:100%;max-height:240px;object-fit:contain}
+.veil{position:absolute;inset:0;background:rgba(38,32,22,.62);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:600;transition:opacity .4s}
+.veil.gone{opacity:0;pointer-events:none}
+.spin{width:42px;height:42px;border-radius:50%;border:3px solid rgba(230,197,148,.35);border-top-color:#e6c594;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.checks li{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14px;color:var(--muted)}
+.checks .m{width:22px;height:22px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:transparent;font-size:12px;font-weight:700;flex:none}
+.checks li.pass{color:var(--text)}.checks li.pass .m{background:var(--ok);color:#fff}
+.checks li.fail{color:var(--bad)}.checks li.fail .m{background:var(--bad);color:#fff}
+.result{background:var(--badbg);color:var(--bad);border-radius:12px;padding:12px 14px;font-size:13.5px}
+.result b{display:block;font-size:15px}
+.method{font-size:11px;color:var(--muted);text-align:center;margin:0}
+/* team */
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips span{font-size:11.5px;background:var(--okbg);color:var(--ok);padding:4px 10px;border-radius:999px;font-weight:500}
+.mail{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12.5px}
+.mail .s{font-weight:600;color:var(--text);margin:2px 0 6px}
+.mail .fake{display:block;margin-top:8px;text-align:center;background:var(--ok);color:#fff;border-radius:10px;padding:9px;font-weight:600}
+.mail small{display:block;color:var(--muted);font-size:11px}
+/* peak */
+.sunrise{position:relative;height:200px;overflow:hidden;background:linear-gradient(#3d3326,#5b4631 55%,#8a6a45)}
+.sunrise svg{position:absolute;inset:0;width:100%;height:100%}
+.sun-g{animation:rise 1.9s cubic-bezier(.22,1,.36,1) both}
+.rays{animation:glow 5s ease-in-out 1.9s infinite}
+@keyframes rise{from{transform:translateY(70px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+.peak{text-align:center}
+.peak h1{font-size:32px;font-weight:800;line-height:1.2;letter-spacing:-.5px}
+.peak p{margin:6px 0 0;color:var(--muted)}
+/* forms list inside Register */
+.fcard{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--cream);border:1.5px solid var(--gold);border-radius:14px;padding:12px 14px;cursor:pointer;margin-top:4px}
+.fcard[disabled]{opacity:.55;cursor:not-allowed}
+.fcard .ti{width:42px;height:42px;border-radius:12px;background:linear-gradient(160deg,#fffcf7,#f6e9cc);border:1px solid #e6c594;color:#7a6542;display:grid;place-items:center;flex:none}
+.fcard .ti.done{background:var(--okbg);border-color:transparent;color:var(--ok)}
+.fcard .ti svg{width:24px;height:24px}
+.fcard .tx{flex:1;min-width:0}.fcard .tx b{display:block;font-size:14.5px;color:var(--text)}.fcard .tx span{font-size:11.5px;color:var(--muted)}
+.st{font-size:11px;font-weight:600;border-radius:999px;padding:4px 9px;white-space:nowrap}
+.st.todo{background:var(--btn);color:#fff;border:0;padding:7px 14px;font-size:12.5px;font-weight:600;letter-spacing:.2px;box-shadow:0 2px 6px rgba(61,51,38,.25)}
+.st.todo::after{content:" ›";font-weight:700}.st.done{background:var(--okbg);color:var(--ok)}.st.lock{background:var(--line);color:var(--muted)}.st.saved{background:#fdf0c9;color:#6b4b10}
+/* done */
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:flex;gap:12px;padding:9px 0}
+.timeline .n{width:26px;height:26px;border-radius:50%;border:1.5px solid #7a6542;color:#7a6542;display:grid;place-items:center;font-size:12px;font-weight:600;flex:none}
+.timeline b{display:block;font-size:14px;color:var(--text)}.timeline span{font-size:12.5px;color:var(--muted)}
+.quote{text-align:center;font-style:italic;color:var(--accent);margin:4px 0}
+.quote small{display:block;font-style:normal;font-size:11.5px;color:var(--muted)}
+.card{background:var(--ivory);border:1px solid var(--gold);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card h2{margin:0;font-size:18px;font-weight:600;color:var(--head)}
+.demo{background:none;border:1px dashed #7a6542;border-radius:10px;padding:8px 10px;font-size:12px;cursor:pointer;text-align:left;color:var(--text)}
+.tbc{background:#fdf0c9;color:#6b4b10;border-radius:4px;padding:0 4px;font-weight:600;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(16px);background:#262016;color:#fff;padding:8px 14px;border-radius:10px;font-size:12.5px;opacity:0;transition:.25s;pointer-events:none;z-index:9}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="app">
+  <div class="ribbon" role="note"><span>Demo for approval. No real payment is processed.</span><button type="button" id="restart">Restart demo</button></div>
+  <header class="brand">
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    <a class="home" href="/" aria-label="The Divines Health home"><img src="/images/logo-icon.png" alt=""><strong>The Divines Health</strong></a>
+    <button class="enroll" id="hdrEnroll" type="button">Enroll</button>
+  </header>
+  <div class="scrim" id="scrim" hidden></div>
+  <nav class="menu" id="menu" aria-label="Main menu" hidden>
+    <a href="/">Home</a>
+    <a href="/stories">Stories</a>
+    <a href="/articles">Articles</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact Us</a>
+    <a href="#" class="active" aria-current="page" id="menuEnroll">Enroll Now</a>
+  </nav>
+  <div class="backrow" id="backrow" hidden><button class="backbtn" id="back" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Back</button></div>
+  <main>
+
+  <!-- 1 · PROGRAM SELECT -->
+  <section class="screen on" id="s-program" aria-labelledby="h-program">
+    <div class="sheet">
+      <h1 id="h-program">Choose your program</h1>
+      <div class="card" id="welcomeBack" hidden><h2>Welcome back, <span id="wbName"></span></h2><p style="margin:0" class="lede">Your registration and assessment are saved. You'll only need to review them.</p></div>
+      <label class="choice"><input type="radio" name="prog" value="consult">
+        <div class="box"><div class="dot"></div><div class="body"><b>1:1 Consultation</b><div class="desc">A 30-minute personal call with our expert</div>
+          <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></svg><span>You may qualify for a discounted price on the full program if you enroll in this 1:1 consultation</span></div></div>
+          <div class="price"><b>₹99</b><small>30 min</small></div></div></label>
+      <label class="choice"><input type="radio" name="prog" value="program">
+        <div class="box"><div class="dot"></div><div class="body"><b>Full program</b><div class="desc">Divines Wellness Program: a 3-month personalized journey</div>
+          <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></svg><span>Fee and payment details are shared personally on WhatsApp</span></div></div></div></label>
+      <button class="btn" id="toSteps" type="button" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- 2 · WHAT HAPPENS NEXT (accordion) -->
+  <section class="screen" id="s-steps" aria-labelledby="h-steps">
+    <div class="sheet">
+      <p class="eyebrow" id="h-steps">What happens next</p>
+      <div class="steps">
+
+        <div class="stepcard" id="card-pay">
+          <button class="sc-head" type="button" aria-expanded="false" aria-controls="body-pay" data-step="pay">
+            <span class="num">1</span>
+            <span class="sc-t"><b>Payment</b><small id="sub-pay"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 3 2 21h20z" fill="#e6a817"/><path d="M12 10v4M12 17v.5" stroke="#262016" stroke-width="2.2" stroke-linecap="round"/></svg>Must be completed first</small></span>
+            <span class="sc-r"><span class="req" id="badge-pay">Required</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          </button>
+          <div class="sc-body" id="body-pay" hidden>
+            <!-- 1:1 consultation payment -->
+            <div id="pay-consult">
+              <div class="amountline"><span>1:1 Consultation (30 min)</span><b>₹99</b></div>
+              <div class="tabs" role="tablist" aria-label="Payment method" style="margin-top:12px">
+                <button class="tab" role="tab" id="t-qr" aria-selected="true" aria-controls="p-qr" type="button">QR code</button>
+                <button class="tab" role="tab" id="t-bank" aria-selected="false" aria-controls="p-bank" type="button">Net banking</button>
+              </div>
+              <div class="panel on" id="p-qr" role="tabpanel" aria-labelledby="t-qr" style="margin-top:12px">
+                <div class="qr-wrap">
+                  <b style="color:var(--text)">Scan with any UPI app</b>
+                  <div class="qr" id="qr" aria-label="UPI QR code"></div>
+                  <div class="payee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>Check the name shows <b>&nbsp;Neha Solanki</b></div>
+                  <div class="upi">nksolanki27-4@okicici <button class="copy" type="button" data-copy="nksolanki27-4@okicici">Copy</button></div>
+                </div>
+              </div>
+              <div class="panel" id="p-bank" role="tabpanel" aria-labelledby="t-bank" style="margin-top:12px">
+                <div class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>For your safety, we don't show bank details here. Message us on WhatsApp and our team will share them with you personally.</span></div>
+                <a class="btn wa" id="waBank" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Request bank details on WhatsApp</a>
+                <p class="note">After transferring, come back here to upload the confirmation screen.</p>
+              </div>
+            </div>
+            <!-- full program payment -->
+            <div id="pay-program" hidden>
+              <div class="amountline"><span>Full program · 3 months</span><b style="font-size:13px;white-space:nowrap">Fee via WhatsApp</b></div>
+              <div class="safe" style="margin-top:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Our team will chat with you about your goals, then share your fee and payment details personally on WhatsApp.</span></div>
+              <a class="btn wa" id="waProgram" target="_blank" rel="noopener" style="margin-top:10px"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Request payment details on WhatsApp</a>
+            </div>
+            <label class="agree"><input type="checkbox" id="agree"><span>I understand that fees are non-refundable, non-transferable and non-extendable.</span></label>
+            <button class="btn" id="paid" type="button" disabled>I've completed payment</button>
+            <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>You pay inside your own banking app. We never ask for your UPI PIN, OTP or card details.</span></div>
+          </div>
+        </div>
+
+        <div class="stepcard locked" id="card-confirm">
+          <button class="sc-head" type="button" aria-expanded="false" aria-controls="body-confirm" data-step="confirm" aria-disabled="true">
+            <span class="num">2</span>
+            <span class="sc-t"><b>Confirm</b><small id="sub-confirm">Upload payment proof</small></span>
+            <span class="sc-r"><span id="badge-confirm" hidden></span><svg class="ico20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          </button>
+          <div class="sc-body" id="body-confirm" hidden>
+            <div class="drop" id="drop"><input type="file" id="file" accept="image/png,image/jpeg,image/webp" aria-label="Upload payment screenshot">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
+              <b>Tap to upload your payment screenshot</b><small style="color:var(--muted);font-size:11.5px">JPG or PNG, up to 5 MB</small></div>
+            <div class="preview" id="preview"><img id="previewImg" alt="Your payment screenshot"><button class="swap" id="swap" type="button">Change</button></div>
+            <div class="samples" id="samples"><span>No receipt handy? Try a sample (demo only):</span>
+              <button class="chip" type="button" data-sample="good">Correct payment</button><button class="chip" type="button" data-sample="wrong">Wrong amount</button><button class="chip" type="button" data-sample="reused">Already used</button></div>
+            <label class="fld"><span>Transaction ID</span><input id="txn" autocomplete="off" placeholder="e.g. 626712345678"><small>The 12-digit UPI transaction ID, or the bank reference (UTR) for net banking.</small></label>
+            <button class="btn" id="verify" type="button" disabled>Verify payment</button>
+            <button class="link" type="button" id="needHelp">Having trouble? Ask our team to check</button>
+          </div>
+        </div>
+
+        <div class="stepcard locked" id="card-reg">
+          <button class="sc-head" type="button" aria-expanded="false" aria-controls="body-reg" data-step="reg" aria-disabled="true">
+            <span class="num">3</span>
+            <span class="sc-t"><b>Register</b><small id="sub-reg">Wellness &amp; Assessment forms</small></span>
+            <span class="sc-r"><span id="badge-reg" hidden></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          </button>
+          <div class="sc-body" id="body-reg" hidden>
+            <button class="fcard" type="button" id="openReg"><span class="ti" id="ti-reg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4"/><path d="M14.5 10h3.5M14.5 13.5h2.5"/></svg></span><span class="tx"><b>1. Registration</b><span>About you, contact, intention · about 4 min</span></span><span class="st todo" id="st-reg">Start</span></button>
+            <button class="fcard" type="button" id="openAssess" disabled><span class="ti" id="ti-assess"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-5-3.2-8-6.6-8-10.3A4.4 4.4 0 0 1 12 8a4.4 4.4 0 0 1 8 2.7C20 14.4 17 17.8 12 21z"/><path d="M6.5 12.5h3l1.5-2.5 2 4 1.5-2h3"/></svg></span><span class="tx"><b>2. Wellness assessment</b><span>30 questions · about 8 min</span></span><span class="st lock" id="st-assess">After step 1</span></button>
+            <button class="btn" id="finishSaved" type="button" hidden>Confirm my details and finish</button>
+            <div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your answers are private and only seen by our care team.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFYING -->
+  <section class="screen" id="s-verify" aria-live="polite">
+    <div class="sheet">
+      <h1>Checking your payment</h1>
+      <div class="vbox"><img id="vImg" alt=""><div class="veil" id="veil"><div class="spin" aria-hidden="true"></div><span id="veilText">Reading your receipt…</span></div></div>
+      <ul class="checks" id="checks"></ul>
+      <div id="verifyResult"></div>
+      <p class="method" id="method"></p>
+    </div>
+  </section>
+
+  <!-- TEAM CHECK -->
+  <section class="screen" id="s-team">
+    <div class="sheet">
+      <h1 id="teamTitle">Our team will check your payment</h1>
+      <p class="lede" style="margin:0" id="teamText">We've sent your screenshot to our team. They'll confirm it within 48 hours and unlock your forms.</p>
+      <div class="chips"><span>Email sent</span><span>SMS sent</span><span>WhatsApp sent</span></div>
+      <p class="lede" style="margin:4px 0 -8px">What the team receives:</p>
+      <div class="mail"><small>To: thedivineshealth@gmail.com · SMS and WhatsApp: +91 70161 00775</small><div class="s">Payment needs a manual check</div><div id="mailBody"></div><span class="fake">Open registration for this customer</span><small style="margin-top:6px">Works once, only for this customer, and expires in 3 days.</small></div>
+      <button class="btn bronze" id="approve" type="button">Demo: team approves the payment</button>
+    </div>
+  </section>
+
+  <!-- PEAK -->
+  <section class="screen" id="s-peak">
+    <div class="sunrise" aria-hidden="true"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice"><defs><radialGradient id="disc" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#fbe7bd"/><stop offset="55%" stop-color="#e6c594"/><stop offset="100%" stop-color="#d49a5c"/></radialGradient><radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e6c594" stop-opacity=".85"/><stop offset="100%" stop-color="#e6c594" stop-opacity="0"/></radialGradient></defs><g class="sun-g"><circle cx="200" cy="182" r="125" fill="url(#halo)" class="rays"/><g stroke="#e6c594" stroke-width="3" stroke-linecap="round" class="rays"><line x1="262.0" y1="159.4" x2="288.3" y2="149.9"/><line x1="250.6" y1="139.6" x2="272.0" y2="121.6"/><line x1="233.0" y1="124.8" x2="247.0" y2="100.6"/><line x1="211.5" y1="117.0" x2="216.3" y2="89.4"/><line x1="188.5" y1="117.0" x2="183.7" y2="89.4"/><line x1="167.0" y1="124.8" x2="153.0" y2="100.6"/><line x1="149.4" y1="139.6" x2="128.0" y2="121.6"/><line x1="138.0" y1="159.4" x2="111.7" y2="149.9"/></g><circle cx="200" cy="182" r="54" fill="url(#disc)"/></g><path d="M0 200 L0 178 C 120 156 280 156 400 178 L400 200 Z" fill="var(--ivory)"/></svg></div>
+    <div class="sheet" style="box-shadow:none">
+      <div class="peak"><h1>Payment verified.<br>You're in.</h1><p id="peakSub">Two short forms and you're all set.</p></div>
+      <button class="btn" id="toRegister" type="button">Start registration</button>
+    </div>
+  </section>
+
+  <!-- FORM WIZARD (registration + assessment share it) -->
+  <section class="screen" id="s-form">
+    <div class="wiz-top"><div class="meta"><span id="wizForm">Registration</span><span id="wizCount">Section 1 of 4</span></div><div class="bar"><i id="wizBar"></i></div><h2 class="wiz-title" id="wizTitle"></h2></div>
+    <div class="wiz-body" id="wizBody"></div>
+    <div class="wiz-foot"><button class="btn ghost" id="wizBack" type="button">Back</button><button class="btn" id="wizNext" type="button">Next</button></div>
+  </section>
+
+  <!-- DONE -->
+  <section class="screen" id="s-done">
+    <div class="sheet">
+      <div class="card" id="doneCard"></div>
+      <p class="quote">"True healing begins at the root."<small>Dr. Neha Solanki</small></p>
+      <button class="demo" type="button" id="later" hidden>Demo: a few weeks later, join the full program</button>
+      <a class="btn ghost" href="/">Back to home</a>
+    </div>
+  </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>(function(){
+"use strict";
+var UPI = "nksolanki27-4@okicici", PAYEE = "Neha Solanki", WA = "917016100775", WA_SHOW = "+91 70161 00775";
+var FALLBACK_QR = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAFoAQAAAABSnlx4AAAF0ElEQVR42u2bQY7rxhGGvyKVkMAzIAJ5gA3YALX0zkegcoJcIb5BbsDWylsfwHcxFeQA8TI7ziLAyyocwECogOKfRZOUNEOOKL/Rm4eAWkzPcP7pIf/qrvqrumjihk/Agv44NAPfuSowqQBMkmpMUknYDtjzuauzv134vhs6k6QWSFVjtgU7GnuLrWXnOstJaiCALYABsBqmcN1QAP4ngoXve6HNMzyK3putgH1C2JKrBERWgizfbeAEWfh+O/RjDECqg5kj1SFgt10Y/EzQ6/oYsLMNwM7MVpBL1cLgm6I3l5eqcWTv2VKpAXi0qCUvHmNMKtI6lHZmCUAm1Qvfr4h+Way5E3pnZhYA69pvuMfoaA5AlhdpxQkycifJwvdHoquX1PrwKYgaAD9kZdSYVKQ6+yx8vxl6Q9x911wMl5lXXgz6vYFcqkP5lEtSkVZd5hUutnyDvFjy+lxS7Q0RqSUviBqTy1SFElkZDTstuepc8ati4ft1qha9A5REWoLJZUO5IpSAdfOkauHtsVn4/iQ1JW+dSdy6ASHyYl2HkvNbjNPQdPUoUJFKLYsf/Gj0ahbK2XmUiiQfngazuKwklBxpX52aYR23WOceUSpq6KUfdDspVQNkqjFfYbLLKFV5ezyJWfXC96vuNDsNSYXBQxxh8JD8G9g+JgTeJDIhvPUgK3upcTaojCSR6TPzg+P+xMT+s7HO5qa8+JsJdF4QHQJp9119PP2rsOQYwD77l5mpeEgwvdEaTGai47Ov19HJpJWDSaqDmeitXysz0W40ipzQhxXmssorwHX3q0MkOSBsYZ89rGQvVS22N1lncxM6mZ39H91cyyfA334cNebEnRS/3qIKnI3+KhjlQsiNhntBV5goWbcAmdRAqhaTy36WJLIiqvFRqiO2pG69VeTgQzdpZ6NNvLKJp/zvT6MJ9xQnH+A4tgiDsSVYTyzBFyxfzEVX8MXo7KPoEv4wc510D+fKCXQ5csubp3uvbtS5y3UdirwTHpIcZC7VKT2WLxOORykH2+1mJieaInCS79l7hxZsdMtP29LdcCeBblsndsPcq3Yq88qLta8PrtUg7dVA1ITq9x8mf5Y8qSHiZtQ7BOO2ScZdx1QEqG+IaX/ZVPFctLEuxiswo7vY3RRdt/DVn2ejNxC9tE5k5rJfLGoNCr7y11aws01Uy3L3cH4C3F6svd8P15w3i9u+cCdWzH/KsttmzR30SXUTOhlJRq7fSfwK911cLCj3LC1qhiaKXjaG6jPhU+39h6Y7kXySec32KMGswsp1dHsTurkJXc9E+1n/Pt8jz4iXfQr7HzfpkiWX+qCWqQbywkuQZu2lRgmQ++YmrziS56KAX5MRQ40rjomHHEdre5O2/+v/X30wV9VVL9ScVGNWrr2GwJ+DRC9EqeeLMF76Zl4NXY2pkuTCpZR1A6wQ+z/VMZY7Du+62nt3uA+QlkdD+y3xwvf90e5Z5pUX+PrguvY9Z1ED+RCs/CmWqitRauH7TpWzTIeoNbJfYgL5GoZ2eXl41wAPm7Azimywjl1PGha+X8k6D9k/jtYrjv3P34MMLAHTw4YV4B0bK6CsOomm44qi+D6qFQBVKNwfiWohiKRg4fu10XZFXPu8uGEQF137TNY1DqZ9wLvSaxEvfN9DD566mtZVKMhU+/P7rsJUhZJcWj2zTnxKidzlOtgufL+WHxyOgjePcWiwfUwif3GYydQPZ++T+N4YnQ6zOsXR0jU3LYrjN6Pdb0Ij/7JI25cJHWnfc8a5c7zom7GF73uj6x7dvf7Box+IGpl5X7bbwtHMthyidmHwTdHBPwP4cm8WSMXXksSX0geAd+Uz9O/eC77tdpK367fwHuB9svD96fTgKPoQteS7TGphvwFgb3Eoke3Tw/Km3CerWvAkSvVD/2pId3w1vJO6dAS+jVofFF6ZqjXfA+ilnbXAWqe67Ll1yor2/AAj7vrRVgvf90EnV/2gLW/bfyT6f1CVRVvMiNIzAAAAAElFTkSuQmCC";
+var $ = function(s){ return document.querySelector(s); }, $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function fmt(n){ return Number(n).toLocaleString("en-IN"); }
+function toast(m){ var t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove("on"); }, 1900); }
+
+var S = { prog: null, method: "UPI QR", done: { pay: false, confirm: false }, regDone: false, assessDone: false, profile: null, returning: false,
+          image: null, sample: null, used: ["626700001111"], txn: "", history: [] };
+
+/* ---------- navigation ---------- */
+var BACKABLE = { "s-steps": "s-program", "s-team": "s-steps", "s-form": "s-steps" };
+function go(id){
+  $$(".screen").forEach(function(s){ s.classList.toggle("on", s.id === id); });
+  $("#backrow").hidden = !BACKABLE[id]; closeMenu();
+  window.scrollTo(0, 0);
+  var h = document.querySelector("#" + id + " h1, #" + id + " h2, #" + id + " .eyebrow");
+  if (h){ h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+  S.cur = id;
+}
+$("#back").addEventListener("click", function(){ var to = BACKABLE[S.cur]; if (to) go(to); });
+function closeMenu(){ $("#menu").hidden = true; $("#scrim").hidden = true; $("#burger").setAttribute("aria-expanded", "false"); $("#burger").setAttribute("aria-label", "Open menu"); }
+function openMenu(){ var r = document.querySelector(".brand").getBoundingClientRect(); $("#menu").style.top = (r.bottom + 15) + "px"; $("#scrim").style.top = r.bottom + "px"; $("#menu").hidden = false; $("#scrim").hidden = false; $("#burger").setAttribute("aria-expanded", "true"); $("#burger").setAttribute("aria-label", "Close menu"); $("#menu a").focus(); }
+$("#burger").addEventListener("click", function(){ if ($("#menu").hidden) openMenu(); else closeMenu(); });
+$("#scrim").addEventListener("click", closeMenu);
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !$("#menu").hidden){ closeMenu(); $("#burger").focus(); } });
+$("#menuEnroll").addEventListener("click", function(e){ e.preventDefault(); closeMenu(); go("s-program"); });
+$("#hdrEnroll").addEventListener("click", function(){ go("s-program"); });
+$("#restart").addEventListener("click", function(){ location.reload(); });
+$$("[data-copy]").forEach(function(b){ b.addEventListener("click", function(){ var v = b.dataset.copy; try { navigator.clipboard.writeText(v).then(function(){ toast("Copied " + v); }, function(){ toast(v); }); } catch(e){ toast(v); } }); });
+
+/* ---------- 1 · program select ---------- */
+$$("input[name=prog]").forEach(function(r){ r.addEventListener("change", function(){ S.prog = r.value; $("#toSteps").disabled = false; }); });
+$("#toSteps").addEventListener("click", function(){ setupSteps(); go("s-steps"); });
+$("#waBank").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hi, I'd like to pay ₹99 for the 1:1 Consultation by net banking. Please share the bank details.");
+$("#waProgram").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent('Hi, I want to register in the "Full Programme". Please guide me through the payment process.');
+
+function setupSteps(){
+  S.done = { pay: false, confirm: false };
+  if (!S.returning){ S.regDone = false; S.assessDone = false; }
+  var consult = S.prog === "consult";
+  $("#pay-consult").hidden = !consult; $("#pay-program").hidden = consult;
+  $("#samples").hidden = !consult;
+  $("#agree").checked = false; $("#paid").disabled = true;
+  resetUpload();
+  if (consult) makeQR();
+  renderSteps(); openStep("pay");
+}
+function makeQR(){
+  var box = $("#qr"); box.innerHTML = "";
+  var uri = "upi://pay?pa=" + UPI + "&pn=" + encodeURIComponent(PAYEE) + "&am=99.00&cu=INR&tn=" + encodeURIComponent("1:1 Consultation");
+  try { if (!window.QRCode) throw 0; new window.QRCode(box, { text: uri, width: 162, height: 162, colorDark: "#262016", colorLight: "#ffffff", correctLevel: window.QRCode.CorrectLevel.M }); }
+  catch(e){ box.innerHTML = '<img alt="UPI QR code for Neha Solanki" src="' + FALLBACK_QR + '">'; }
+}
+
+/* ---------- 2 · accordion steps ---------- */
+function unlocked(step){ return step === "pay" || (step === "confirm" && S.done.pay) || (step === "reg" && S.done.confirm); }
+function openStep(step){
+  ["pay","confirm","reg"].forEach(function(s){
+    var open = s === step && unlocked(s);
+    $("#body-" + s).hidden = !open;
+    $("#card-" + s + " .sc-head").setAttribute("aria-expanded", open ? "true" : "false");
+  });
+}
+$$(".sc-head").forEach(function(h){ h.addEventListener("click", function(){
+  var s = h.dataset.step; if (!unlocked(s)){ toast(s === "confirm" ? "Complete the payment first" : "Confirm your payment first"); return; }
+  var isOpen = h.getAttribute("aria-expanded") === "true"; openStep(isOpen ? null : s);
+}); });
+function renderSteps(){
+  var paySub = S.done.pay ? (S.prog === "consult" ? "Paid by " + S.method : "Paid using the details shared on WhatsApp") : null;
+  setCard("pay", S.done.pay, true, paySub);
+  setCard("confirm", S.done.confirm, S.done.pay, S.done.confirm ? "Payment verified" : "Upload payment proof");
+  var regDoneAll = S.regDone && S.assessDone && S.done.confirm;
+  setCard("reg", regDoneAll && !S.returning, S.done.confirm, !S.done.confirm ? "Wellness & Assessment forms" : S.returning ? "Saved from your consultation, review" : regDoneAll ? "Both forms submitted" : "Wellness & Assessment forms");
+  // forms inside Register
+  var r = S.returning;
+  var sr = $("#st-reg"), sa = $("#st-assess");
+  if (r){ sr.className = "st saved"; sr.textContent = "Saved, review"; sa.className = "st saved"; sa.textContent = "Saved, review"; $("#openAssess").disabled = false; }
+  else {
+    sr.className = "st " + (S.regDone ? "done" : "todo"); sr.textContent = S.regDone ? "Done ✓" : "Start";
+    $("#ti-reg").classList.toggle("done", !!S.regDone); $("#ti-assess").classList.toggle("done", !!S.assessDone);
+    $("#openAssess").disabled = !S.regDone;
+    sa.className = "st " + (S.assessDone ? "done" : S.regDone ? "todo" : "lock"); sa.textContent = S.assessDone ? "Done ✓" : S.regDone ? "Start" : "After step 1";
+  }
+  $("#finishSaved").hidden = !r;
+}
+function setCard(step, done, isUnlocked, sub){
+  var c = $("#card-" + step);
+  c.classList.toggle("done", !!done); c.classList.toggle("locked", !isUnlocked);
+  c.querySelector(".sc-head").setAttribute("aria-disabled", isUnlocked ? "false" : "true");
+  if (step === "pay"){
+    $("#badge-pay").className = done ? "donebadge" : "req"; $("#badge-pay").textContent = done ? "Done ✓" : "Required";
+    if (sub) $("#sub-pay").textContent = sub; else $("#sub-pay").innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 3 2 21h20z" fill="#e6a817"/><path d="M12 10v4M12 17v.5" stroke="#262016" stroke-width="2.2" stroke-linecap="round"/></svg>Must be completed first';
+  } else {
+    var b = $("#badge-" + step); b.hidden = !done; b.className = "donebadge"; b.textContent = "Done ✓";
+    if (sub) $("#sub-" + step).textContent = sub;
+  }
+}
+
+/* payment */
+$$(".tab").forEach(function(t){ t.addEventListener("click", function(){
+  $$(".tab").forEach(function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+  $("#p-qr").classList.toggle("on", t.id === "t-qr"); $("#p-bank").classList.toggle("on", t.id === "t-bank");
+  S.method = t.id === "t-bank" ? "net banking" : "UPI QR";
+}); });
+$("#agree").addEventListener("change", function(){ $("#paid").disabled = !this.checked; });
+$("#paid").addEventListener("click", function(){ S.done.pay = true; renderSteps(); openStep("confirm"); toast("Payment marked. Now upload your proof."); });
+
+/* confirm */
+function resetUpload(){ $("#preview").classList.remove("on"); $("#drop").hidden = false; $("#verify").disabled = true; S.image = null; S.sample = null; $("#file").value = ""; $("#txn").value = ""; }
+function showImage(u){ $("#previewImg").src = u; $("#preview").classList.add("on"); $("#drop").hidden = true; $("#verify").disabled = false; S.image = u; }
+$("#swap").addEventListener("click", function(){ var t = $("#txn").value; resetUpload(); $("#txn").value = t; });
+$("#file").addEventListener("change", function(e){
+  var f = e.target.files && e.target.files[0]; if (!f) return;
+  if (!/^image\/(png|jpe?g|webp)$/.test(f.type)){ toast("Choose a JPG or PNG image"); return; }
+  if (f.size > 5*1024*1024){ toast("That image is over 5 MB"); return; }
+  var rd = new FileReader(); rd.onload = function(){ S.sample = null; showImage(rd.result); }; rd.readAsDataURL(f);
+});
+function randId(){ var s = "6"; for (var i = 0; i < 11; i++) s += Math.floor(Math.random()*10); return s; }
+function dateStr(d){ var m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]; return d.getDate() + " " + m[d.getMonth()] + " " + d.getFullYear(); }
+function receipt(kind){
+  var amount = kind === "wrong" ? 10 : 99, id = kind === "reused" ? S.used[0] : randId();
+  var c = document.createElement("canvas"); c.width = 720; c.height = 760; var g = c.getContext("2d");
+  g.fillStyle = "#fff"; g.fillRect(0,0,720,760); g.fillStyle = "#1a73e8"; g.fillRect(0,0,720,70);
+  g.fillStyle = "#34a853"; g.beginPath(); g.arc(360,160,48,0,Math.PI*2); g.fill();
+  g.strokeStyle = "#fff"; g.lineWidth = 9; g.lineCap = "round"; g.beginPath(); g.moveTo(336,162); g.lineTo(353,178); g.lineTo(386,144); g.stroke();
+  g.textAlign = "center"; g.fillStyle = "#111"; g.font = "700 62px Arial"; g.fillText("₹" + amount, 360, 290);
+  g.fillStyle = "#333"; g.font = "28px Arial"; g.fillText("Paid to Neha Solanki", 360, 345);
+  g.fillStyle = "#666"; g.font = "24px Arial"; g.fillText(UPI, 360, 385);
+  g.fillStyle = "#1e8e3e"; g.font = "700 26px Arial"; g.fillText("Completed", 360, 445);
+  g.fillStyle = "#555"; g.font = "24px Arial"; g.fillText(dateStr(new Date()) + ", 10:42 am", 360, 485);
+  g.textAlign = "left"; g.fillStyle = "#666"; g.font = "24px Arial"; g.fillText("UPI transaction ID", 40, 570);
+  g.fillStyle = "#111"; g.font = "700 30px Arial"; g.fillText(id, 40, 612);
+  g.fillStyle = "#333"; g.font = "24px Arial"; g.fillText("From: Priya Sharma (HDFC Bank ****4417)", 40, 680);
+  return { url: c.toDataURL("image/png"), truth: { amount: amount, payee: true, status: true, dateOk: true, id: id } };
+}
+$$("[data-sample]").forEach(function(b){ b.addEventListener("click", function(){ var r = receipt(b.dataset.sample); S.sample = r.truth; showImage(r.url); $("#txn").value = r.truth.id; }); });
+$("#needHelp").addEventListener("click", function(){ teamCheck($("#txn").value); });
+$("#verify").addEventListener("click", function(){ if (S.prog === "program") teamCheck($("#txn").value); else runChecks(); });
+
+/* OCR (Tesseract.js) with graceful fallback */
+var ocr = { st: "idle", w: null, q: [] };
+function loadOCR(cb){
+  if (ocr.st === "ready" || ocr.st === "off") return cb(); ocr.q.push(cb); if (ocr.st === "loading") return; ocr.st = "loading";
+  var sc = document.createElement("script"); sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";
+  var t = setTimeout(function(){ fin(false); }, 25000);
+  function fin(ok, w){ if (ocr.st !== "loading") return; clearTimeout(t); ocr.st = ok ? "ready" : "off"; ocr.w = w || null; ocr.q.splice(0).forEach(function(f){ f(); }); }
+  sc.onload = function(){ try { window.Tesseract.createWorker("eng").then(function(w){ fin(true, w); }, function(){ fin(false); }); } catch(e){ fin(false); } };
+  sc.onerror = function(){ fin(false); }; document.head.appendChild(sc);
+}
+function readText(url){ return new Promise(function(res){ loadOCR(function(){ if (!ocr.w) return res(null); var d = false, t = setTimeout(function(){ if (!d){ d = true; res(null); } }, 20000); ocr.w.recognize(url).then(function(r){ if (!d){ d = true; clearTimeout(t); res(r.data.text || ""); } }, function(){ if (!d){ d = true; clearTimeout(t); res(null); } }); }); }); }
+function parse(text){
+  var nums = (text.match(/[0-9]{1,3}(?:,[0-9]{2,3})+|\b[0-9]{2,6}\b/g) || []).map(function(x){ return +x.replace(/,/g, ""); });
+  var id = (text.match(/\b[0-9]{12}\b/) || [])[0] || null, low = text.toLowerCase();
+  var mo = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"], dm = low.match(/(\d{1,2})\s+([a-z]{3,9})\.?\s+(\d{4})/), ok = false;
+  if (dm){ var mi = mo.indexOf(dm[2].slice(0,3)); if (mi > -1){ var age = (Date.now() - new Date(+dm[3], mi, +dm[1]).getTime())/864e5; ok = age > -1 && age <= 7; } }
+  return { amount: nums.length ? nums[0] : null, payee: /neha\s*solanki|nksolanki27-4@okicici/i.test(text), status: /completed|success|paid to/i.test(text), dateOk: ok, id: id };
+}
+function runChecks(){
+  go("s-verify");
+  $("#vImg").src = S.image; $("#veil").classList.remove("gone"); $("#veilText").textContent = "Reading your receipt…";
+  $("#checks").innerHTML = ""; $("#verifyResult").innerHTML = ""; $("#method").textContent = "";
+  readText(S.image).then(function(text){
+    var got, method;
+    if (text !== null){ got = parse(text); method = "Checked automatically by reading the receipt."; }
+    else if (S.sample){ got = S.sample; method = "In this preview, the sample's values were used. The live site reads every receipt automatically."; }
+    if (!got){ $("#veilText").textContent = "Sending to our team…"; setTimeout(function(){ teamCheck($("#txn").value); }, 1100); return; }
+    var typed = $("#txn").value.replace(/\s/g, ""), id = got.id || typed;
+    var C = [
+      { l: "Amount is ₹99", ok: got.amount === 99, why: got.amount ? "The receipt shows ₹" + fmt(got.amount) + ", but the 1:1 Consultation fee is ₹99." : "We couldn't find the amount on this receipt." },
+      { l: "Paid to Neha Solanki", ok: !!got.payee, why: "The receipt doesn't show Neha Solanki or our UPI ID." },
+      { l: "Payment successful", ok: !!got.status, why: "The receipt doesn't say the payment was completed." },
+      { l: "Paid in the last 7 days", ok: !!got.dateOk, why: "The payment date is missing or older than 7 days." },
+      { l: "Transaction ID matches", ok: !!id && (!typed || typed === id), why: "The ID you entered doesn't match the receipt." },
+      { l: "Transaction ID not used before", ok: !!id && S.used.indexOf(id) === -1, why: "This transaction ID was already used for another enrollment." }
+    ];
+    $("#veil").classList.add("gone");
+    C.forEach(function(c, i){ var li = document.createElement("li"); li.innerHTML = '<span class="m" aria-hidden="true"></span><span>' + esc(c.l) + '</span>'; $("#checks").appendChild(li);
+      setTimeout(function(){ li.classList.add(c.ok ? "pass" : "fail"); li.querySelector(".m").textContent = c.ok ? "✓" : "!"; }, 300 * (i + 1)); });
+    setTimeout(function(){
+      $("#method").textContent = method;
+      var bad = C.filter(function(c){ return !c.ok; });
+      if (!bad.length){ S.used.push(id); S.txn = id; setTimeout(confirmed, 600); }
+      else {
+        $("#verifyResult").innerHTML = '<div class="result"><b>We couldn\'t confirm this payment</b>' + esc(bad[0].why) + '</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:10px"><button class="btn" id="retry" type="button">Upload a different screenshot</button><button class="btn ghost" id="askTeam" type="button">Ask our team to check</button></div>';
+        $("#retry").onclick = function(){ resetUpload(); go("s-steps"); openStep("confirm"); };
+        $("#askTeam").onclick = function(){ teamCheck(id); };
+      }
+    }, 300 * (C.length + 1));
+  });
+}
+function teamCheck(id){
+  var who = S.profile ? esc(S.profile.name) + ", " + esc(S.profile.email) : "Priya Sharma, priya@example.com";
+  var prog = S.prog === "consult" ? "1:1 Consultation, ₹99" : "Full program, amount as agreed on WhatsApp";
+  $("#mailBody").innerHTML = "Customer: " + who + "<br>Service: " + prog + "<br>Transaction ID: " + esc(id || "not entered") + "<br>Screenshot attached";
+  $("#teamText").textContent = S.prog === "program" ? "We've sent your proof to our team. They'll match it with your bank transfer within 48 hours and unlock your forms." : "We've sent your screenshot to our team. They'll confirm it within 48 hours and unlock your forms.";
+  go("s-team");
+}
+$("#approve").addEventListener("click", function(){ S.txn = S.txn || $("#txn").value || "approved by team"; confirmed(); });
+function confirmed(){
+  S.done.confirm = true;
+  if (S.returning){ S.regDone = true; S.assessDone = true; }
+  renderSteps();
+  $("#peakSub").textContent = S.returning ? "Your details are saved. Just review and confirm." : "Two short forms and you're all set.";
+  go("s-peak");
+}
+$("#toRegister").addEventListener("click", function(){ go("s-steps"); openStep("reg"); });
+
+/* ---------- forms (schemas from the Figma registration and assessment) ---------- */
+function F(id, label, type, o){ var f = { id: id, label: label, type: type }; for (var k in o) f[k] = o[k]; return f; }
+function Q(n, t, opts, multi){ return { id: "q" + n, label: n + ". " + t, type: multi ? "check" : "radio", opts: opts, req: 1 }; }
+var REG = [
+  { title: "About you", intro: "summary", fields: [
+    F("name", "Full name", "text", { req: 1, ph: "Your full name", auto: "name" }),
+    { row: [ F("dob", "Birth date", "date", { req: 1 }), F("age", "Age", "select", { req: 1, ph: "Select", from: 1, to: 100, hint: "Fills in from your birth date" }) ] },
+    F("sex", "Sex", "radio", { req: 1, opts: ["Male", "Female"], inline: 1 }) ] },
+  { title: "How we reach you", fields: [
+    F("mobile", "Mobile / WhatsApp number", "phone", { req: 1, hint: "Numbers only. We'll use this for appointment updates on WhatsApp." }),
+    F("email", "Email", "email", { req: 1, ph: "name@example.com", auto: "email" }),
+    F("address", "Address", "textarea", { ph: "House / flat no., street, area", auto: "street-address" }),
+    F("country", "Country", "country", { auto: "country-name" }),
+    { row: [ F("city", "City / town", "city", { ph: "e.g. Surat", auto: "address-level2" }), F("pin", "PIN code", "postal", { ph: "6 digits", auto: "postal-code" }) ] } ] },
+  { title: "A little more about you", fields: [
+    F("occupation", "Occupation / study in", "text", { ph: "e.g. Teacher, B.Com student" }),
+    F("education", "Education", "text", { ph: "Highest qualification" }),
+    F("hobbies", "Hobbies", "text", { ph: "e.g. Gardening, reading" }) ] },
+  { title: "Body and intention", fields: [
+    F("height", "Height", "height", {}),
+    F("weight", "Weight", "number", { ph: "e.g. 68", unit: "kg", min: 20, max: 300 }),
+    F("purpose", "Main purpose of joining", "textarea", { req: 1, ph: "What would you like to change or heal?" }),
+    F("decl", "I declare that I am fit to attend yoga as per my physical and mental status.", "consent", { req: 1 }) ] }
+];
+var ASSESS = [
+  { title: "Physical health & movement", intro: "who", fields: [
+    Q(1,"How would you rate your overall physical health?",["Excellent","Good","Average","Poor"]),
+    Q(2,"How often do you engage in physical activity (yoga, exercise etc.)?",["Daily","4 to 6 times/week","1 to 3 times/week","Rarely"]),
+    Q(3,"Do you experience any of the following regularly?",["Fatigue","Body pain","Headache","Digestive issues","Other"],1),
+    Q(4,"How many hours do you sleep on average?",["Less than 5 hours","5-6 hours","6-7 hours","7-8 hours","More than 8 hours"]),
+    Q(5,"Do you feel fresh and energetic after waking up?",["Always","Sometimes","Rarely","Never"]) ] },
+  { title: "Nutrition & lifestyle", fields: [
+    Q(6,"How balanced is your diet?",["Very healthy","Moderately healthy","Irregular","Unhealthy"]),
+    Q(7,"How often do you consume processed/junk food?",["Daily","2-3 times/week","Occasionally","Rarely"]),
+    Q(8,"Do you have any diagnosed lifestyle disease?",["Diabetes","Hypertension","Thyroid","Obesity","None"],1),
+    Q(9,"How is your digestion?",["Excellent","Good","Average","Poor"]),
+    Q(10,"Do you have any addictions?",["Tobacco","Alcohol","Tea / coffee","Screen addiction","Other","None"],1) ] },
+  { title: "Stress & emotional wellbeing", fields: [
+    Q(11,"How often do you feel stressed?",["Always","Often","Sometimes","Rarely"]),
+    Q(12,"What is your main source of stress?",["Relatives","Earning / financial issues","My health","Other"]),
+    Q(13,"How do you usually deal with stress?",["Exercise","Talking to someone","Meditation","Ignore it","Other"]),
+    Q(14,"Do you experience anxiety or overthinking?",["Frequently","Occasionally","Rarely","Never"]),
+    Q(15,"How would you rate your emotional stability?",["Very stable","Moderate","Unstable","Highly unstable"]),
+    Q(16,"How often do you feel happy, satisfied and grateful?",["Daily","Often","Sometimes","Rarely"]),
+    Q(17,"Do you have mood swings?",["Frequently","Sometimes","Rarely","Never"]) ] },
+  { title: "Mind & work-life balance", fields: [
+    Q(18,"How well can you focus on tasks?",["Excellent","Good","Average","Poor"]),
+    Q(19,"How is your work-life balance?",["Well balanced","Slightly imbalanced","Poor","Very poor"]),
+    Q(20,"Do you feel mentally exhausted?",["Daily","Often","Sometimes","Rarely"]) ] },
+  { title: "Purpose & inner connection", fields: [
+    Q(21,"Do you practice any spiritual activity (meditation, prayer)?",["Daily","Occasionally","Rarely","Never"]),
+    Q(22,"Do you feel a sense of purpose in life?",["Strongly yes","Somewhat","Uncertain","No"]),
+    Q(23,"How connected do you feel with yourself?",["Deeply connected","Moderately connected","Slightly connected","Not at all"]),
+    Q(24,"Do you spend time in self-reflection?",["Daily","Weekly","Rarely","Never"]),
+    Q(25,"How often do you feel inner peace?",["Always","Often","Sometimes","Rarely"]) ] },
+  { title: "Relationships & life satisfaction", fields: [
+    Q(26,"How is your relationship with family and close ones?",["Excellent","Good","Average","Strained"]),
+    Q(27,"Do you feel socially connected or isolated?",["Highly connected","Moderately connected","Slightly isolated","Completely isolated"]),
+    Q(28,"How often do you feel gratitude?",["Daily","Often","Sometimes","Rarely"]),
+    Q(29,"Do you feel satisfied with your current life?",["Very satisfied","Satisfied","Neutral","Dissatisfied"]) ] },
+  { title: "Your goals", fields: [ F("q30", "30. Write at least 3 goals for joining, in detail.", "textarea", { req: 1, ph: "1.\n2.\n3." }) ] }
+];
+
+var W = { form: null, schema: null, i: 0, vals: null };
+function openForm(which){
+  W.form = which; W.schema = which === "reg" ? REG : ASSESS; W.i = 0;
+  var p = S.profile || {};
+  W.vals = which === "reg" ? Object.assign({}, p) : Object.assign({}, p.assess || {});
+  renderWizard(); go("s-form");
+}
+$("#openReg").addEventListener("click", function(){ openForm("reg"); });
+$("#openAssess").addEventListener("click", function(){ if (!this.disabled) openForm("assess"); });
+$("#finishSaved").addEventListener("click", function(){ finish(); });
+
+function fieldHTML(f){
+  if (f.row) return '<div class="row2">' + f.row.map(fieldHTML).join("") + '</div>';
+  var v = W.vals[f.id], req = f.req ? ' <i aria-hidden="true">*</i>' : "", rid = f.req ? ' aria-required="true"' : "";
+  if (f.type === "radio" || f.type === "check"){
+    var t = f.type === "radio" ? "radio" : "checkbox";
+    return '<div class="q" data-id="' + f.id + '"><fieldset><legend>' + esc(f.label) + req + (t === "checkbox" ? ' <span style="font-weight:400;color:var(--muted);font-size:12px">(choose all that apply)</span>' : "") + '</legend><div class="opts' + (f.inline ? " inline" : "") + '">' +
+      f.opts.map(function(o){ var on = t === "radio" ? v === o : (v || []).indexOf(o) > -1; return '<label class="opt"><input type="' + t + '" name="' + f.id + '" value="' + esc(o) + '"' + (on ? " checked" : "") + '><span>' + esc(o) + '</span></label>'; }).join("") +
+      '</div><span class="err" hidden></span></fieldset></div>';
+  }
+  if (f.type === "consent")
+    return '<div class="q" data-id="' + f.id + '"><label class="agree" style="font-size:13.5px"><input type="checkbox" name="' + f.id + '"' + (v ? " checked" : "") + '><span>' + esc(f.label) + req + '</span></label><span class="err" hidden></span></div>';
+  var attrs = ' id="f_' + f.id + '" name="' + f.id + '" placeholder="' + esc(f.ph || "") + '"' + rid + (f.auto ? ' autocomplete="' + f.auto + '"' : ' autocomplete="off"') +
+    (f.type === "tel" ? ' inputmode="tel"' : "") + (f.type === "number" ? ' inputmode="numeric"' : "") + (f.min ? ' min="' + f.min + '" max="' + f.max + '"' : "");
+  if (f.type === "phone"){
+    var sel = W.vals.mobileSel || "India", num = W.vals.mobileNum || "", custom = W.vals.mobileCustom || "";
+    function op(n){ return '<option value="' + esc(n) + '"' + (n === sel ? " selected" : "") + '>+' + DIAL_BY_NAME[n] + ' ' + esc(n) + '</option>'; }
+    var o = '<optgroup label="Popular">' + POPULAR.map(op).join("") + '</optgroup><optgroup label="All countries">' + DIAL.map(function(d){ return op(d[0]); }).join("") + '</optgroup><option value="custom"' + (sel === "custom" ? " selected" : "") + '>Other code</option>';
+    return '<div class="fld" data-id="mobile"><span id="lbl_mobile">' + esc(f.label) + req + '</span><div class="phone"><select id="f_mobileCode" aria-label="Country code">' + o + '</select><input id="f_mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="' + (sel === "India" ? "98765 43210" : "Phone number") + '" maxlength="14" value="' + esc(num) + '" aria-labelledby="lbl_mobile"' + rid + '></div>' +
+      '<div class="customcode" id="customBox"' + (sel === "custom" ? "" : " hidden") + '><span aria-hidden="true">+</span><input id="f_mobileCustom" inputmode="numeric" maxlength="4" placeholder="Code" value="' + esc(custom) + '" aria-label="Country code, digits only"></div>' +
+      '<small>' + esc(f.hint) + '</small><span class="err" hidden></span></div>';
+  }
+  if (f.type === "country"){
+    var cv = W.vals.country || "India";
+    var all = DIAL.map(function(d){ return d[0]; });
+    function co(c){ return '<option' + (c === cv ? " selected" : "") + '>' + esc(c) + '</option>'; }
+    return '<label class="fld" data-id="country"><span>' + esc(f.label) + '</span><select id="f_country" name="country" autocomplete="country-name"><optgroup label="Popular">' + POPULAR.map(co).join("") + '</optgroup><optgroup label="All countries">' + all.map(co).join("") + co("Other") + '</optgroup></select><span class="err" hidden></span></label>';
+  }
+  if (f.type === "height"){
+    var ft = W.vals.heightFt || "", inch = W.vals.heightIn || "", fo = '<option value="">Feet</option>', io = '<option value="">Inches</option>';
+    for (var k = 3; k <= 7; k++) fo += '<option value="' + k + '"' + (String(ft) === String(k) ? " selected" : "") + '>' + k + ' ft</option>';
+    for (var m = 0; m <= 11; m++) io += '<option value="' + m + '"' + (String(inch) === String(m) ? " selected" : "") + '>' + m + ' in</option>';
+    return '<div class="fld" data-id="height"><span id="lbl_height">' + esc(f.label) + req + '</span><div class="row2"><select id="f_heightFt" aria-label="Height, feet">' + fo + '</select><select id="f_heightIn" aria-label="Height, inches">' + io + '</select></div><span class="err" hidden></span></div>';
+  }
+  if (f.type === "select"){
+    var opts = '<option value="">' + esc(f.ph || "Select") + '</option>';
+    for (var a = f.from; a <= f.to; a++) opts += '<option value="' + a + '"' + (String(v) === String(a) ? " selected" : "") + '>' + a + '</option>';
+    return '<label class="fld" data-id="' + f.id + '"><span>' + esc(f.label) + req + '</span><select id="f_' + f.id + '" name="' + f.id + '"' + rid + '>' + opts + '</select>' + (f.hint ? '<small>' + esc(f.hint) + '</small>' : "") + '<span class="err" hidden></span></label>';
+  }
+  if (f.type === "city" || f.type === "postal") attrs += ' data-filter="' + f.type + '"';
+  if (f.type === "postal") attrs += ' inputmode="numeric" maxlength="10"';
+  if (f.type === "number") attrs += ' data-filter="number"';
+  if (f.id === "name") attrs += ' data-filter="name"';
+  var input = f.type === "textarea" ? '<textarea' + attrs + '>' + esc(v || "") + '</textarea>' : '<input type="' + (f.type === "number" ? "text" : (f.type === "city" || f.type === "postal") ? "text" : f.type) + '"' + attrs + ' value="' + esc(v || "") + '">';
+  if (f.unit) input = '<span class="unit">' + input + '<em>' + f.unit + '</em></span>';
+  return '<label class="fld" data-id="' + f.id + '"><span>' + esc(f.label) + req + '</span>' + input + (f.hint ? '<small>' + esc(f.hint) + '</small>' : "") + '<span class="err" hidden></span></label>';
+}
+function introHTML(kind){
+  var p = S.profile || {};
+  if (kind === "summary"){
+    var fee = S.prog === "consult" ? "₹99" : "As agreed on WhatsApp";
+    var via = S.prog === "consult" ? (S.method === "net banking" ? "Net banking" : "UPI QR code") : "Bank transfer";
+    return '<div class="summary" aria-label="Program and payment"><div class="r"><span>Program</span><b>' + (S.prog === "consult" ? "1:1 Consultation (30 min)" : "Divines Wellness Program") + '</b></div><div class="r"><span>Fee paid</span><b>' + fee + '</b></div><div class="r"><span>Payment method</span><b>' + via + '</b></div></div>';
+  }
+  return '<div class="summary"><div class="r"><span>Name</span><b>' + esc(p.name) + '</b></div><div class="r"><span>Email</span><b>' + esc(p.email) + '</b></div><div class="r"><span>Mobile</span><b>' + esc(p.mobile) + '</b></div></div><p class="lede" style="margin:0">Please answer honestly for the best result. Your details stay confidential.</p>';
+}
+function renderWizard(){
+  var sec = W.schema[W.i], n = W.schema.length;
+  $("#wizForm").textContent = W.form === "reg" ? "Registration · step 1 of 2" : "Wellness assessment · step 2 of 2";
+  $("#wizCount").textContent = "Section " + (W.i + 1) + " of " + n;
+  $("#wizBar").style.width = Math.round((W.i) / n * 100) + "%";
+  $("#wizTitle").textContent = sec.title;
+  $("#wizBody").innerHTML = (sec.intro ? introHTML(sec.intro) : "") + sec.fields.map(fieldHTML).join("") +
+    '<div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your progress is saved as you go. Your answers are private to our care team.</span></div>' +
+    (W.i === n - 1 ? "" : "") + '<button class="demo" type="button" id="fillSample">Demo: fill this section with sample answers</button>';
+  $("#wizBack").textContent = W.i === 0 ? "Close" : "Back";
+  $("#wizNext").textContent = W.i < n - 1 ? "Next" : (W.form === "reg" ? (S.returning ? "Save registration" : "Submit registration") : (S.returning ? "Save assessment" : "Submit assessment"));
+  var dob = $("#f_dob"); if (dob) dob.addEventListener("change", function(){ var b = new Date(dob.value), t = new Date(); if (isNaN(b)) return; var a = t.getFullYear() - b.getFullYear() - ((t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) ? 1 : 0); if (a > 0 && a < 111) $("#f_age").value = a; });
+  $("#fillSample").addEventListener("click", fillSample);
+  wireInputs();
+  window.scrollTo(0, 0);
+}
+var DIAL = [["Afghanistan","93"],["Albania","355"],["Algeria","213"],["Andorra","376"],["Angola","244"],["Antigua and Barbuda","1"],["Argentina","54"],["Armenia","374"],["Australia","61"],["Austria","43"],["Azerbaijan","994"],["Bahamas","1"],["Bahrain","973"],["Bangladesh","880"],["Barbados","1"],["Belarus","375"],["Belgium","32"],["Belize","501"],["Benin","229"],["Bermuda","1"],["Bhutan","975"],["Bolivia","591"],["Bosnia and Herzegovina","387"],["Botswana","267"],["Brazil","55"],["Brunei","673"],["Bulgaria","359"],["Burkina Faso","226"],["Burundi","257"],["Cambodia","855"],["Cameroon","237"],["Canada","1"],["Cape Verde","238"],["Cayman Islands","1"],["Central African Republic","236"],["Chad","235"],["Chile","56"],["China","86"],["Colombia","57"],["Comoros","269"],["Congo","242"],["Costa Rica","506"],["Croatia","385"],["Cuba","53"],["Cyprus","357"],["Czech Republic","420"],["DR Congo","243"],["Denmark","45"],["Djibouti","253"],["Dominica","1"],["Dominican Republic","1"],["Ecuador","593"],["Egypt","20"],["El Salvador","503"],["Equatorial Guinea","240"],["Eritrea","291"],["Estonia","372"],["Eswatini","268"],["Ethiopia","251"],["Faroe Islands","298"],["Fiji","679"],["Finland","358"],["France","33"],["French Polynesia","689"],["Gabon","241"],["Gambia","220"],["Georgia","995"],["Germany","49"],["Ghana","233"],["Gibraltar","350"],["Greece","30"],["Greenland","299"],["Grenada","1"],["Guadeloupe","590"],["Guam","1"],["Guatemala","502"],["Guinea","224"],["Guinea-Bissau","245"],["Guyana","592"],["Haiti","509"],["Honduras","504"],["Hong Kong","852"],["Hungary","36"],["Iceland","354"],["India","91"],["Indonesia","62"],["Iran","98"],["Iraq","964"],["Ireland","353"],["Israel","972"],["Italy","39"],["Ivory Coast","225"],["Jamaica","1"],["Japan","81"],["Jordan","962"],["Kazakhstan","7"],["Kenya","254"],["Kiribati","686"],["Kosovo","383"],["Kuwait","965"],["Kyrgyzstan","996"],["Laos","856"],["Latvia","371"],["Lebanon","961"],["Lesotho","266"],["Liberia","231"],["Libya","218"],["Liechtenstein","423"],["Lithuania","370"],["Luxembourg","352"],["Macau","853"],["Madagascar","261"],["Malawi","265"],["Malaysia","60"],["Maldives","960"],["Mali","223"],["Malta","356"],["Marshall Islands","692"],["Martinique","596"],["Mauritania","222"],["Mauritius","230"],["Mexico","52"],["Micronesia","691"],["Moldova","373"],["Monaco","377"],["Mongolia","976"],["Montenegro","382"],["Morocco","212"],["Mozambique","258"],["Myanmar","95"],["Namibia","264"],["Nauru","674"],["Nepal","977"],["Netherlands","31"],["New Caledonia","687"],["New Zealand","64"],["Nicaragua","505"],["Niger","227"],["Nigeria","234"],["North Korea","850"],["North Macedonia","389"],["Norway","47"],["Oman","968"],["Pakistan","92"],["Palau","680"],["Palestine","970"],["Panama","507"],["Papua New Guinea","675"],["Paraguay","595"],["Peru","51"],["Philippines","63"],["Poland","48"],["Portugal","351"],["Puerto Rico","1"],["Qatar","974"],["Reunion","262"],["Romania","40"],["Russia","7"],["Rwanda","250"],["Saint Kitts and Nevis","1"],["Saint Lucia","1"],["Saint Vincent and the Grenadines","1"],["Samoa","685"],["San Marino","378"],["Sao Tome and Principe","239"],["Saudi Arabia","966"],["Senegal","221"],["Serbia","381"],["Seychelles","248"],["Sierra Leone","232"],["Singapore","65"],["Slovakia","421"],["Slovenia","386"],["Solomon Islands","677"],["Somalia","252"],["South Africa","27"],["South Korea","82"],["South Sudan","211"],["Spain","34"],["Sri Lanka","94"],["Sudan","249"],["Suriname","597"],["Sweden","46"],["Switzerland","41"],["Syria","963"],["Taiwan","886"],["Tajikistan","992"],["Tanzania","255"],["Thailand","66"],["Timor-Leste","670"],["Togo","228"],["Tonga","676"],["Trinidad and Tobago","1"],["Tunisia","216"],["Turkey","90"],["Turkmenistan","993"],["Tuvalu","688"],["Uganda","256"],["Ukraine","380"],["United Arab Emirates","971"],["United Kingdom","44"],["United States","1"],["Uruguay","598"],["Uzbekistan","998"],["Vanuatu","678"],["Vatican City","39"],["Venezuela","58"],["Vietnam","84"],["Yemen","967"],["Zambia","260"],["Zimbabwe","263"]];
+var POPULAR = ["India","United Arab Emirates","United States","United Kingdom","Canada","Australia","Singapore","Qatar","Saudi Arabia","Oman","Kuwait","Bahrain","New Zealand"];
+var DIAL_BY_NAME = {}; DIAL.forEach(function(d){ DIAL_BY_NAME[d[0]] = d[1]; });
+var COUNTRIES = POPULAR.concat(["—"], DIAL.map(function(d){ return d[0]; }).filter(function(n){ return POPULAR.indexOf(n) < 0; }), ["Other"]);
+function addrCountry(){ var c = $("#f_country"); return c ? c.value : (W.vals.country || "India"); }
+function postalRule(){
+  switch (addrCountry()){
+    case "India": return { label: "PIN code", ph: "6 digits", numeric: true, re: /^[1-9][0-9]{5}$/, msg: "Enter a 6-digit PIN code." };
+    case "United States": return { label: "ZIP code", ph: "e.g. 94103", numeric: false, re: /^[0-9]{5}(-[0-9]{4})?$/, msg: "Enter a 5-digit ZIP code (or ZIP+4, like 94103-1234)." };
+    case "Canada": return { label: "Postal code", ph: "e.g. M5V 2T6", re: /^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/, msg: "Enter a postal code like M5V 2T6." };
+    case "United Kingdom": return { label: "Postcode", ph: "e.g. SW1A 1AA", re: /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/, msg: "Enter a postcode like SW1A 1AA." };
+    case "Australia": case "New Zealand": return { label: "Postcode", ph: "4 digits", numeric: true, re: /^[0-9]{4}$/, msg: "Enter a 4-digit postcode." };
+    case "Singapore": return { label: "Postal code", ph: "6 digits", numeric: true, re: /^[0-9]{6}$/, msg: "Enter a 6-digit postal code." };
+    case "United Arab Emirates": case "Qatar": case "Hong Kong": return { label: "Postal code (if any)", ph: "Leave blank if none", re: /^[A-Z0-9 -]{0,10}$/, msg: "Enter a valid postal code or leave it blank." };
+    default: return { label: "Postal code", ph: "Postal / ZIP code", re: /^[A-Z0-9][A-Z0-9 -]{1,8}[A-Z0-9]$/, msg: "Enter a valid postal code." };
+  }
+}
+function wireInputs(){
+  var body = $("#wizBody");
+  var mob = $("#f_mobile"), code = $("#f_mobileCode");
+  if (mob){
+    mob.addEventListener("input", function(){ var d = mob.value.replace(/\D/g, ""); if (mob.value !== d) { mob.value = d; flash(mob); } });
+    var cb = $("#customBox"), ci = $("#f_mobileCustom");
+    ci.addEventListener("input", function(){ var d = ci.value.replace(/\D/g, ""); if (ci.value !== d){ ci.value = d; flash(mob); } });
+    code.addEventListener("change", function(){
+      mob.placeholder = code.value === "India" ? "98765 43210" : "Phone number";
+      cb.hidden = code.value !== "custom"; if (!cb.hidden) ci.focus();
+      var ctry = $("#f_country"); if (ctry && !ctry.dataset.touched && DIAL_BY_NAME[code.value]){ ctry.value = code.value; updatePinLabel(); }
+    });
+  }
+  var ctry = $("#f_country"); if (ctry) ctry.addEventListener("change", function(){ ctry.dataset.touched = "1"; var pin = $("#f_pin"); if (pin) pin.value = ""; updatePinLabel(); });
+  updatePinLabel();
+  body.querySelectorAll("[data-filter]").forEach(function(el){
+    el.addEventListener("input", function(){
+      var f = el.dataset.filter, v = el.value, n = v;
+      if (f === "number") n = v.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1");
+      if (f === "postal") n = postalRule().numeric ? v.replace(/\D/g, "") : v.replace(/[^A-Za-z0-9 -]/g, "").toUpperCase();
+      if (f === "city" || f === "name") n = v.replace(/[^\p{L}\p{M} .'-]/gu, "");
+      if (n !== v){ el.value = n; flash(el); }
+    });
+  });
+  var em = $("#f_email");
+  if (em){ em.addEventListener("blur", function(){ emailHint(em); }); em.addEventListener("input", function(){ var o = em.closest(".fld").querySelector(".suggest"); if (o) o.remove(); }); }
+}
+function updatePinLabel(){ var r = postalRule(), l = document.querySelector('[data-id="pin"] > span'), i = $("#f_pin"); if (l) l.textContent = r.label; if (i){ i.placeholder = r.ph; i.inputMode = r.numeric ? "numeric" : "text"; } }
+function flash(el){ var box = el.closest(".fld"); if (!box) return; var e = box.querySelector(".err"); e.hidden = false; e.textContent = el.dataset.filter === "postal" ? (postalRule().numeric ? "Numbers only." : "Letters, numbers and spaces only.") : el.id === "f_mobile" ? "Numbers only. Choose or type the country code separately." : el.dataset.filter === "number" ? "Numbers only." : "Letters only."; clearTimeout(flash.t); flash.t = setTimeout(function(){ if (!box.classList.contains("bad")) e.hidden = true; }, 1800); }
+var DOMAINS = ["gmail.com","googlemail.com","yahoo.com","yahoo.co.in","yahoo.co.uk","yahoo.in","ymail.com","rocketmail.com","hotmail.com","hotmail.co.uk","outlook.com","outlook.in","live.com","live.in","msn.com","icloud.com","me.com","mac.com","aol.com","rediffmail.com","protonmail.com","proton.me","zoho.com","zohomail.in","gmx.com","gmx.de","mail.com","yandex.com","fastmail.com"];
+function lev(a, b){ var m = a.length, n = b.length, d = []; for (var i = 0; i <= m; i++){ d[i] = [i]; } for (var j = 0; j <= n; j++) d[0][j] = j;
+  for (i = 1; i <= m; i++) for (j = 1; j <= n; j++){ d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1)); if (i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]) d[i][j] = Math.min(d[i][j], d[i-2][j-2] + 1); }
+  return d[m][n]; }
+function suggestDomain(dom){
+  if (!dom || DOMAINS.indexOf(dom) > -1) return null;
+  var best = null, bd = 9;
+  DOMAINS.forEach(function(x){ var dd = lev(dom, x); if (dd < bd){ bd = dd; best = x; } });
+  var limit = dom.length <= 8 ? 1 : 2;
+  return bd > 0 && bd <= limit ? best : null;
+}
+var TYPO_UNUSED = { "gmial.com":"gmail.com","gmal.com":"gmail.com","gamil.com":"gmail.com","gmail.co":"gmail.com","gmail.con":"gmail.com","gmai.com":"gmail.com","gnail.com":"gmail.com","yaho.com":"yahoo.com","yahoo.co":"yahoo.com","yahooo.com":"yahoo.com","hotmial.com":"hotmail.com","hotmal.com":"hotmail.com","outlok.com":"outlook.com","outllok.com":"outlook.com","rediffmail.co":"rediffmail.com","icloud.co":"icloud.com" };
+function emailHint(em){
+  var box = em.closest(".fld"), old = box.querySelector(".suggest"); if (old) old.remove();
+  var v = em.value.trim().toLowerCase(), at = v.lastIndexOf("@"); if (at < 1) return;
+  var fix = suggestDomain(v.slice(at + 1)); if (!fix) return;
+  var b = document.createElement("button"); b.type = "button"; b.className = "suggest"; b.textContent = "Did you mean " + v.slice(0, at + 1) + fix + "?";
+  b.addEventListener("click", function(){ em.value = v.slice(0, at + 1) + fix; b.remove(); em.focus(); });
+  box.appendChild(b);
+}
+function flat(sec){ var out = []; sec.fields.forEach(function(f){ if (f.row) f.row.forEach(function(x){ out.push(x); }); else out.push(f); }); return out; }
+function collect(showErrors){
+  var sec = W.schema[W.i], body = $("#wizBody"), first = null;
+  flat(sec).forEach(function(f){
+    var val, msg = "";
+    if (f.type === "radio"){ var c = body.querySelector('input[name="' + f.id + '"]:checked'); val = c ? c.value : ""; if (f.req && !val) msg = "Choose an option."; }
+    else if (f.type === "check"){ val = Array.prototype.map.call(body.querySelectorAll('input[name="' + f.id + '"]:checked'), function(x){ return x.value; }); if (f.req && !val.length) msg = "Choose at least one option."; }
+    else if (f.type === "phone"){
+      var sel = $("#f_mobileCode").value, cust = ($("#f_mobileCustom").value || "").replace(/\D/g, ""), nn = $("#f_mobile").value.replace(/\D/g, "");
+      var cc = sel === "custom" ? (cust ? "+" + cust : "") : "+" + DIAL_BY_NAME[sel];
+      W.vals.mobileSel = sel; W.vals.mobileCustom = cust; W.vals.mobileCode = cc; W.vals.mobileNum = nn; val = nn && cc ? cc + " " + nn : "";
+      if (sel === "custom" && !/^[0-9]{1,4}$/.test(cust)) msg = "Type your country code (1 to 4 digits), for example 977.";
+      else if (f.req && !nn) msg = "Enter your mobile number.";
+      else if (sel === "India" && !/^[6-9][0-9]{9}$/.test(nn)) msg = "Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.";
+      else if (sel !== "India" && (nn.length < 5 || nn.length > 14)) msg = "Enter a valid phone number (5 to 14 digits, without the country code).";
+    }
+    else if (f.type === "height"){
+      var hf = $("#f_heightFt").value, hi = $("#f_heightIn").value;
+      W.vals.heightFt = hf; W.vals.heightIn = hi; val = hf ? hf + " ft " + (hi || 0) + " in" : "";
+      if (!hf && hi) msg = "Choose feet as well as inches.";
+    }
+    else if (f.type === "consent"){ val = body.querySelector('input[name="' + f.id + '"]').checked; if (f.req && !val) msg = "Please confirm this declaration to continue."; }
+    else {
+      val = (body.querySelector('[name="' + f.id + '"]') || {}).value || ""; val = String(val).trim();
+      if (f.req && !val) msg = f.type === "date" ? "Choose your birth date." : f.type === "select" ? "Choose your age." : "This field is required.";
+      else if (val && f.type === "email" && !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(val)) msg = "Enter a valid email, like name@example.com.";
+      else if (val && f.id === "name" && (val.replace(/[^\p{L}]/gu, "").length < 2)) msg = "Enter your full name using letters.";
+      else if (val && f.id === "address" && (val.length < 8 || !/\p{L}/u.test(val))) msg = "Add a little more detail: house or flat number, street and area.";
+      else if (val && f.type === "city" && val.replace(/[^\p{L}]/gu, "").length < 2) msg = "Enter a city or town name.";
+      else if (val && f.type === "postal" && !postalRule().re.test(val.toUpperCase())) msg = postalRule().msg;
+
+      else if (val && f.type === "number" && f.min && (+val < f.min || +val > f.max)) msg = "Enter a number between " + f.min + " and " + f.max + ".";
+    }
+    W.vals[f.id] = val;
+    var box = body.querySelector('[data-id="' + f.id + '"]'), err = box && box.querySelector(".err");
+    if (showErrors && box){ box.classList.toggle("bad", !!msg); if (err){ err.hidden = !msg; err.textContent = msg; } }
+    if (msg && !first) first = box;
+  });
+  return first;
+}
+$("#wizNext").addEventListener("click", function(){
+  var bad = collect(true);
+  if (bad){ bad.scrollIntoView({ behavior: "smooth", block: "center" }); var inp = bad.querySelector("input,textarea"); if (inp) inp.focus({ preventScroll: true }); return; }
+  saveProgress();
+  if (W.i < W.schema.length - 1){ W.i++; renderWizard(); $("#wizTitle").focus && $("#wizTitle").setAttribute("tabindex","-1"); $("#wizTitle").focus(); return; }
+  if (W.form === "reg"){ S.regDone = true; renderSteps(); toast(S.returning ? "Registration updated" : "Registration saved"); go("s-steps"); openStep("reg"); }
+  else { S.assessDone = true; renderSteps(); if (S.returning){ toast("Assessment updated"); go("s-steps"); openStep("reg"); } else finish(); }
+});
+$("#wizBack").addEventListener("click", function(){ collect(false); saveProgress(); if (W.i === 0){ go("s-steps"); openStep("reg"); } else { W.i--; renderWizard(); } });
+function saveProgress(){
+  S.profile = S.profile || {};
+  if (W.form === "reg") Object.assign(S.profile, W.vals); else S.profile.assess = Object.assign({}, W.vals);
+}
+function fillSample(){
+  var sample = { name: "Priya Sharma", dob: "1990-04-12", age: String(new Date().getFullYear() - 1990 - (new Date().getMonth() < 3 ? 1 : 0)), sex: "Female", mobile: "+91 9876543210", mobileCode: "+91", mobileSel: "India", mobileNum: "9876543210", email: "priya@example.com", city: "Surat", pin: "395007", country: "India", heightFt: "5", heightIn: "4",
+    address: "12 Green Park Society, Vesu", occupation: "Teacher", education: "M.A.", hobbies: "Gardening, reading", height: "5 ft 4 in", weight: "68",
+    purpose: "Improve my thyroid health, sleep better and feel calmer.", decl: true, q30: "1. Sleep 7 hours every night\n2. Bring my thyroid levels to normal\n3. Manage stress with daily yoga" };
+  ["mobileCode","mobileSel","mobileNum","heightFt","heightIn"].forEach(function(k){ if (sample[k] && W.schema[W.i].fields.some(function(f){ return f.id === "mobile" || f.id === "height"; })) W.vals[k] = sample[k]; });
+  flat(W.schema[W.i]).forEach(function(f){
+    if (f.type === "radio") W.vals[f.id] = sample[f.id] || f.opts[1];
+    else if (f.type === "check") W.vals[f.id] = [f.opts[0]];
+    else W.vals[f.id] = sample[f.id] !== undefined ? sample[f.id] : W.vals[f.id];
+  });
+  renderWizard(); toast("Sample answers filled");
+}
+
+/* ---------- end ---------- */
+function finish(){
+  var c = $("#doneCard"), nm = S.profile && S.profile.name ? S.profile.name.split(" ")[0] : "";
+  if (S.prog === "consult"){
+    c.innerHTML = '<h2>Thank you, ' + esc(nm) + '. Your consultation is confirmed.</h2><ol class="timeline">' +
+      '<li><span class="n">1</span><div><b>We\'ll WhatsApp you to pick a time</b><span>Our receptionist messages you from ' + WA_SHOW + '.</span></div></li>' +
+      '<li><span class="n">2</span><div><b>Your 30-minute call</b><span>Personal guidance, built on your registration and assessment.</span></div></li>' +
+      '<li><span class="n">3</span><div><b>Ready for the full program?</b><span>Your details are saved, and you may qualify for a discounted price.</span></div></li></ol>';
+  } else {
+    c.innerHTML = '<h2>Welcome to the Divines Wellness Program, ' + esc(nm) + '.</h2><ol class="timeline">' +
+      '<li><span class="n">1</span><div><b>We review your registration</b><span>Our care team reads it within 48 hours.</span></div></li>' +
+      '<li><span class="n">2</span><div><b>We WhatsApp you to schedule</b><span>From ' + WA_SHOW + ', to book your first consultation.</span></div></li>' +
+      '<li><span class="n">3</span><div><b>Your 3-month journey begins</b><span>Foundation, Vitality, Balance and Liberation, with your doctor, dietician, yoga therapist and mind coach.</span></div></li></ol>';
+  }
+  $("#later").hidden = S.prog !== "consult";
+  go("s-done");
+}
+$("#later").addEventListener("click", function(){
+  S.returning = !!(S.profile && S.regDone && S.assessDone);
+  $("#welcomeBack").hidden = !S.returning; if (S.returning) $("#wbName").textContent = S.profile.name.split(" ")[0];
+  $$("input[name=prog]").forEach(function(r){ r.checked = r.value === "program"; }); S.prog = "program"; $("#toSteps").disabled = false;
+  go("s-program");
+});
+go("s-program");
+})();
+</script>
+</body></html>
