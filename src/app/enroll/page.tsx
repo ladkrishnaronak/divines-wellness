@@ -3,66 +3,86 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Enroll Now | Divines Wellness Program",
   description:
-    "Start your Divines Wellness Program enrollment — see what happens next, from filling the form to setting up your first meeting.",
+    "Start your Divines Wellness Program enrollment: payment, confirmation, then your wellness and assessment forms.",
 };
 
-// Content below is taken verbatim from the Figma frame
-// "Divines Wellness - Enroll Now (Mobile)" (node 157:503).
+// Built from the Figma frame "Divines Wellness - Enroll (Mobile)" (node 157:503),
+// which uses the "Onboarding / Step Card" component set (896:669).
+// Icons are the exact Figma assets, saved in /public/images/icons.
 //
-// NOTE ON SCOPE: this is the entry / overview screen of a three-part
-// registration flow in Figma. The remaining screens are not built yet:
-//   - THD_Registration_Step_2 (157:555) — the registration form
-//   - THD_Confirmation_Page   (157:680) — the post-submit confirmation
-// TODO: once the registration form route exists, step 2 below should become
-// a <Link href="..."> — it is a clickable card in the Figma prototype. It is
-// rendered as static text for now so this page cannot link to a 404.
-//
-// TODO: there is no backend. Nothing on this page submits anywhere, and the
-// future registration form will need a real submission endpoint before launch.
-const steps = [
-  {
-    number: "1",
-    title: "Payment",
-    // Descriptive copy only — this page collects no payment details.
-    subtitle: "(Once you get confirmation)",
-  },
-  { number: "2", title: "Fill Form", subtitle: null },
-  { number: "3", title: "Set Meeting", subtitle: null },
-];
+// NOTE ON SCOPE: this is the overview screen. The payment, confirmation and
+// form screens of the Enroll flow are still in client review (demo), so the
+// cards are informational for now and do not link anywhere.
+
+function StepBadge({ n, locked = false }: { n: number; locked?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`flex size-10 shrink-0 items-center justify-center rounded-full text-base font-semibold text-white ${
+        locked ? "bg-[#c4b49a]" : "bg-[#262016]"
+      }`}
+    >
+      {n}
+    </span>
+  );
+}
+
+const cardBase =
+  "flex w-full items-center gap-3 rounded-[16px] p-4 shadow-[0px_6px_8px_rgba(50,37,26,0.04)]";
 
 export default function EnrollPage() {
   return (
     <div className="flex w-full flex-1 flex-col bg-[#f5edd9]">
-      {/* Onboarding card — full-bleed sheet on mobile, centered card on larger screens */}
-      <section className="w-full self-center rounded-t-[28px] bg-[#fffcf7] px-6 pb-12 pt-8 shadow-[0px_-10px_12px_rgba(50,37,26,0.04)] sm:my-10 sm:max-w-lg sm:rounded-[28px] sm:shadow-[0px_8px_24px_rgba(50,37,26,0.08)] lg:max-w-xl lg:px-9">
-        <h1 className="text-xs font-medium leading-[1.4] tracking-[0.5px] text-[#4a3d2e]">
+      {/* Onboarding card: full-bleed sheet on mobile, centred card on larger screens */}
+      <section className="flex w-full flex-col gap-6 self-center bg-[#fffcf7] px-6 pb-12 pt-8 shadow-[0px_-10px_12px_rgba(50,37,26,0.04)] sm:my-10 sm:max-w-lg sm:rounded-[28px] sm:shadow-[0px_8px_24px_rgba(50,37,26,0.08)] lg:max-w-xl lg:px-9">
+        <h1 className="w-full text-xs font-bold uppercase tracking-[1.2px] text-[#2e261c]">
           What Happens Next
         </h1>
 
-        <ol className="mt-7 flex flex-col gap-3">
-          {steps.map((step) => (
-            <li
-              key={step.number}
-              className="flex items-center gap-3 rounded-[16px] border border-[#7a6542] bg-[#fffcf7] px-4 py-3.5 shadow-[0px_6px_8px_rgba(50,37,26,0.04)]"
-            >
-              <span
-                aria-hidden="true"
-                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#7a6542] text-base leading-[1.6] text-white"
-              >
-                {step.number}
+        <ol className="flex w-full flex-col gap-3">
+          {/* Step 1 — Payment (required) */}
+          <li className={`${cardBase} min-h-[81px] border-[1.5px] border-[#7a6542] bg-[#fffcf7]`}>
+            <StepBadge n={1} />
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+              <p className="text-base font-semibold text-[#2e261c]">
+                <span className="sr-only">Step 1: </span>Payment
+              </p>
+              <p className="flex items-center gap-1 text-[11px] text-[#7a6542]">
+                <img src="/images/icons/alert-triangle.svg" alt="" width={12} height={12} className="size-3 shrink-0" />
+                Must be completed first
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-col items-end justify-center gap-2">
+              <span className="rounded-[6px] bg-[#262016] px-2.5 py-[5px] text-[10px] font-bold uppercase tracking-[0.8px] text-[#e6c594]">
+                Required
               </span>
+              <img src="/images/icons/chevron-down.svg" alt="" width={16} height={16} className="size-4" />
+            </div>
+          </li>
 
-              <div className="flex min-w-0 flex-1 flex-col gap-0.5 leading-[1.6] text-[#4a3d2e]">
-                <span className="text-base">
-                  <span className="sr-only">{`Step ${step.number}: `}</span>
-                  {step.title}
-                </span>
-                {step.subtitle && (
-                  <span className="text-sm opacity-90">{step.subtitle}</span>
-                )}
-              </div>
-            </li>
-          ))}
+          {/* Step 2 — Confirm */}
+          <li className={`${cardBase} min-h-[75px] border-[1.5px] border-[#7a6542] bg-[#fffcf7]`}>
+            <StepBadge n={2} />
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+              <p className="text-base font-semibold text-[#2e261c]">
+                <span className="sr-only">Step 2: </span>Confirm
+              </p>
+              <p className="text-[11px] text-[#7a6542]">Upload payment proof</p>
+            </div>
+            <img src="/images/icons/clock.svg" alt="" width={20} height={20} className="size-5 shrink-0" />
+          </li>
+
+          {/* Step 3 — Register (locked until payment is confirmed) */}
+          <li className={`${cardBase} min-h-[75px] border border-[#c4b49a] bg-[#f5edd9] shadow-none`}>
+            <StepBadge n={3} locked />
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+              <p className="text-base font-semibold text-[#9e8e74]">
+                <span className="sr-only">Step 3 (unlocks after payment): </span>Register
+              </p>
+              <p className="text-[11px] text-[#b0a08a]">Wellness &amp; Assessment forms</p>
+            </div>
+            <img src="/images/icons/chevron-down.svg" alt="" width={16} height={16} className="size-4 shrink-0" />
+          </li>
         </ol>
       </section>
 
@@ -70,7 +90,7 @@ export default function EnrollPage() {
       <div className="flex-1" />
 
       <div className="flex h-[54px] w-full items-center justify-center bg-[#3d3326]">
-        <p className="text-xs font-medium leading-[1.4] tracking-[0.5px] text-white opacity-80">
+        <p className="text-xs font-medium leading-4 tracking-[0.5px] text-white opacity-80">
           Your path to healing starts here
         </p>
       </div>
