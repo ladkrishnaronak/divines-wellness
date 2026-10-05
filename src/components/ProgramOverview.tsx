@@ -9,7 +9,7 @@ const items = [
     label: "Duration",
     value: "3 Months",
     detail:
-      "6 one-hour consultations of yoga, mind coaching, doctor and dietician within 3 months. Starting date flexible.",
+      "6 one-hour consultations for each pillar within 3 months. Starting date flexible.",
   },
   {
     Icon: Monitor,
