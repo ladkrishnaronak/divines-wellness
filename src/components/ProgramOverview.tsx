@@ -23,7 +23,7 @@ const items = [
     label: "1:1 call",
     value: "Paid",
     detail:
-      "Type: 1:1 personal call. One-on-one guidance tailored specifically to your wellness needs.",
+      "One-on-one guidance tailored specifically to your wellness needs. Click Enroll to book.",
   },
   {
     Icon: MapPin,
