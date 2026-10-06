@@ -88,15 +88,15 @@ export default function StoryList() {
             aria-label={`${idx + 1} of ${stories.length}`}
           >
             <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)] md:max-w-md">
-              <div className="flex h-[200px] w-full shrink-0 items-center justify-center overflow-hidden rounded-[16px] bg-[#f2ede3]">
+              <div className="flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden rounded-[16px] bg-[#f2ede3]">
                 {story.image ? (
                   <img
                     src={`/images/${story.image}`}
                     alt={story.location ? `${story.author}, ${story.location}` : story.author}
-                    width={120}
-                    height={152}
+                    width={800}
+                    height={450}
                     loading={idx === 0 ? "eager" : "lazy"}
-                    className="h-[152px] w-[120px] rounded-[50%] object-cover shadow-[0px_4px_12px_rgba(61,50,38,0.12)]"
+                    className="size-full object-cover"
                   />
                 ) : (
                   <div
