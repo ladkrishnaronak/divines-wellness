@@ -250,11 +250,11 @@ input[type=number]{-moz-appearance:textfield}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style></head><body>
 <div class="app">
-  <div class="ribbon" role="note"><span>Demo for approval. No real payment is processed.</span><button type="button" id="restart">Restart demo</button></div>
+  
   <header class="brand">
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
     <a class="home" href="/" aria-label="The Divines Health home"><img src="/images/logo-icon.png" alt=""><strong>The Divines Health</strong></a>
-    <button class="enroll" id="hdrEnroll" type="button">Enroll</button>
+    
   </header>
   <div class="scrim" id="scrim" hidden></div>
   <nav class="menu" id="menu" aria-label="Main menu" hidden>
@@ -448,8 +448,8 @@ $("#burger").addEventListener("click", function(){ if ($("#menu").hidden) openMe
 $("#scrim").addEventListener("click", closeMenu);
 document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !$("#menu").hidden){ closeMenu(); $("#burger").focus(); } });
 $("#menuEnroll").addEventListener("click", function(e){ e.preventDefault(); closeMenu(); go("s-program"); });
-$("#hdrEnroll").addEventListener("click", function(){ go("s-program"); });
-$("#restart").addEventListener("click", function(){ location.reload(); });
+
+
 $$("[data-copy]").forEach(function(b){ b.addEventListener("click", function(){ var v = b.dataset.copy; try { navigator.clipboard.writeText(v).then(function(){ toast("Copied " + v); }, function(){ toast(v); }); } catch(e){ toast(v); } }); });
 
 /* ---------- 1 · program select ---------- */
