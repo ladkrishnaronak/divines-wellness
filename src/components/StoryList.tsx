@@ -2,37 +2,55 @@
 
 import { useRef, useState } from "react";
 
-// Content from Figma "Story Carousel" component set (node 781:831):
-// Slide=1 (777:552), Slide=2 (777:572), Slide=3 (777:592).
-const stories = [
+// Client reviews supplied by The Divines Health (Oct 2026).
+// Photos are not added yet: each card shows the person's initials in an oval.
+// To add a photo later, put it in /public/images and set image: "file-name.jpg".
+type Story = {
+  author: string;
+  location?: string;
+  image?: string;
+  title: string;
+  quote: string[];
+  tags: string[];
+};
+
+const stories: Story[] = [
   {
-    author: "Ashish Kedia",
-    location: "Surat",
-    image: "story-1.png",
-    title: "Deepened wisdom, fresh yogic clarity",
-    quote:
-      "I chose to pursue the 200-Hour Yoga Teacher Training Course at The Divines Health for the second time to deepen my yogic knowledge. The program, enriched with upgraded wisdom and modern learning tools, offered me fresh insights and clarity.",
-    tags: ["Yogic Knowledge", "Deeper Practice"],
+    author: "Manisha Dhelia",
+    title: "Thyroid back in balance through yoga",
+    quote: [
+      "I was diagnosed with thyroid imbalance in 2018, with a TSH level of 6.27, and began medication, which later increased to Euthyroid 50. In October 2022, I joined the yoga sessions and started following the holistic practices consistently.",
+      "When I repeated my tests in May 2023, my TSH had improved to 1.01. Under medical guidance, I was able to gradually stop the medication, and since then I have been maintaining my thyroid health naturally through disciplined lifestyle and yoga practice.",
+    ],
+    tags: ["Thyroid health", "Yoga & lifestyle"],
   },
   {
-    author: "Hetvi Patel",
-    location: "Florida",
-    image: "story-2.png",
-    title: "Transformative teacher training journey",
-    quote:
-      "The 200-Hour YTTC at The Divines Health with Dr. Neha Solanki was a truly transformative experience. The well-structured blend of philosophy, practice, and anatomy deepened my practice and built my confidence as a teacher.",
-    tags: ["Teacher Training", "Confidence Built"],
+    author: "Dr. Suchi Patel",
+    title: "Regular cycles and more energy",
+    quote: [
+      "I would like to sincerely thank Dr. Neha Solanki ma’am and her team, especially Dt. Jyoti ma’am, for their right guidance in managing my hypothyroidism. With their structured support, my menstrual cycle has become regular without the need for hormonal pills.",
+      "I have also noticed a significant improvement in my skin texture. The early morning tiredness and daytime lethargy have reduced considerably, and I feel more active throughout the day. Along with the program, I continue strength training and complete 10,000 steps daily, along with my regular household responsibilities.",
+      "I am truly grateful for the positive changes in my health.",
+    ],
+    tags: ["Hypothyroidism", "Hormonal balance"],
   },
   {
-    author: "Parul V. Bajaj",
-    location: "Surat",
-    image: "story-3.png",
-    title: "Empowering path to authentic teaching",
-    quote:
-      "The 200-hour Yoga Teacher Training with Dr. Neha Solanki was truly transformative. Her clear guidance, profound knowledge, and compassionate teaching made the journey inspiring and empowering.",
-    tags: ["Certified Teacher", "Yoga Alliance"],
+    author: "Ruchi Das",
+    title: "From young patient to yoga trainer",
+    quote: [
+      "I was just eight years old when I was diagnosed with hypothyroidism. It was a confusing time for me and my family, but we were guided to Dr. Neha Solanki for homeopathic treatment along with yoga therapy. With her patience, compassionate care, and consistent guidance through both healing approaches, my health gradually improved until I recovered completely. Today, I feel grateful to work alongside her as a yoga trainer — turning what once felt like a childhood challenge into a meaningful journey of helping others heal.",
+    ],
+    tags: ["Childhood recovery", "Yoga therapy"],
   },
 ];
+
+// "Dr. Suchi Patel" -> "SP"
+function initials(name: string) {
+  const parts = name.replace(/^Dr\.?\s+/i, "").trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
 
 export default function StoryList() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -59,7 +77,7 @@ export default function StoryList() {
         ref={trackRef}
         onScroll={handleScroll}
         aria-roledescription="carousel"
-        aria-label="Student stories"
+        aria-label="Client stories"
         className="flex w-full snap-x snap-mandatory items-start overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {stories.map((story, idx) => (
@@ -70,13 +88,24 @@ export default function StoryList() {
             aria-label={`${idx + 1} of ${stories.length}`}
           >
             <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)] md:max-w-md">
-              <div className="h-[200px] w-full shrink-0 overflow-hidden rounded-[16px] bg-[#f2ede3]">
-                <img
-                  src={`/images/${story.image}`}
-                  alt={`${story.author}, ${story.location}`}
-                  loading={idx === 0 ? "eager" : "lazy"}
-                  className="size-full object-cover"
-                />
+              <div className="flex h-[200px] w-full shrink-0 items-center justify-center overflow-hidden rounded-[16px] bg-[#f2ede3]">
+                {story.image ? (
+                  <img
+                    src={`/images/${story.image}`}
+                    alt={story.location ? `${story.author}, ${story.location}` : story.author}
+                    width={120}
+                    height={152}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    className="h-[152px] w-[120px] rounded-[50%] object-cover shadow-[0px_4px_12px_rgba(61,50,38,0.12)]"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="flex h-[152px] w-[120px] items-center justify-center rounded-[50%] border-2 border-[#e6c594] bg-[#3d3326] text-[34px] font-semibold tracking-[1px] text-[#e6c594] shadow-[0px_4px_12px_rgba(61,50,38,0.12)]"
+                  >
+                    {initials(story.author)}
+                  </div>
+                )}
               </div>
 
               {/* 12px spacer from Figma "overlap-spacing-adjustment" */}
@@ -84,7 +113,7 @@ export default function StoryList() {
 
               <div className="flex w-full items-center justify-between gap-3 whitespace-nowrap">
                 <p className="text-sm font-semibold leading-[1.4] tracking-[0.2px] text-[#3d3326]">
-                  {story.author} · {story.location}
+                  {story.location ? `${story.author} · ${story.location}` : story.author}
                 </p>
                 <p
                   className="text-xs font-medium leading-4 tracking-[0.4px] text-[#b89959]"
@@ -96,9 +125,15 @@ export default function StoryList() {
 
               <h2 className="text-[22px] font-normal leading-7 text-[#3d3326]">{story.title}</h2>
 
-              <p className="text-sm font-normal leading-5 tracking-[0.25px] text-[#4a3d2e]">
-                &ldquo;{story.quote}&rdquo;
-              </p>
+              <div className="flex flex-col gap-3 text-sm font-normal leading-5 tracking-[0.25px] text-[#4a3d2e]">
+                {story.quote.map((para, i) => (
+                  <p key={i}>
+                    {i === 0 && "\u201c"}
+                    {para}
+                    {i === story.quote.length - 1 && "\u201d"}
+                  </p>
+                ))}
+              </div>
 
               <div className="flex flex-wrap items-start gap-2">
                 {story.tags.map((tag) => (
