@@ -16,7 +16,7 @@ type Story = {
 
 const stories: Story[] = [
   {
-    author: "Manisha Dhelia",
+    author: "Manisha Dhelia", image: "story-manisha.jpg",
     title: "Thyroid back in balance through yoga",
     quote: [
       "I was diagnosed with thyroid imbalance in 2018, with a TSH level of 6.27, and began medication, which later increased to Euthyroid 50. In October 2022, I joined the yoga sessions and started following the holistic practices consistently.",
@@ -25,7 +25,7 @@ const stories: Story[] = [
     tags: ["Thyroid health", "Yoga & lifestyle"],
   },
   {
-    author: "Dr. Suchi Patel",
+    author: "Dr. Suchi Patel", image: "story-suchi.jpg",
     title: "Regular cycles and more energy",
     quote: [
       "I would like to sincerely thank Dr. Neha Solanki ma’am and her team, especially Dt. Jyoti ma’am, for their right guidance in managing my hypothyroidism. With their structured support, my menstrual cycle has become regular without the need for hormonal pills.",
@@ -35,7 +35,7 @@ const stories: Story[] = [
     tags: ["Hypothyroidism", "Hormonal balance"],
   },
   {
-    author: "Ruchi Das",
+    author: "Ruchi Das", image: "story-ruchi.jpg",
     title: "From young patient to yoga trainer",
     quote: [
       "I was just eight years old when I was diagnosed with hypothyroidism. It was a confusing time for me and my family, but we were guided to Dr. Neha Solanki for homeopathic treatment along with yoga therapy. With her patience, compassionate care, and consistent guidance through both healing approaches, my health gradually improved until I recovered completely. Today, I feel grateful to work alongside her as a yoga trainer — turning what once felt like a childhood challenge into a meaningful journey of helping others heal.",

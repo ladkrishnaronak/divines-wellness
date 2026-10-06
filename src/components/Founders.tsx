@@ -9,7 +9,7 @@ const founders = [
     eyebrow: "Founder & Director",
     name: "Dr. Neha Solanki",
     role: "Homeopathic Physician & Wellness Expert",
-    file: "founder-neha.png",
+    file: "founder-neha.jpg",
     bio: [
       "Dr. Neha Solanki's journey began as a homeopathic physician, but a crucial realization shifted her entire approach: medicines alone couldn't heal the chronic lifestyle disorders consuming her patients' lives. When she began practicing yoga alongside her medical work in 2007, she discovered the remarkable healing potential of combining medical guidance with holistic practices and lifestyle transformation.",
       "This insight inspired the creation of the Divines Wellness Program—a space where medical expertise meets yoga, nutrition, and mind coaching. Dr. Neha's mission is to empower people to nurture their own health and achieve sustainable, long-term wellness. She believes that true healing doesn't come from quick fixes; it begins at the root.",
@@ -21,7 +21,7 @@ const founders = [
     eyebrow: "Co-Founder",
     name: "Priyanka Patel",
     role: "Integrative Health Practitioner, Yoga Therapist & Life Coach",
-    file: "founder-priyanka.png",
+    file: "founder-priyanka.jpg",
     bio: [
       "Priyanka Patel’s journey into wellness began with her own struggle. At 20, during her first year of architecture school, she was diagnosed with severe hyperthyroidism, forcing her to pause her studies and focus on recovery. It was during this difficult chapter that she discovered yoga. With medical guidance, dedicated practice, and conscious lifestyle changes, she gradually regained her strength, balance, and confidence, eventually completing her architecture degree. The experience gave her a profound understanding of the connection between the body, mind, lifestyle, and emotional well-being.",
       "When her health challenges resurfaced years later, Priyanka chose to go deeper into yoga and holistic wellness, transforming her personal journey into a purpose. This became the foundation of The Divine Wellness, where she brings together professional knowledge and lived experience to guide people towards greater health, balance, and self-awareness. Her mission is deeply personal: to share the knowledge and wisdom she has gained through her own journey, so that others can move towards healing, recovery, and their own inner strength. For Priyanka, wellness is not simply a profession—it is a lifelong commitment to making meaningful healing knowledge accessible to everyone she has the opportunity to guide.",
