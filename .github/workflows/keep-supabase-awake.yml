@@ -1,0 +1,23 @@
+﻿# Calls the enroll health check once a day so the free Supabase project never pauses.
+name: Keep Supabase awake
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping the enroll health check
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -s -o body.txt -w "%{http_code}" --max-time 60 https://bzcjglymgkaqqyomxdah.supabase.co/functions/v1/enroll)
+            echo "Try $i: HTTP $code $(cat body.txt)"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 30
+          done
+          echo "::error::Supabase health check failed. Open supabase.com/dashboard and restore the project."
+          exit 1
