@@ -341,9 +341,8 @@ input[type=number]{-moz-appearance:textfield}
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
               <b>Tap to upload your payment screenshot</b><small style="color:var(--muted);font-size:11.5px">JPG or PNG, up to 5 MB</small></div>
             <div class="preview" id="preview"><img id="previewImg" alt="Your payment screenshot"><button class="swap" id="swap" type="button">Change</button></div>
-            <div class="samples" id="samples"><span>No receipt handy? Try a sample (demo only):</span>
-              <button class="chip" type="button" data-sample="good">Correct payment</button><button class="chip" type="button" data-sample="wrong">Wrong amount</button><button class="chip" type="button" data-sample="reused">Already used</button></div>
             <label class="fld"><span>Transaction ID</span><input id="txn" autocomplete="off" placeholder="e.g. 626712345678"><small>The 12-digit UPI transaction ID, or the bank reference (UTR) for net banking.</small></label>
+            <p class="formerr" id="confirmErr" hidden></p>
             <button class="btn" id="verify" type="button" disabled>Verify payment</button>
             <button class="link" type="button" id="needHelp">Having trouble? Ask our team to check</button>
           </div>
@@ -377,15 +376,47 @@ input[type=number]{-moz-appearance:textfield}
     </div>
   </section>
 
-  <!-- TEAM CHECK -->
+  <!-- TEAM CHECK: customer leaves contact details -->
   <section class="screen" id="s-team">
     <div class="sheet">
       <h1 id="teamTitle">Our team will check your payment</h1>
-      <p class="lede" style="margin:0" id="teamText">We've sent your screenshot to our team. They'll confirm it within 48 hours and unlock your forms.</p>
-      <div class="chips"><span>Email sent</span><span>SMS sent</span><span>WhatsApp sent</span></div>
-      <p class="lede" style="margin:4px 0 -8px">What the team receives:</p>
-      <div class="mail"><small>To: thedivineshealth@gmail.com · SMS and WhatsApp: +91 70161 00775</small><div class="s">Payment needs a manual check</div><div id="mailBody"></div><span class="fake">Open registration for this customer</span><small style="margin-top:6px">Works once, only for this customer, and expires in 3 days.</small></div>
-      <button class="btn bronze" id="approve" type="button">Demo: team approves the payment</button>
+      <p class="lede" style="margin:0" id="teamText">Leave your name and WhatsApp number. Our team will match your payment with the bank statement and send you a link to unlock your forms, usually within 48 hours.</p>
+      <label class="fld"><span>Full name <i>*</i></span><input id="tName" autocomplete="name" placeholder="Your full name"></label>
+      <label class="fld"><span>WhatsApp number <i>*</i></span><input id="tPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210"><small>Include the country code if you are outside India.</small></label>
+      <p class="formerr" id="teamErr" hidden></p>
+      <button class="btn" id="teamSend" type="button">Send to our team</button>
+      <div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your screenshot is stored privately and only seen by our team.</span></div>
+    </div>
+  </section>
+
+  <!-- WAITING FOR TEAM -->
+  <section class="screen" id="s-wait" aria-live="polite">
+    <div class="sheet">
+      <h1 id="waitTitle">We're checking your payment</h1>
+      <p class="lede" style="margin:0" id="waitText">Our team will confirm it within 48 hours and send you a WhatsApp message with a link to unlock your forms. You can also come back to this page on this device.</p>
+      <div class="safe" id="waitNote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Your payment proof has reached our team. Nothing else is needed from you right now.</span></div>
+      <button class="btn" id="checkAgain" type="button">Check again</button>
+      <a class="btn ghost" id="waWait" target="_blank" rel="noopener">Message us on WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- TEAM: approve or reject (opened from the alert email) -->
+  <section class="screen" id="s-review">
+    <div class="sheet">
+      <p class="eyebrow">For The Divines Health team</p>
+      <h1>Approve this payment</h1>
+      <p class="lede" style="margin:0">Approve only after you find this payment in the bank statement.</p>
+      <div class="summary" id="revInfo"><div class="r"><span>Loading…</span><b></b></div></div>
+      <p class="formerr" id="revErr" hidden></p>
+      <div id="revActions" style="display:flex;flex-direction:column;gap:8px">
+        <button class="btn" id="revApprove" type="button">Approve payment</button>
+        <button class="btn ghost" id="revReject" type="button">Reject</button>
+      </div>
+      <div id="revDone" hidden style="display:flex;flex-direction:column;gap:8px">
+        <div class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span id="revDoneText">Approved. Now send the customer their unlock link.</span></div>
+        <a class="btn wa" id="revWa" target="_blank" rel="noopener">Send unlock link on WhatsApp</a>
+        <button class="btn ghost" id="revCopy" type="button">Copy unlock link</button>
+      </div>
     </div>
   </section>
 
@@ -410,7 +441,6 @@ input[type=number]{-moz-appearance:textfield}
     <div class="sheet">
       <div class="card" id="doneCard"></div>
       <p class="quote">"True healing begins at the root."<small>Dr. Neha Solanki</small></p>
-      <button class="demo" type="button" id="later" hidden>Demo: a few weeks later, join the full program</button>
       <a class="btn ghost" href="/">Back to home</a>
     </div>
   </section>
@@ -428,11 +458,25 @@ function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c
 function fmt(n){ return Number(n).toLocaleString("en-IN"); }
 function toast(m){ var t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove("on"); }, 1900); }
 
+var API = "https://bzcjglymgkaqqyomxdah.supabase.co/functions/v1/enroll";
+var KEY = "dwh-enroll-v1";
 var S = { prog: null, method: "UPI QR", done: { pay: false, confirm: false }, regDone: false, assessDone: false, profile: null, returning: false,
-          image: null, sample: null, used: ["626700001111"], txn: "", history: [] };
+          image: null, txn: "", help: false, session: null, busy: false };
+
+/* ---------- server + saved session ---------- */
+function api(body){
+  return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+    .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok: r.ok, code: r.status, data: d }; }); },
+          function(){ return { ok: false, code: 0, data: { error: "network" } }; });
+}
+function netMsg(res){ return res.code === 0 ? "We couldn't reach our server. Check your internet connection and try again." : res.code === 429 ? "Lots of people are enrolling right now. Please try again in a few minutes." : "Something went wrong on our side. Please try again, or message us on WhatsApp."; }
+function saveSession(){ try { if (S.session) localStorage.setItem(KEY, JSON.stringify(S.session)); } catch(e){} }
+function loadSession(){ try { var v = JSON.parse(localStorage.getItem(KEY) || "null"); return v && v.id && v.token ? v : null; } catch(e){ return null; } }
+function clearSession(){ S.session = null; try { localStorage.removeItem(KEY); } catch(e){} }
 
 /* ---------- navigation ---------- */
 var BACKABLE = { "s-steps": "s-program", "s-team": "s-steps", "s-form": "s-steps" };
+var NOBACK_WHEN_LOCKED = true;
 function go(id){
   $$(".screen").forEach(function(s){ s.classList.toggle("on", s.id === id); });
   $("#backrow").hidden = !BACKABLE[id]; closeMenu();
@@ -455,6 +499,7 @@ $$("[data-copy]").forEach(function(b){ b.addEventListener("click", function(){ v
 /* ---------- 1 · program select ---------- */
 $$("input[name=prog]").forEach(function(r){ r.addEventListener("change", function(){ S.prog = r.value; $("#toSteps").disabled = false; }); });
 $("#toSteps").addEventListener("click", function(){ setupSteps(); go("s-steps"); });
+$("#waWait").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hi, I sent my payment proof on the website. Could you please check it?");
 $("#waBank").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hi, I'd like to pay ₹99 for the 1:1 Consultation by net banking. Please share the bank details.");
 $("#waProgram").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent('Hi, I want to register in the "Full Programme". Please guide me through the payment process.');
 
@@ -463,7 +508,6 @@ function setupSteps(){
   if (!S.returning){ S.regDone = false; S.assessDone = false; }
   var consult = S.prog === "consult";
   $("#pay-consult").hidden = !consult; $("#pay-program").hidden = consult;
-  $("#samples").hidden = !consult;
   $("#agree").checked = false; $("#paid").disabled = true;
   resetUpload();
   if (consult) makeQR();
@@ -530,36 +574,37 @@ $("#agree").addEventListener("change", function(){ $("#paid").disabled = !this.c
 $("#paid").addEventListener("click", function(){ S.done.pay = true; renderSteps(); openStep("confirm"); toast("Payment marked. Now upload your proof."); });
 
 /* confirm */
-function resetUpload(){ $("#preview").classList.remove("on"); $("#drop").hidden = false; $("#verify").disabled = true; S.image = null; S.sample = null; $("#file").value = ""; $("#txn").value = ""; }
+function resetUpload(){ $("#preview").classList.remove("on"); $("#drop").hidden = false; $("#verify").disabled = true; S.image = null; $("#file").value = ""; $("#txn").value = ""; $("#confirmErr").hidden = true; }
+function shrink(dataUrl, cb){
+  var img = new Image();
+  img.onload = function(){
+    var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+    var c = document.createElement("canvas"); c.width = Math.round(w * k); c.height = Math.round(h * k);
+    var g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+    cb(c.toDataURL("image/jpeg", 0.85));
+  };
+  img.onerror = function(){ toast("That image could not be opened. Try a different screenshot."); };
+  img.src = dataUrl;
+}
 function showImage(u){ $("#previewImg").src = u; $("#preview").classList.add("on"); $("#drop").hidden = true; $("#verify").disabled = false; S.image = u; }
 $("#swap").addEventListener("click", function(){ var t = $("#txn").value; resetUpload(); $("#txn").value = t; });
 $("#file").addEventListener("change", function(e){
   var f = e.target.files && e.target.files[0]; if (!f) return;
   if (!/^image\/(png|jpe?g|webp)$/.test(f.type)){ toast("Choose a JPG or PNG image"); return; }
   if (f.size > 5*1024*1024){ toast("That image is over 5 MB"); return; }
-  var rd = new FileReader(); rd.onload = function(){ S.sample = null; showImage(rd.result); }; rd.readAsDataURL(f);
+  var rd = new FileReader(); rd.onload = function(){ shrink(rd.result, function(u){ showImage(u); $("#confirmErr").hidden = true; }); }; rd.readAsDataURL(f);
 });
-function randId(){ var s = "6"; for (var i = 0; i < 11; i++) s += Math.floor(Math.random()*10); return s; }
-function dateStr(d){ var m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]; return d.getDate() + " " + m[d.getMonth()] + " " + d.getFullYear(); }
-function receipt(kind){
-  var amount = kind === "wrong" ? 10 : 99, id = kind === "reused" ? S.used[0] : randId();
-  var c = document.createElement("canvas"); c.width = 720; c.height = 760; var g = c.getContext("2d");
-  g.fillStyle = "#fff"; g.fillRect(0,0,720,760); g.fillStyle = "#1a73e8"; g.fillRect(0,0,720,70);
-  g.fillStyle = "#34a853"; g.beginPath(); g.arc(360,160,48,0,Math.PI*2); g.fill();
-  g.strokeStyle = "#fff"; g.lineWidth = 9; g.lineCap = "round"; g.beginPath(); g.moveTo(336,162); g.lineTo(353,178); g.lineTo(386,144); g.stroke();
-  g.textAlign = "center"; g.fillStyle = "#111"; g.font = "700 62px Arial"; g.fillText("₹" + amount, 360, 290);
-  g.fillStyle = "#333"; g.font = "28px Arial"; g.fillText("Paid to Neha Solanki", 360, 345);
-  g.fillStyle = "#666"; g.font = "24px Arial"; g.fillText(UPI, 360, 385);
-  g.fillStyle = "#1e8e3e"; g.font = "700 26px Arial"; g.fillText("Completed", 360, 445);
-  g.fillStyle = "#555"; g.font = "24px Arial"; g.fillText(dateStr(new Date()) + ", 10:42 am", 360, 485);
-  g.textAlign = "left"; g.fillStyle = "#666"; g.font = "24px Arial"; g.fillText("UPI transaction ID", 40, 570);
-  g.fillStyle = "#111"; g.font = "700 30px Arial"; g.fillText(id, 40, 612);
-  g.fillStyle = "#333"; g.font = "24px Arial"; g.fillText("From: Priya Sharma (HDFC Bank ****4417)", 40, 680);
-  return { url: c.toDataURL("image/png"), truth: { amount: amount, payee: true, status: true, dateOk: true, id: id } };
-}
-$$("[data-sample]").forEach(function(b){ b.addEventListener("click", function(){ var r = receipt(b.dataset.sample); S.sample = r.truth; showImage(r.url); $("#txn").value = r.truth.id; }); });
-$("#needHelp").addEventListener("click", function(){ teamCheck($("#txn").value); });
-$("#verify").addEventListener("click", function(){ if (S.prog === "program") teamCheck($("#txn").value); else runChecks(); });
+function txnValue(){ return $("#txn").value.replace(/\s/g, "").toUpperCase(); }
+function confirmError(m){ var e = $("#confirmErr"); e.textContent = m; e.hidden = false; }
+$("#needHelp").addEventListener("click", function(){
+  if (!S.image){ confirmError("Upload your payment screenshot first, then tap \u201cAsk our team\u201d."); return; }
+  teamCheck(true);
+});
+$("#verify").addEventListener("click", function(){
+  var t = txnValue();
+  if (t && !/^[A-Z0-9]{6,30}$/.test(t)){ confirmError("Check the transaction ID: use letters and numbers only."); return; }
+  if (S.prog === "program") teamCheck(false); else runChecks();
+});
 
 /* OCR (Tesseract.js) with graceful fallback */
 var ocr = { st: "idle", w: null, q: [] };
@@ -586,42 +631,87 @@ function runChecks(){
   readText(S.image).then(function(text){
     var got, method;
     if (text !== null){ got = parse(text); method = "Checked automatically by reading the receipt."; }
-    else if (S.sample){ got = S.sample; method = "In this preview, the sample's values were used. The live site reads every receipt automatically."; }
-    if (!got){ $("#veilText").textContent = "Sending to our team…"; setTimeout(function(){ teamCheck($("#txn").value); }, 1100); return; }
-    var typed = $("#txn").value.replace(/\s/g, ""), id = got.id || typed;
+    if (!got){ $("#veilText").textContent = "We couldn't read this receipt automatically…"; setTimeout(function(){ teamCheck(true, "We couldn't read your receipt automatically, so our team will check it."); }, 1200); return; }
+    var typed = txnValue(), id = got.id || typed;
     var C = [
       { l: "Amount is ₹99", ok: got.amount === 99, why: got.amount ? "The receipt shows ₹" + fmt(got.amount) + ", but the 1:1 Consultation fee is ₹99." : "We couldn't find the amount on this receipt." },
       { l: "Paid to Neha Solanki", ok: !!got.payee, why: "The receipt doesn't show Neha Solanki or our UPI ID." },
       { l: "Payment successful", ok: !!got.status, why: "The receipt doesn't say the payment was completed." },
       { l: "Paid in the last 7 days", ok: !!got.dateOk, why: "The payment date is missing or older than 7 days." },
       { l: "Transaction ID matches", ok: !!id && (!typed || typed === id), why: "The ID you entered doesn't match the receipt." },
-      { l: "Transaction ID not used before", ok: !!id && S.used.indexOf(id) === -1, why: "This transaction ID was already used for another enrollment." }
+      { l: "Transaction ID not used before", ok: !!id, pending: true, why: "This transaction ID was already used for another enrollment." }
     ];
     $("#veil").classList.add("gone");
     C.forEach(function(c, i){ var li = document.createElement("li"); li.innerHTML = '<span class="m" aria-hidden="true"></span><span>' + esc(c.l) + '</span>'; $("#checks").appendChild(li);
-      setTimeout(function(){ li.classList.add(c.ok ? "pass" : "fail"); li.querySelector(".m").textContent = c.ok ? "✓" : "!"; }, 300 * (i + 1)); });
+      c.li = li; if (!c.pending) setTimeout(function(){ li.classList.add(c.ok ? "pass" : "fail"); li.querySelector(".m").textContent = c.ok ? "✓" : "!"; }, 300 * (i + 1)); });
     setTimeout(function(){
       $("#method").textContent = method;
       var bad = C.filter(function(c){ return !c.ok; });
-      if (!bad.length){ S.used.push(id); S.txn = id; setTimeout(confirmed, 600); }
+      if (!bad.length){
+        var last = C[C.length - 1]; S.txn = id;
+        api({ action: "start", program: S.prog, payment_method: "upi_qr", txn_id: id, receipt: S.image,
+              auto_check: { amount: true, payee: true, status: true, date: true, txnMatch: true, txnNew: true } }).then(function(res){
+          if (res.ok && res.data.status === "auto_checked"){
+            last.li.classList.add("pass"); last.li.querySelector(".m").textContent = "✓";
+            S.session = { id: res.data.id, token: res.data.token, prog: S.prog, method: S.method, regDone: false, assessDone: false }; saveSession();
+            setTimeout(confirmed, 600);
+          } else if (res.code === 409){
+            last.li.classList.add("fail"); last.li.querySelector(".m").textContent = "!";
+            showVerifyError(last.why, id);
+          } else {
+            showVerifyError(netMsg(res), id);
+          }
+        });
+      }
       else {
-        $("#verifyResult").innerHTML = '<div class="result"><b>We couldn\'t confirm this payment</b>' + esc(bad[0].why) + '</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:10px"><button class="btn" id="retry" type="button">Upload a different screenshot</button><button class="btn ghost" id="askTeam" type="button">Ask our team to check</button></div>';
-        $("#retry").onclick = function(){ resetUpload(); go("s-steps"); openStep("confirm"); };
-        $("#askTeam").onclick = function(){ teamCheck(id); };
+        showVerifyError(bad[0].why, id);
       }
     }, 300 * (C.length + 1));
   });
 }
-function teamCheck(id){
-  var who = S.profile ? esc(S.profile.name) + ", " + esc(S.profile.email) : "Priya Sharma, priya@example.com";
-  var prog = S.prog === "consult" ? "1:1 Consultation, ₹99" : "Full program, amount as agreed on WhatsApp";
-  $("#mailBody").innerHTML = "Customer: " + who + "<br>Service: " + prog + "<br>Transaction ID: " + esc(id || "not entered") + "<br>Screenshot attached";
-  $("#teamText").textContent = S.prog === "program" ? "We've sent your proof to our team. They'll match it with your bank transfer within 48 hours and unlock your forms." : "We've sent your screenshot to our team. They'll confirm it within 48 hours and unlock your forms.";
-  go("s-team");
+function showVerifyError(why, id){
+        $("#verifyResult").innerHTML = '<div class="result"><b>We couldn\'t confirm this payment</b>' + esc(why) + '</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:10px"><button class="btn" id="retry" type="button">Upload a different screenshot</button><button class="btn ghost" id="askTeam" type="button">Ask our team to check</button></div>';
+        $("#retry").onclick = function(){ resetUpload(); go("s-steps"); openStep("confirm"); };
+        $("#askTeam").onclick = function(){ teamCheck(true); };
 }
-$("#approve").addEventListener("click", function(){ S.txn = S.txn || $("#txn").value || "approved by team"; confirmed(); });
+function teamCheck(help, why){
+  S.help = !!help;
+  $("#teamText").textContent = (why ? why + " " : "") + (S.prog === "program"
+    ? "Leave your name and WhatsApp number. Our team will match your transfer with the bank statement and send you a link to unlock your forms, usually within 48 hours."
+    : "Leave your name and WhatsApp number. Our team will check your payment and send you a link to unlock your forms, usually within 48 hours.");
+  $("#teamErr").hidden = true; go("s-team");
+}
+$("#teamSend").addEventListener("click", function(){
+  if (S.busy) return;
+  var name = $("#tName").value.trim(), phone = $("#tPhone").value.replace(/[^\d+]/g, "");
+  if (phone && phone[0] !== "+" && phone.replace(/\D/g, "").length === 10) phone = "+91" + phone;
+  var err = $("#teamErr");
+  if (name.replace(/[^\p{L}]/gu, "").length < 2){ err.textContent = "Enter your full name."; err.hidden = false; $("#tName").focus(); return; }
+  if (!/^\+?\d{6,16}$/.test(phone)){ err.textContent = "Enter your WhatsApp number with numbers only, for example +91 98765 43210."; err.hidden = false; $("#tPhone").focus(); return; }
+  if (!S.image){ err.textContent = "Your payment screenshot is missing. Go back and upload it."; err.hidden = false; return; }
+  S.busy = true; var b = $("#teamSend"); b.disabled = true; b.textContent = "Sending…"; err.hidden = true;
+  api({ action: "start", program: S.prog, payment_method: S.prog === "program" ? "whatsapp" : (S.method === "net banking" ? "net_banking" : "upi_qr"),
+        txn_id: txnValue() || undefined, receipt: S.image, help: S.help, contact: { name: name, phone: phone } }).then(function(res){
+    S.busy = false; b.disabled = false; b.textContent = "Send to our team";
+    if (res.ok){
+      S.session = { id: res.data.id, token: res.data.token, prog: S.prog, method: S.method, regDone: false, assessDone: false }; saveSession();
+      showWait("needs_review");
+    } else if (res.code === 409){ err.textContent = "This transaction ID was already used for another enrollment. Check the ID, or message us on WhatsApp."; err.hidden = false; }
+    else { err.textContent = netMsg(res); err.hidden = false; }
+  });
+});
+function showWait(status){
+  var rejected = status === "rejected";
+  $("#waitTitle").textContent = rejected ? "We couldn't confirm your payment" : "We're checking your payment";
+  $("#waitText").textContent = rejected
+    ? "Our team could not match this payment with our bank statement. Please message us on WhatsApp and we'll sort it out together."
+    : "Our team will confirm it within 48 hours and send you a WhatsApp message with a link to unlock your forms. You can also come back to this page on this device.";
+  $("#waitNote").hidden = rejected; $("#checkAgain").hidden = rejected;
+  go("s-wait");
+}
+$("#checkAgain").addEventListener("click", function(){ resume(true); });
 function confirmed(){
-  S.done.confirm = true;
+  S.done.pay = true; S.done.confirm = true;
   if (S.returning){ S.regDone = true; S.assessDone = true; }
   renderSteps();
   $("#peakSub").textContent = S.returning ? "Your details are saved. Just review and confirm." : "Two short forms and you're all set.";
@@ -765,12 +855,10 @@ function renderWizard(){
   $("#wizBar").style.width = Math.round((W.i) / n * 100) + "%";
   $("#wizTitle").textContent = sec.title;
   $("#wizBody").innerHTML = (sec.intro ? introHTML(sec.intro) : "") + sec.fields.map(fieldHTML).join("") +
-    '<div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your progress is saved as you go. Your answers are private to our care team.</span></div>' +
-    (W.i === n - 1 ? "" : "") + '<button class="demo" type="button" id="fillSample">Demo: fill this section with sample answers</button>';
+    '<div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your progress is saved as you go. Your answers are private to our care team.</span></div>';
   $("#wizBack").textContent = W.i === 0 ? "Close" : "Back";
   $("#wizNext").textContent = W.i < n - 1 ? "Next" : (W.form === "reg" ? (S.returning ? "Save registration" : "Submit registration") : (S.returning ? "Save assessment" : "Submit assessment"));
   var dob = $("#f_dob"); if (dob) dob.addEventListener("change", function(){ var b = new Date(dob.value), t = new Date(); if (isNaN(b)) return; var a = t.getFullYear() - b.getFullYear() - ((t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) ? 1 : 0); if (a > 0 && a < 111) $("#f_age").value = a; });
-  $("#fillSample").addEventListener("click", fillSample);
   wireInputs();
   window.scrollTo(0, 0);
 }
@@ -885,27 +973,23 @@ $("#wizNext").addEventListener("click", function(){
   if (bad){ bad.scrollIntoView({ behavior: "smooth", block: "center" }); var inp = bad.querySelector("input,textarea"); if (inp) inp.focus({ preventScroll: true }); return; }
   saveProgress();
   if (W.i < W.schema.length - 1){ W.i++; renderWizard(); $("#wizTitle").focus && $("#wizTitle").setAttribute("tabindex","-1"); $("#wizTitle").focus(); return; }
-  if (W.form === "reg"){ S.regDone = true; renderSteps(); toast(S.returning ? "Registration updated" : "Registration saved"); go("s-steps"); openStep("reg"); }
-  else { S.assessDone = true; renderSteps(); if (S.returning){ toast("Assessment updated"); go("s-steps"); openStep("reg"); } else finish(); }
+  if (S.busy) return;
+  if (!S.session){ toast("Your session has ended. Please start again."); go("s-program"); return; }
+  var isReg = W.form === "reg", btn = $("#wizNext"), label = btn.textContent;
+  S.busy = true; btn.disabled = true; btn.textContent = "Saving…";
+  api({ action: isReg ? "registration" : "assessment", id: S.session.id, token: S.session.token, answers: Object.assign({}, W.vals) }).then(function(res){
+    S.busy = false; btn.disabled = false; btn.textContent = label;
+    if (res.code === 403 && res.data.error === "payment_not_confirmed"){ showWait(res.data.status); return; }
+    if (!res.ok){ toast(netMsg(res)); return; }
+    if (isReg){ S.regDone = true; S.session.regDone = true; saveSession(); renderSteps(); toast("Registration saved"); go("s-steps"); openStep("reg"); }
+    else { S.assessDone = true; S.session.assessDone = true; renderSteps(); finish(); clearSession(); }
+  });
 });
 $("#wizBack").addEventListener("click", function(){ collect(false); saveProgress(); if (W.i === 0){ go("s-steps"); openStep("reg"); } else { W.i--; renderWizard(); } });
 function saveProgress(){
   S.profile = S.profile || {};
   if (W.form === "reg") Object.assign(S.profile, W.vals); else S.profile.assess = Object.assign({}, W.vals);
 }
-function fillSample(){
-  var sample = { name: "Priya Sharma", dob: "1990-04-12", age: String(new Date().getFullYear() - 1990 - (new Date().getMonth() < 3 ? 1 : 0)), sex: "Female", mobile: "+91 9876543210", mobileCode: "+91", mobileSel: "India", mobileNum: "9876543210", email: "priya@example.com", city: "Surat", pin: "395007", country: "India", heightFt: "5", heightIn: "4",
-    address: "12 Green Park Society, Vesu", occupation: "Teacher", education: "M.A.", hobbies: "Gardening, reading", height: "5 ft 4 in", weight: "68",
-    purpose: "Improve my thyroid health, sleep better and feel calmer.", decl: true, q30: "1. Sleep 7 hours every night\n2. Bring my thyroid levels to normal\n3. Manage stress with daily yoga" };
-  ["mobileCode","mobileSel","mobileNum","heightFt","heightIn"].forEach(function(k){ if (sample[k] && W.schema[W.i].fields.some(function(f){ return f.id === "mobile" || f.id === "height"; })) W.vals[k] = sample[k]; });
-  flat(W.schema[W.i]).forEach(function(f){
-    if (f.type === "radio") W.vals[f.id] = sample[f.id] || f.opts[1];
-    else if (f.type === "check") W.vals[f.id] = [f.opts[0]];
-    else W.vals[f.id] = sample[f.id] !== undefined ? sample[f.id] : W.vals[f.id];
-  });
-  renderWizard(); toast("Sample answers filled");
-}
-
 /* ---------- end ---------- */
 function finish(){
   var c = $("#doneCard"), nm = S.profile && S.profile.name ? S.profile.name.split(" ")[0] : "";
@@ -920,16 +1004,88 @@ function finish(){
       '<li><span class="n">2</span><div><b>We WhatsApp you to schedule</b><span>From ' + WA_SHOW + ', to book your first consultation.</span></div></li>' +
       '<li><span class="n">3</span><div><b>Your 3-month journey begins</b><span>Foundation, Vitality, Balance and Liberation, with your doctor, dietician, yoga therapist and mind coach.</span></div></li></ol>';
   }
-  $("#later").hidden = S.prog !== "consult";
   go("s-done");
 }
-$("#later").addEventListener("click", function(){
-  S.returning = !!(S.profile && S.regDone && S.assessDone);
-  $("#welcomeBack").hidden = !S.returning; if (S.returning) $("#wbName").textContent = S.profile.name.split(" ")[0];
-  $$("input[name=prog]").forEach(function(r){ r.checked = r.value === "program"; }); S.prog = "program"; $("#toSteps").disabled = false;
+/* ---------- returning to the page ---------- */
+function restore(sess){
+  S.session = sess; S.prog = sess.prog; S.method = sess.method || S.method;
+  $$("input[name=prog]").forEach(function(r){ r.checked = r.value === S.prog; });
+  var consult = S.prog === "consult";
+  $("#pay-consult").hidden = !consult; $("#pay-program").hidden = consult;
+  S.regDone = !!sess.regDone; S.assessDone = !!sess.assessDone;
+}
+function resume(manual){
+  var sess = S.session || loadSession(); if (!sess){ go("s-program"); return; }
+  restore(sess);
+  if (manual){ $("#checkAgain").disabled = true; $("#checkAgain").textContent = "Checking…"; }
+  api({ action: "status", id: sess.id, token: sess.token }).then(function(res){
+    if (manual){ $("#checkAgain").disabled = false; $("#checkAgain").textContent = "Check again"; }
+    if (res.code === 403){ clearSession(); go("s-program"); return; }
+    if (!res.ok){ if (manual) toast(netMsg(res)); else go("s-program"); return; }
+    var st = res.data.status;
+    if (st === "verified" || st === "auto_checked"){ if (S.regDone){ S.done.pay = true; S.done.confirm = true; renderSteps(); go("s-steps"); openStep("reg"); } else confirmed(); }
+    else { showWait(st); if (manual && st === "needs_review") toast("Not confirmed yet. We'll message you on WhatsApp."); }
+  });
+}
+function reviewPage(id, key, tok){
+  go("s-review");
+  var link = location.origin + location.pathname + "#resume=" + id + "." + tok;
+  function row(k, v){ return '<div class="r"><span>' + esc(k) + '</span><b>' + esc(v || "-") + '</b></div>'; }
+  function show(d){
+    $("#revInfo").innerHTML = row("Customer", d.name) + row("WhatsApp", d.phone) + row("Service", d.label) + row("Transaction ID", d.txn_id) + row("Status", d.status === "needs_review" ? "Waiting for approval" : d.status === "verified" ? "Approved" : "Rejected");
+    var decided = d.status !== "needs_review";
+    $("#revActions").hidden = decided;
+    $("#revDone").hidden = d.status !== "verified" && d.status !== "rejected";
+    var digits = String(d.phone || "").replace(/\D/g, "");
+    if (d.status === "verified"){
+      $("#revDoneText").textContent = "Approved. Now send " + (d.name || "the customer") + " their unlock link.";
+      $("#revWa").hidden = false; $("#revCopy").hidden = false;
+      $("#revWa").href = "https://wa.me/" + digits + "?text=" + encodeURIComponent("Namaste " + (d.name || "") + ", your payment for the " + (d.label || "program") + " is confirmed. Please open this link to fill your registration and wellness forms: " + link + " \n\nThe Divines Health");
+    } else if (d.status === "rejected"){
+      $("#revDoneText").textContent = "Rejected. Let the customer know on WhatsApp.";
+      $("#revWa").hidden = false; $("#revCopy").hidden = true;
+      $("#revWa").textContent = "Message the customer on WhatsApp";
+      $("#revWa").href = "https://wa.me/" + digits + "?text=" + encodeURIComponent("Namaste " + (d.name || "") + ", we could not find your payment for the " + (d.label || "program") + " in our bank statement. Could you please share the transaction details again?");
+    }
+  }
+  function fail(res){
+    var e = $("#revErr"); e.hidden = false;
+    e.textContent = res.code === 403 ? "This approval link is not valid. Use the latest alert email." : res.code === 410 ? "This approval link has expired (links last 3 days). Update the status in Supabase instead." : netMsg(res);
+  }
+  $("#revCopy").onclick = function(){ try { navigator.clipboard.writeText(link).then(function(){ toast("Link copied"); }, function(){ toast(link); }); } catch(e){ toast(link); } };
+  function decide(dec){
+    $("#revApprove").disabled = true; $("#revReject").disabled = true;
+    api({ action: "decide", id: id, key: key, decision: dec }).then(function(res){
+      $("#revApprove").disabled = false; $("#revReject").disabled = false;
+      if (res.ok) show(res.data); else fail(res);
+    });
+  }
+  $("#revApprove").onclick = function(){ decide("verify"); };
+  $("#revReject").onclick = function(){ if (confirmReject()) decide("reject"); };
+  api({ action: "review_info", id: id, key: key }).then(function(res){ if (res.ok) show(res.data); else { $("#revActions").hidden = true; fail(res); } });
+}
+var rejectArmed = false;
+function confirmReject(){ if (rejectArmed) return true; rejectArmed = true; $("#revReject").textContent = "Tap again to reject"; setTimeout(function(){ rejectArmed = false; $("#revReject").textContent = "Reject"; }, 4000); return false; }
+
+(function start(){
+  var h = location.hash || "", m;
+  if ((m = /^#approve=([0-9a-f-]{36})\.([A-Za-z0-9_-]{20,64})\.([A-Za-z0-9_-]{20,64})$/.exec(h))){
+    history.replaceState(null, "", location.pathname); reviewPage(m[1], m[2], m[3]); return;
+  }
+  if ((m = /^#resume=([0-9a-f-]{36})\.([A-Za-z0-9_-]{20,64})$/.exec(h))){
+    history.replaceState(null, "", location.pathname);
+    var old = loadSession();
+    S.session = (old && old.id === m[1]) ? old : { id: m[1], token: m[2], prog: "consult", regDone: false, assessDone: false };
+    api({ action: "status", id: m[1], token: m[2] }).then(function(res){
+      if (res.ok && res.data.program){ S.session.prog = res.data.program; }
+      saveSession(); resume(false);
+    });
+    return;
+  }
+  if (loadSession()){ resume(false); return; }
   go("s-program");
-});
-go("s-program");
+})();
+window.addEventListener("hashchange", function(){ if (/^#(approve|resume)=/.test(location.hash)) location.reload(); });
 })();
 </script>
 </body></html>
