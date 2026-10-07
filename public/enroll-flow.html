@@ -186,6 +186,21 @@ input[type=number]{-moz-appearance:textfield}
 .wiz-body{padding:18px 22px 8px;display:flex;flex-direction:column;gap:18px;background:var(--ivory);flex:1}
 .wiz-foot{position:sticky;bottom:0;display:grid;grid-template-columns:auto 1fr;gap:8px;padding:12px 22px calc(12px + env(safe-area-inset-bottom,0px));background:var(--ivory);border-top:1px solid var(--line)}
 .wiz-foot .ghost{padding:12px 18px}
+.acwrap{position:relative}
+.ac{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:30;margin:0;padding:4px;list-style:none;background:var(--field);border:1.5px solid var(--field-border);border-radius:12px;box-shadow:0 10px 24px rgba(38,32,22,.16);max-height:264px;overflow:auto}
+.ac li{display:block;min-height:44px;padding:12px 12px;line-height:20px;border-radius:8px;font-size:15px;color:var(--text);cursor:pointer}
+.ac li b{font-weight:700;color:var(--head)}
+.ac li[aria-selected=true],.ac li:hover{background:var(--okbg)}
+.rvform{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--bronze);margin:4px 0 -8px}
+.rv{background:var(--field);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rv h3{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0;padding:4px 6px 4px 14px;background:var(--cream);font-size:14.5px;color:var(--head)}
+.rv h3 button{background:none;border:0;color:var(--accent);font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:44px;min-width:44px;padding:0 10px;cursor:pointer}
+.rv dl{margin:0;padding:2px 14px 6px}
+.rv .it{padding:9px 0;border-bottom:1px solid var(--line)}.rv .it:last-child{border-bottom:0}
+.rv dt{font-size:12px;line-height:16px;color:var(--muted)}
+.rv dd{margin:2px 0 0;font-size:14.5px;font-weight:500;color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere}
+.rv dd.none{color:var(--muted);font-weight:400;font-style:italic}
+.rv .saved{margin:0;padding:12px 14px;font-size:13.5px;color:var(--muted)}
 .summary{background:var(--cream);border-radius:12px;padding:6px 14px}
 .summary .r{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13px;border-bottom:1px solid var(--line)}
 .summary .r:last-child{border-bottom:0}
@@ -436,6 +451,17 @@ input[type=number]{-moz-appearance:textfield}
     <div class="wiz-foot"><button class="btn ghost" id="wizBack" type="button">Back</button><button class="btn" id="wizNext" type="button">Next</button></div>
   </section>
 
+  <!-- CHECK ANSWERS -->
+  <section class="screen" id="s-check" aria-labelledby="h-check">
+    <div class="sheet">
+      <h1 id="h-check">Check your answers</h1>
+      <p class="lede" style="margin:0">Tap <b>Edit</b> to fix anything. Your forms are final only when you tap Submit.</p>
+      <div id="checkBody" style="display:flex;flex-direction:column;gap:14px"></div>
+      <p class="formerr" id="checkErr" role="alert" hidden></p>
+    </div>
+    <div class="wiz-foot" style="grid-template-columns:1fr"><button class="btn" id="checkSubmit" type="button">Submit both forms</button></div>
+  </section>
+
   <!-- DONE -->
   <section class="screen" id="s-done">
     <div class="sheet">
@@ -475,7 +501,7 @@ function loadSession(){ try { var v = JSON.parse(localStorage.getItem(KEY) || "n
 function clearSession(){ S.session = null; try { localStorage.removeItem(KEY); } catch(e){} }
 
 /* ---------- navigation ---------- */
-var BACKABLE = { "s-steps": "s-program", "s-team": "s-steps", "s-form": "s-steps" };
+var BACKABLE = { "s-steps": "s-program", "s-team": "s-steps", "s-form": "s-steps", "s-check": "s-steps" };
 var NOBACK_WHEN_LOCKED = true;
 function go(id){
   $$(".screen").forEach(function(s){ s.classList.toggle("on", s.id === id); });
@@ -734,9 +760,9 @@ var REG = [
     F("country", "Country", "country", { auto: "country-name" }),
     { row: [ F("city", "City / town", "city", { ph: "e.g. Surat", auto: "address-level2" }), F("pin", "PIN code", "postal", { ph: "6 digits", auto: "postal-code" }) ] } ] },
   { title: "A little more about you", fields: [
-    F("occupation", "Occupation / study in", "text", { ph: "e.g. Teacher, B.Com student" }),
-    F("education", "Education", "text", { ph: "Highest qualification" }),
-    F("hobbies", "Hobbies", "text", { ph: "e.g. Gardening, reading" }) ] },
+    F("occupation", "Occupation / study in", "text", { ph: "e.g. Teacher, B.Com student", sug: "occupation", hint: "Pick a suggestion or type your own." }),
+    F("education", "Education", "text", { ph: "Highest qualification", sug: "education", hint: "Pick a suggestion or type your own." }),
+    F("hobbies", "Hobbies", "text", { ph: "e.g. Gardening, reading", sug: "hobbies", hint: "Add as many as you like, separated by commas." }) ] },
   { title: "Body and intention", fields: [
     F("height", "Height", "height", {}),
     F("weight", "Weight", "number", { ph: "e.g. 68", unit: "kg", min: 20, max: 300 }),
@@ -783,10 +809,12 @@ var ASSESS = [
 ];
 
 var W = { form: null, schema: null, i: 0, vals: null };
-function openForm(which){
-  W.form = which; W.schema = which === "reg" ? REG : ASSESS; W.i = 0;
+function openForm(which, at, editing){
+  W.form = which; W.schema = which === "reg" ? REG : ASSESS; W.i = at || 0; W.editing = !!editing;
   var p = S.profile || {};
   W.vals = which === "reg" ? Object.assign({}, p) : Object.assign({}, p.assess || {});
+  delete W.vals.assess;
+  W.snap = JSON.parse(JSON.stringify(W.vals));
   renderWizard(); go("s-form");
 }
 $("#openReg").addEventListener("click", function(){ openForm("reg"); });
@@ -835,8 +863,11 @@ function fieldHTML(f){
   if (f.type === "postal") attrs += ' inputmode="numeric" maxlength="10"';
   if (f.type === "number") attrs += ' data-filter="number"';
   if (f.id === "name") attrs += ' data-filter="name"';
+  if (f.sug) attrs += ' data-sug="' + f.sug + '" spellcheck="true" autocapitalize="sentences" autocorrect="on" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac_' + f.id + '"';
+  if (f.type === "textarea" && f.id !== "address") attrs += ' spellcheck="true" autocapitalize="sentences"';
   var input = f.type === "textarea" ? '<textarea' + attrs + '>' + esc(v || "") + '</textarea>' : '<input type="' + (f.type === "number" ? "text" : (f.type === "city" || f.type === "postal") ? "text" : f.type) + '"' + attrs + ' value="' + esc(v || "") + '">';
   if (f.unit) input = '<span class="unit">' + input + '<em>' + f.unit + '</em></span>';
+  if (f.sug) input = '<div class="acwrap">' + input + '<ul class="ac" id="ac_' + f.id + '" role="listbox" aria-label="Suggestions" hidden></ul></div>';
   return '<label class="fld" data-id="' + f.id + '"><span>' + esc(f.label) + req + '</span>' + input + (f.hint ? '<small>' + esc(f.hint) + '</small>' : "") + '<span class="err" hidden></span></label>';
 }
 function introHTML(kind){
@@ -857,7 +888,8 @@ function renderWizard(){
   $("#wizBody").innerHTML = (sec.intro ? introHTML(sec.intro) : "") + sec.fields.map(fieldHTML).join("") +
     '<div class="private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Your progress is saved as you go. Your answers are private to our care team.</span></div>';
   $("#wizBack").textContent = W.i === 0 ? "Close" : "Back";
-  $("#wizNext").textContent = W.i < n - 1 ? "Next" : (W.form === "reg" ? (S.returning ? "Save registration" : "Submit registration") : (S.returning ? "Save assessment" : "Submit assessment"));
+  $("#wizNext").textContent = W.i < n - 1 ? "Next" : (W.form === "reg" ? "Continue to assessment" : "Review my answers");
+  if (W.editing){ $("#wizNext").textContent = "Save changes"; $("#wizBack").textContent = "Cancel"; }
   var dob = $("#f_dob"); if (dob) dob.addEventListener("change", function(){ var b = new Date(dob.value), t = new Date(); if (isNaN(b)) return; var a = t.getFullYear() - b.getFullYear() - ((t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) ? 1 : 0); if (a > 0 && a < 111) $("#f_age").value = a; });
   wireInputs();
   window.scrollTo(0, 0);
@@ -903,6 +935,7 @@ function wireInputs(){
       if (n !== v){ el.value = n; flash(el); }
     });
   });
+  body.querySelectorAll("[data-sug]").forEach(setupAC);
   var em = $("#f_email");
   if (em){ em.addEventListener("blur", function(){ emailHint(em); }); em.addEventListener("input", function(){ var o = em.closest(".fld").querySelector(".suggest"); if (o) o.remove(); }); }
 }
@@ -927,6 +960,82 @@ function emailHint(em){
   var b = document.createElement("button"); b.type = "button"; b.className = "suggest"; b.textContent = "Did you mean " + v.slice(0, at + 1) + fix + "?";
   b.addEventListener("click", function(){ em.value = v.slice(0, at + 1) + fix; b.remove(); em.focus(); });
   box.appendChild(b);
+}
+var SUG = {
+  occupation: ["Teacher","Professor","Lecturer","Tutor","Principal","Student","School student","College student","B.Com student","B.Sc student","B.A. student","BBA student","BCA student","Engineering student","Medical student","MBA student","CA student","Homemaker","Software engineer","IT professional","Web developer","Data analyst","Engineer","Civil engineer","Mechanical engineer","Electrical engineer","Architect","Interior designer","Designer","Graphic designer","UX designer","Doctor","Dentist","Nurse","Pharmacist","Physiotherapist","Dietician","Lab technician","Accountant","Chartered accountant","Company secretary","Banker","Bank employee","Insurance agent","Financial advisor","Lawyer","Advocate","Business owner","Entrepreneur","Self-employed","Shopkeeper","Trader","Textile business","Diamond business","Diamond worker","Jeweller","Real estate agent","Manager","Sales executive","Marketing professional","HR professional","Office administrator","Receptionist","Clerk","Government employee","Police officer","Army / defence","Farmer","Driver","Chef","Caterer","Beautician","Tailor","Fashion designer","Artist","Musician","Writer","Journalist","Photographer","Yoga teacher","Fitness trainer","Social worker","Researcher","Scientist","Consultant","Freelancer","Pilot","Flight attendant","Electrician","Plumber","Retired","Not working currently"],
+  education: ["Below 10th","10th pass (SSC)","12th pass (HSC)","Diploma","ITI","Graduate","Postgraduate","B.A.","B.Com","B.Sc","BBA","BCA","B.E. / B.Tech","B.Arch","B.Des","B.Pharm","B.Ed","LLB","MBBS","BDS","BAMS","BHMS","BPT","Nursing (GNM / B.Sc)","M.A.","M.Com","M.Sc","MBA","MCA","M.E. / M.Tech","M.Arch","M.Pharm","M.Ed","LLM","MD","MS","CA","CS","CMA","Ph.D"],
+  hobbies: ["Reading","Writing","Gardening","Cooking","Baking","Music","Listening to music","Singing","Dancing","Playing an instrument","Painting","Drawing","Sketching","Crafts","Knitting","Stitching","Embroidery","Pottery","Rangoli","Photography","Yoga","Meditation","Walking","Running","Cycling","Swimming","Gym","Trekking","Hiking","Travelling","Cricket","Badminton","Table tennis","Football","Chess","Board games","Puzzles","Watching movies","Watching web series","Volunteering","Spending time with family","Learning languages","Bird watching","Fishing","Spiritual reading","Bhajan / kirtan","Social media","Shopping"]
+};
+function norm(t){ return String(t).toLowerCase().replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim(); }
+function rankSug(src, q, skip){
+  var nq = norm(q), a = [], b = [], c = [], d = [];
+  if (!nq) return [];
+  src.forEach(function(t){
+    var n = norm(t); if (skip.indexOf(n) > -1) return;
+    if (n.indexOf(nq) === 0 || n.replace(/ /g, "").indexOf(nq.replace(/ /g, "")) === 0) a.push(t);
+    else if ((" " + n).indexOf(" " + nq) > -1) b.push(t);
+    else if (nq.length >= 3 && n.indexOf(nq) > -1) c.push(t);
+    else if (nq.length >= 4 && lev(nq, n.slice(0, nq.length)) <= 1) d.push(t);
+  });
+  return a.concat(b, c, d);
+}
+function fixWord(p, src){
+  var n = norm(p); if (n.length < 4) return null;
+  var best = null, bd = 9;
+  for (var i = 0; i < src.length; i++){ var m = norm(src[i]); if (m === n) return null; var dd = lev(n, m); if (dd < bd){ bd = dd; best = src[i]; } }
+  return bd > 0 && bd <= (n.length <= 6 ? 1 : 2) ? best : null;
+}
+function hiSug(t, q){
+  var i = t.toLowerCase().indexOf(String(q).toLowerCase().trim());
+  if (i < 0 || !q.trim()) return esc(t);
+  var e = i + q.trim().length;
+  return esc(t.slice(0, i)) + "<b>" + esc(t.slice(i, e)) + "</b>" + esc(t.slice(e));
+}
+function setupAC(inp){
+  var list = document.getElementById(inp.getAttribute("aria-controls")), src = SUG[inp.dataset.sug], multi = inp.dataset.sug === "hobbies", items = [], act = -1;
+  var box = inp.closest(".fld");
+  function token(){ var v = inp.value; return multi ? v.slice(v.lastIndexOf(",") + 1).trim() : v.trim(); }
+  function chosen(){ return multi ? inp.value.split(",").slice(0, -1).map(norm).filter(Boolean) : []; }
+  function close(){ list.hidden = true; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); act = -1; }
+  function render(){
+    var q = token(); items = rankSug(src, q, chosen()).slice(0, 6);
+    if (!items.length || (items.length === 1 && norm(items[0]) === norm(q))){ close(); return; }
+    act = -1;
+    list.innerHTML = items.map(function(t, i){ return '<li role="option" id="' + list.id + '_' + i + '" aria-selected="false">' + hiSug(t, q) + '</li>'; }).join("");
+    list.hidden = false; inp.setAttribute("aria-expanded", "true");
+  }
+  function mark(){
+    Array.prototype.forEach.call(list.children, function(li, i){ li.setAttribute("aria-selected", i === act ? "true" : "false"); });
+    if (act > -1){ inp.setAttribute("aria-activedescendant", list.id + "_" + act); list.children[act].scrollIntoView({ block: "nearest" }); }
+  }
+  function dropHint(){ var o = box.querySelector(".suggest"); if (o) o.remove(); }
+  function pick(t){
+    if (multi){ var v = inp.value, k = v.lastIndexOf(","); inp.value = (k > -1 ? v.slice(0, k + 1) + " " : "") + t + ", "; }
+    else inp.value = t;
+    close(); dropHint(); inp.focus();
+  }
+  function tidy(){ inp.value = multi ? inp.value.split(",").map(function(x){ return x.trim(); }).filter(Boolean).join(", ") : inp.value.trim(); }
+  function hint(){
+    dropHint();
+    var parts = multi ? inp.value.split(",").map(function(x){ return x.trim(); }).filter(Boolean) : [inp.value.trim()];
+    for (var i = 0; i < parts.length; i++){
+      var fx = fixWord(parts[i], src); if (!fx) continue;
+      var b = document.createElement("button"); b.type = "button"; b.className = "suggest"; b.textContent = "Did you mean “" + fx + "”?";
+      (function(i, fx){ b.addEventListener("click", function(e){ e.preventDefault(); parts[i] = fx; inp.value = parts.join(", "); hint(); }); })(i, fx);
+      box.appendChild(b); return;
+    }
+  }
+  inp.addEventListener("input", function(){ dropHint(); render(); });
+  inp.addEventListener("keydown", function(e){
+    if (list.hidden) return;
+    if (e.key === "ArrowDown"){ act = (act + 1) % items.length; mark(); e.preventDefault(); }
+    else if (e.key === "ArrowUp"){ act = (act - 1 + items.length) % items.length; mark(); e.preventDefault(); }
+    else if (e.key === "Enter" && act > -1){ pick(items[act]); e.preventDefault(); }
+    else if (e.key === "Escape"){ close(); e.preventDefault(); }
+  });
+  list.addEventListener("mousedown", function(e){ e.preventDefault(); });
+  list.addEventListener("click", function(e){ var li = e.target.closest("li"); e.preventDefault(); if (li) pick(items[+li.id.split("_").pop()]); });
+  inp.addEventListener("blur", function(){ setTimeout(function(){ if (document.activeElement === inp) return; close(); tidy(); hint(); }, 120); });
 }
 function flat(sec){ var out = []; sec.fields.forEach(function(f){ if (f.row) f.row.forEach(function(x){ out.push(x); }); else out.push(f); }); return out; }
 function collect(showErrors){
@@ -972,20 +1081,69 @@ $("#wizNext").addEventListener("click", function(){
   var bad = collect(true);
   if (bad){ bad.scrollIntoView({ behavior: "smooth", block: "center" }); var inp = bad.querySelector("input,textarea"); if (inp) inp.focus({ preventScroll: true }); return; }
   saveProgress();
-  if (W.i < W.schema.length - 1){ W.i++; renderWizard(); $("#wizTitle").focus && $("#wizTitle").setAttribute("tabindex","-1"); $("#wizTitle").focus(); return; }
+  if (W.editing){ W.editing = false; showCheck(); toast("Changes saved"); return; }
+  if (W.i < W.schema.length - 1){ W.i++; renderWizard(); $("#wizTitle").setAttribute("tabindex","-1"); $("#wizTitle").focus(); return; }
+  if (!S.session){ toast("Your session has ended. Please start again."); go("s-program"); return; }
+  if (W.form === "reg"){
+    S.regDone = true; S.session.regDone = true; saveSession(); renderSteps();
+    api({ action: "registration", id: S.session.id, token: S.session.token, answers: regAnswers() }).then(function(res){
+      if (res.code === 403 && res.data.error === "payment_not_confirmed") showWait(res.data.status);
+    });
+    openForm("assess"); toast("Registration done. One more short form.");
+    return;
+  }
+  showCheck();
+});
+function regAnswers(){ var r = Object.assign({}, S.profile || {}); delete r.assess; return r; }
+function fmtVal(f, v){
+  if (f.type === "consent") return v ? "Confirmed" : "";
+  if (Array.isArray(v)) return v.join(", ");
+  return v == null ? "" : String(v);
+}
+function groupHTML(title, which, schema, vals){
+  var h = '<p class="rvform">' + esc(title) + '</p>';
+  schema.forEach(function(sec, i){
+    h += '<section class="rv" aria-label="' + esc(sec.title) + '"><h3><span>' + esc(sec.title) + '</span><button type="button" data-edit="' + which + '" data-sec="' + i + '" aria-label="Edit ' + esc(sec.title) + '">Edit</button></h3><dl>';
+    flat(sec).forEach(function(f){
+      var t = fmtVal(f, vals[f.id]), lbl = f.type === "consent" ? "Declaration" : f.label;
+      h += '<div class="it"><dt>' + esc(lbl) + '</dt><dd' + (t ? "" : ' class="none"') + '>' + esc(t || "Not added") + '</dd></div>';
+    });
+    h += '</dl></section>';
+  });
+  return h;
+}
+function showCheck(){
+  var p = S.profile || {}, html = "";
+  if (p.name) html += groupHTML("Registration", "reg", REG, p);
+  else html += '<p class="rvform">Registration</p><section class="rv"><p class="saved">Saved earlier on this device. Our team already has it.</p></section>';
+  html += groupHTML("Wellness assessment", "assess", ASSESS, p.assess || {});
+  $("#checkBody").innerHTML = html; $("#checkErr").hidden = true;
+  $$("#checkBody [data-edit]").forEach(function(b){ b.addEventListener("click", function(){ openForm(b.dataset.edit, +b.dataset.sec, true); go("s-form"); }); });
+  go("s-check");
+}
+$("#checkSubmit").addEventListener("click", function(){
   if (S.busy) return;
   if (!S.session){ toast("Your session has ended. Please start again."); go("s-program"); return; }
-  var isReg = W.form === "reg", btn = $("#wizNext"), label = btn.textContent;
-  S.busy = true; btn.disabled = true; btn.textContent = "Saving…";
-  api({ action: isReg ? "registration" : "assessment", id: S.session.id, token: S.session.token, answers: Object.assign({}, W.vals) }).then(function(res){
-    S.busy = false; btn.disabled = false; btn.textContent = label;
+  var btn = this, err = $("#checkErr"), p = S.profile || {};
+  S.busy = true; btn.disabled = true; btn.textContent = "Submitting…"; err.hidden = true;
+  function fail(res){
+    S.busy = false; btn.disabled = false; btn.textContent = "Submit both forms";
     if (res.code === 403 && res.data.error === "payment_not_confirmed"){ showWait(res.data.status); return; }
-    if (!res.ok){ toast(netMsg(res)); return; }
-    if (isReg){ S.regDone = true; S.session.regDone = true; saveSession(); renderSteps(); toast("Registration saved"); go("s-steps"); openStep("reg"); }
-    else { S.assessDone = true; S.session.assessDone = true; renderSteps(); finish(); clearSession(); }
+    err.textContent = netMsg(res) + " Your answers are still here."; err.hidden = false;
+  }
+  var first = p.name ? api({ action: "registration", id: S.session.id, token: S.session.token, answers: regAnswers() }) : Promise.resolve({ ok: true });
+  first.then(function(r1){
+    if (!r1.ok) return fail(r1);
+    api({ action: "assessment", id: S.session.id, token: S.session.token, answers: Object.assign({}, p.assess || {}) }).then(function(r2){
+      if (!r2.ok) return fail(r2);
+      S.busy = false; btn.disabled = false; btn.textContent = "Submit both forms";
+      S.regDone = true; S.assessDone = true; renderSteps(); finish(); clearSession();
+    });
   });
 });
-$("#wizBack").addEventListener("click", function(){ collect(false); saveProgress(); if (W.i === 0){ go("s-steps"); openStep("reg"); } else { W.i--; renderWizard(); } });
+$("#wizBack").addEventListener("click", function(){
+  if (W.editing){ W.vals = W.snap; W.editing = false; saveProgress(); showCheck(); return; }
+  collect(false); saveProgress(); if (W.i === 0){ go("s-steps"); openStep("reg"); } else { W.i--; renderWizard(); } });
 function saveProgress(){
   S.profile = S.profile || {};
   if (W.form === "reg") Object.assign(S.profile, W.vals); else S.profile.assess = Object.assign({}, W.vals);
