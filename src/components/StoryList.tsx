@@ -71,23 +71,23 @@ export default function StoryList() {
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-3 pb-14">
+    <div className="flex w-full flex-col items-center gap-3 pb-14 lg:pb-20">
       {/* Horizontal scroll track: one story per screen, snaps to each card */}
       <div
         ref={trackRef}
         onScroll={handleScroll}
         aria-roledescription="carousel"
         aria-label="Client stories"
-        className="flex w-full snap-x snap-mandatory items-start overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex w-full snap-x snap-mandatory items-start overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:overflow-visible lg:px-10"
       >
         {stories.map((story, idx) => (
           <div
             key={story.author}
-            className="w-full shrink-0 snap-center px-5"
+            className="w-full shrink-0 snap-center px-5 lg:px-0"
             aria-roledescription="slide"
             aria-label={`${idx + 1} of ${stories.length}`}
           >
-            <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)] md:max-w-md">
+            <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)] sm:max-w-md md:max-w-lg lg:h-full lg:max-w-none lg:p-6">
               <div className="flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden rounded-[16px] bg-[#f2ede3]">
                 {story.image ? (
                   <img
@@ -123,9 +123,9 @@ export default function StoryList() {
                 </p>
               </div>
 
-              <h2 className="text-[22px] font-normal leading-7 text-[#3d3326]">{story.title}</h2>
+              <h2 className="text-[22px] font-medium leading-7 text-[#3d3326]">{story.title}</h2>
 
-              <div className="flex flex-col gap-3 text-sm font-normal leading-5 tracking-[0.25px] text-[#4a3d2e]">
+              <div className="flex flex-col gap-3 text-sm font-normal leading-6 tracking-[0.25px] text-[#4a3d2e] md:text-[15px]">
                 {story.quote.map((para, i) => (
                   <p key={i}>
                     {i === 0 && "\u201c"}
@@ -135,11 +135,11 @@ export default function StoryList() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-start gap-2">
+              <div className="flex flex-wrap items-start gap-2 lg:mt-auto">
                 {story.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="whitespace-nowrap rounded-full bg-[#f2ede3] px-3 py-1.5 text-[11px] font-normal leading-4 tracking-[0.5px] text-[#4a3d2e]"
+                    className="whitespace-nowrap rounded-full bg-[#f2ede3] px-3 py-1.5 text-xs font-normal leading-4 tracking-[0.5px] text-[#4a3d2e]"
                   >
                     {tag}
                   </span>
@@ -151,7 +151,7 @@ export default function StoryList() {
       </div>
 
       {/* Pagination dots: active dot is larger and gold, updates as you scroll */}
-      <div className="flex h-2 items-center gap-2" role="tablist" aria-label="Choose a story">
+      <div className="flex items-center gap-1 lg:hidden" role="tablist" aria-label="Choose a story">
         {stories.map((story, idx) => (
           <button
             key={story.author}
@@ -160,10 +160,14 @@ export default function StoryList() {
             aria-selected={idx === active}
             aria-label={`Show story ${idx + 1} of ${stories.length}`}
             onClick={() => goTo(idx)}
-            className={`rounded-full transition-all duration-300 ${
-              idx === active ? "size-2 bg-[#b89959]" : "size-[5px] bg-[#d9ccb2] hover:bg-[#c4ad83]"
-            }`}
-          />
+            className="flex size-8 items-center justify-center"
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                idx === active ? "size-2.5 bg-[#b89959]" : "size-[7px] bg-[#d9ccb2]"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

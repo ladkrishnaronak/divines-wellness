@@ -17,9 +17,11 @@ const consultants = [
   },
 ];
 
+// Phones: heading then a list. Tablet: 2x2 cards. Desktop: 3 columns —
+// heading on the left, the four experts as a 2x2 grid across the other two.
 export default function Sessions() {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#3d3326] px-6 py-11 sm:px-12 md:px-16 md:py-14 lg:px-20 lg:py-16">
+    <section className="relative w-full overflow-hidden bg-[#3d3326] py-11 md:py-14 lg:py-20">
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{
@@ -28,17 +30,21 @@ export default function Sessions() {
         }}
         aria-hidden
       />
-      <div className="flex w-full max-w-2xl flex-col gap-5 text-white relative z-10 md:max-w-3xl lg:max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] lg:text-4xl font-bold leading-normal">
-          6 Consultations Each (Every 15 Days) with:
-        </h2>
-        <ul className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-5 lg:gap-x-10">
+      <div className="container-site relative z-10 grid gap-6 text-white md:gap-8 lg:grid-cols-3 lg:items-center lg:gap-10">
+        <div className="flex flex-col gap-3">
+          <p className="text-xs font-bold uppercase tracking-[1.5px] text-[#e6c594]">Your care team</p>
+          <h2 className="text-2xl font-bold leading-snug sm:text-3xl lg:text-4xl">
+            6 Consultations Each (Every 15 Days) with:
+          </h2>
+        </div>
+        <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:col-span-2 lg:gap-5">
           {consultants.map(({ name, detail }) => (
-            <li key={name} className="flex gap-2.5 text-sm sm:text-base leading-relaxed">
-              <span className="shrink-0">•</span>
-              <p>
-                <span className="font-bold">{name}</span> - {detail}
-              </p>
+            <li
+              key={name}
+              className="flex flex-col gap-1.5 rounded-[16px] border border-white/12 bg-white/[0.06] p-4 md:p-5"
+            >
+              <p className="text-base font-bold text-[#f5e3c4] md:text-lg">{name}</p>
+              <p className="text-sm leading-relaxed text-white/90 md:text-base">{detail}</p>
             </li>
           ))}
         </ul>
