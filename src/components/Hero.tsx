@@ -1,4 +1,3 @@
-import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
 
 // Mobile & tablet: video on top, text below (centered).
@@ -28,20 +27,6 @@ export default function Hero() {
           <p className="text-base font-medium leading-7 tracking-[0.2px] text-[#2e261c] md:text-[17px]">
             A personalised 3-month journey bringing together medical guidance, nutrition, yoga therapy, and mind coaching — thoughtfully designed to support those navigating autoimmune and lifestyle-related conditions, with a focus on recovery, balance, and long-term well-being.
           </p>
-          <div className="mt-1 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Link
-              href="/enroll"
-              className="flex min-h-12 items-center justify-center rounded-[16px] bg-[#3d3326] px-7 text-base font-semibold text-white transition-colors hover:bg-[#2a1f19]"
-            >
-              Enroll Now
-            </Link>
-            <Link
-              href="#journey"
-              className="flex min-h-12 items-center justify-center rounded-[16px] border-[1.5px] border-[#3d3326] px-7 text-base font-semibold text-[#1a140f] transition-colors hover:bg-[#3d3326] hover:text-white"
-            >
-              See the 3-month journey
-            </Link>
-          </div>
         </div>
       </div>
     </section>
