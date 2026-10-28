@@ -42,10 +42,10 @@ function CardFace({ item }: { item: (typeof items)[number] }) {
       <div className="flex size-[27px] items-center justify-center rounded-full border-[1.5px] border-[#b89a5a] bg-[#f5edd9] sm:size-9 lg:size-10">
         <item.Icon size={14} strokeWidth={1.75} className="text-[#7a6a55] sm:size-[18px] lg:size-5" />
       </div>
-      <p className="w-full text-center text-[10.5px] font-medium uppercase tracking-[0.3px] text-[#4a3d2e] sm:text-xs lg:text-sm">
+      <p className="w-full text-center text-[9px] font-medium uppercase tracking-[0.3px] text-[#4a3d2e] sm:text-xs lg:text-sm">
         {item.label}
       </p>
-      <p className="w-full text-center text-[12px] font-bold leading-tight text-[#3d3326] sm:text-sm lg:text-lg">
+      <p className="w-full text-center text-[11px] font-bold leading-tight text-[#3d3326] sm:text-sm lg:text-base">
         {item.value}
       </p>
     </>
@@ -99,8 +99,8 @@ export default function ProgramOverview() {
       {/* The row keeps its layout; it only grows a little taller while a card is open */}
       <div
         ref={rowRef}
-        className={`relative flex w-full max-w-md items-center justify-center gap-1.5 transition-[min-height] duration-[550ms] ease-out [perspective:1200px] motion-reduce:transition-none sm:max-w-2xl sm:gap-5 lg:max-w-4xl lg:gap-8 ${
-          expanded ? "min-h-[104px] sm:min-h-[110px]" : "min-h-0"
+        className={`relative flex w-full max-w-md items-center justify-center gap-2 transition-[min-height] duration-[550ms] ease-out [perspective:1200px] motion-reduce:transition-none sm:max-w-2xl sm:gap-5 lg:max-w-3xl lg:gap-8 ${
+          expanded ? "min-h-[96px] sm:min-h-[104px]" : "min-h-0"
         }`}
       >
         {items.map((it, idx) => (
@@ -113,7 +113,7 @@ export default function ProgramOverview() {
             onClick={() => toggle(idx)}
             aria-expanded={active === idx}
             aria-controls="program-overview-detail"
-            className={`flex min-h-[72px] w-1/4 max-w-[100px] flex-1 flex-col items-center justify-center gap-[3px] self-center rounded-[8px] border border-[#e8dcc8] bg-white py-[7px] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-[#f5edd8]/40 sm:max-w-[150px] sm:py-2.5 lg:max-w-[200px] lg:py-4 ${
+            className={`flex w-1/4 max-w-[92px] flex-1 flex-col items-center justify-center gap-[3px] self-center rounded-[8px] border border-[#e8dcc8] bg-white py-[7px] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-[#f5edd8]/40 sm:py-2.5 lg:py-3.5 ${
               active === idx ? "invisible" : ""
             }`}
           >
@@ -160,7 +160,7 @@ export default function ProgramOverview() {
                   <X size={14} strokeWidth={2} />
                 </button>
               </div>
-              <p className="w-full text-xs font-medium leading-4 tracking-[0.4px] text-[#4a3d2e] sm:text-sm sm:leading-5">
+              <p className="w-full text-xs font-medium leading-4 tracking-[0.4px] text-[#4a3d2e]">
                 {item.detail}
               </p>
             </div>

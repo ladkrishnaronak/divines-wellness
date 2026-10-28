@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
 
 const healthSymptoms = [
   { label: "Constant Fatigue", file: "symptom-fatigue.jpg" },
@@ -29,89 +28,74 @@ const lifestyleSymptoms = [
 
 export default function SymptomChecker() {
   const [activeTab, setActiveTab] = useState<"health" | "lifestyle">("health");
-  const [picked, setPicked] = useState<Set<string>>(new Set());
 
   const currentSymptoms = activeTab === "health" ? healthSymptoms : lifestyleSymptoms;
   const heading =
     activeTab === "health"
       ? "Are these silent health conditions affecting you?"
       : "Are these lifestyle patterns silently stealing your vitality?";
-  const count = picked.size;
-
-  function toggle(label: string) {
-    setPicked((prev) => {
-      const next = new Set(prev);
-      if (next.has(label)) next.delete(label);
-      else next.add(label);
-      return next;
-    });
-  }
-
-  const tabClass = (on: boolean) =>
-    `min-h-11 rounded-full px-4 text-sm font-medium transition-colors sm:px-5 ${
-      on ? "bg-[#3d3326] text-white" : "text-[#3d3326] hover:bg-black/5"
-    }`;
 
   return (
-    <section className="w-full bg-[#faf7f2] py-10 md:py-14 lg:py-20">
-      <div className="container-site flex flex-col items-center gap-7 lg:gap-10">
-        <div className="flex w-full max-w-3xl flex-col items-center gap-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-[1px] text-[#8b4e0a]">Looks familiar?</p>
-          <h2 className="text-2xl font-bold leading-[1.25] text-[#3d3326] sm:text-3xl lg:text-4xl">{heading}</h2>
+    <section className="flex w-full flex-col items-center justify-center gap-7 bg-[#faf7f2] px-6 pb-10 pt-7 sm:px-12 md:px-14 md:py-12 lg:px-16 lg:py-14">
+      <div className="flex w-full flex-col items-center gap-4">
+        <p className="text-[11px] font-bold uppercase text-[#8b4e0a]">Looks familiar?</p>
+        <h2 className="w-80 max-w-full text-center text-2xl font-bold leading-[1.25] text-[#3d3326] sm:w-full sm:text-4xl">
+          {heading}
+        </h2>
 
-          <div className="flex w-fit items-center rounded-full bg-[#ebe4da] p-1" role="group" aria-label="Choose a list">
-            <button type="button" aria-pressed={activeTab === "health"} onClick={() => setActiveTab("health")} className={tabClass(activeTab === "health")}>
-              Health Issues
-            </button>
-            <button type="button" aria-pressed={activeTab === "lifestyle"} onClick={() => setActiveTab("lifestyle")} className={tabClass(activeTab === "lifestyle")}>
-              Lifestyle Diseases
-            </button>
-          </div>
-
-          <p className="text-xs font-bold uppercase tracking-[1px] text-[#8b4e0a]">Tap each one you experience</p>
+        {/* Toggle Slider — matches Figma "Toggle" component (413:1013) */}
+        <div className="flex items-center bg-[#ebe4da] rounded-full p-1 w-fit">
+          <button
+            onClick={() => setActiveTab("health")}
+            className={`rounded-[20px] px-[14px] py-[9px] text-xs font-medium transition-colors sm:px-[18px] sm:py-[10px] sm:text-sm ${
+              activeTab === "health"
+                ? "bg-[#3d3326] text-white"
+                : "text-[#3d3326] hover:bg-black/5"
+            }`}
+          >
+            Health Issues
+          </button>
+          <button
+            onClick={() => setActiveTab("lifestyle")}
+            className={`rounded-[20px] px-[14px] py-[9px] text-xs font-medium transition-colors sm:px-[18px] sm:py-[10px] sm:text-sm ${
+              activeTab === "lifestyle"
+                ? "bg-[#3d3326] text-white"
+                : "text-[#3d3326] hover:bg-black/5"
+            }`}
+          >
+            Lifestyle Diseases
+          </button>
         </div>
 
-        {/* 3 columns on every screen; cards grow with the screen up to a comfortable size */}
-        <ul className="grid w-full max-w-[640px] grid-cols-3 gap-3 sm:gap-5 md:max-w-[760px] md:gap-6 lg:max-w-[960px] lg:gap-8">
-          {currentSymptoms.map(({ label, file }) => {
-            const on = picked.has(label);
-            return (
-              <li key={label}>
-                <button
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => toggle(label)}
-                  className="group flex w-full flex-col items-center gap-2 text-center"
-                >
-                  <span
-                    className={`relative block aspect-[102/108] w-full overflow-hidden rounded-[18px] ring-offset-2 ring-offset-[#faf7f2] transition-all duration-200 lg:rounded-[24px] ${
-                      on ? "ring-[3px] ring-[#8b4e0a]" : "ring-0 group-hover:shadow-[0_8px_20px_rgba(61,50,38,0.15)]"
-                    }`}
-                  >
-                    <img src={`/images/${file}`} alt="" loading="lazy" className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-                    {on && (
-                      <span className="absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-[#8b4e0a] text-white shadow md:right-2.5 md:top-2.5 md:size-8">
-                        <Check size={16} strokeWidth={3} aria-hidden="true" />
-                      </span>
-                    )}
-                  </span>
-                  <span className="text-xs font-semibold leading-tight text-[#3d3326] sm:text-sm lg:text-base">{label}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <p className="text-[10px] font-bold uppercase text-[#8b4e0a]">
+          Tap each one you experience
+        </p>
+      </div>
 
-        <div className="flex w-full max-w-2xl flex-col items-center gap-1.5 text-center" aria-live="polite">
-          <p className="text-lg font-bold text-[#8b4e0a] sm:text-2xl">
-            {count > 0
-              ? `You picked ${count}. If your answer is YES, you are not alone.`
-              : "If your answer is YES, you are not alone."}
-          </p>
-          <p className="text-sm font-semibold text-[#3d3326] sm:text-lg">
-            Divines Wellness Program helps you reset your lifestyle &amp; restore your well-being holistically.
-          </p>
-        </div>
+      {/* Symptom Grid with Swap Animation */}
+      <div className="grid w-full max-w-2xl grid-cols-3 gap-4 sm:gap-6 md:max-w-3xl md:gap-7 lg:max-w-4xl lg:gap-8">
+        {currentSymptoms.map(({ label, file }) => (
+          <button
+            key={label}
+            type="button"
+            className="flex flex-col items-center gap-2 text-center transition-opacity duration-300"
+          >
+            <div className="aspect-[102/108] w-full overflow-hidden rounded-[20px]">
+              <img src={`/images/${file}`} alt={label} className="size-full object-cover" />
+            </div>
+            <span className="text-[11px] font-semibold text-[#3d3326] sm:text-sm lg:text-base">{label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="flex w-full flex-col items-center gap-1.5 text-center">
+        <p className="w-[300px] max-w-full text-lg font-bold text-[#8b4e0a] sm:w-full sm:text-2xl">
+          If your answer is YES, you are not alone.
+        </p>
+        <p className="w-[300px] max-w-full text-[13px] font-semibold text-[#3d3326] sm:w-full sm:text-lg">
+          Divines Wellness Program helps you reset your lifestyle &amp; restore your well-being
+          holistically.
+        </p>
       </div>
     </section>
   );

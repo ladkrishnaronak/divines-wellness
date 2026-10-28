@@ -98,24 +98,23 @@ export default function ProgramJourney() {
   };
 
   return (
-    <section id="journey" className="w-full bg-[#fffcf7] py-11 md:py-14 lg:py-20">
-      <div className="container-site flex flex-col items-center gap-7 lg:gap-10">
+    <section className="flex w-full flex-col items-center gap-7 bg-[#fffcf7] px-5 py-11 sm:px-10 md:px-12 md:py-14 lg:px-16 lg:py-16">
       <div className="flex w-full flex-col items-center gap-2.5">
         <div className="bg-[#f0e8d6] px-3.5 py-1.5 rounded-[20px]">
           <p className="text-xs font-medium text-[#4a3d2e] uppercase tracking-[0.5px]">
             The Journey
           </p>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight text-[#3d3326] sm:text-4xl">
-          3 Months - 4D Structured<br className="lg:hidden" /> Healing Journey
+        <h2 className="text-center text-2xl sm:text-4xl font-bold text-[#3d3326] leading-tight">
+          3 Months - 4D Structured<br />Healing Journey
         </h2>
-        <p className="max-w-md text-center text-sm italic text-[#5f5244] md:max-w-xl md:text-base">
+        <p className="max-w-md text-center text-sm text-[#7d6e5e] italic">
           Personalized Guidance – Plans tailored to your unique needs &amp; health goals
         </p>
       </div>
 
-      {/* 2x2 on phones and tablets, one row of 4 on desktop (4 pillars read as one journey) */}
-      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6 lg:max-w-none lg:grid-cols-4 lg:gap-6">
+      {/* 2x2 Grid on mobile, single row of 4 from tablet up */}
+      <div className="grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:gap-6 md:max-w-4xl md:grid-cols-4 md:gap-4 lg:max-w-6xl lg:gap-6">
         {pillars.map((pillar) => (
           <button
             key={pillar.num}
@@ -123,21 +122,20 @@ export default function ProgramJourney() {
             className="group flex flex-col overflow-hidden rounded-[14px] bg-white text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
           >
             {/* Photo + badge — Figma Pillar Card (927:658) */}
-            <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden">
+            <div className="relative h-[140px] w-full shrink-0 overflow-hidden">
               <img
                 src={`/images/${pillar.file}`}
                 alt={pillar.title}
-                className="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                className="size-full object-cover"
               />
               <span className="absolute bottom-2.5 left-2.5 rounded-[6px] bg-[#2d4a3e] px-2 py-1 text-xs font-semibold leading-[1.4] tracking-[1.5px] text-white">
                 Pillar {pillar.num}
               </span>
             </div>
-            <div className="flex w-full flex-1 flex-col items-start gap-1 px-3 pb-3.5 pt-3 text-[#2e261c] md:px-4 md:pb-5 md:pt-4">
-              <h3 className="text-lg font-bold leading-6 tracking-[0.15px] md:text-xl">{pillar.title}</h3>
-              <p className="text-xs font-medium leading-4 tracking-[0.5px] md:text-sm md:leading-5">{pillar.cardLine}</p>
-              <p className="text-xs font-medium leading-4 tracking-[0.5px] text-[#5f5244] md:text-sm md:leading-5">{pillar.tags}</p>
-              <span className="mt-auto pt-2 text-xs font-semibold text-[#8b4e0a] md:text-sm">View details →</span>
+            <div className="flex w-full flex-col items-start gap-1 px-3 pb-3.5 pt-3 text-[#2e261c]">
+              <h3 className="text-lg font-bold leading-6 tracking-[0.15px]">{pillar.title}</h3>
+              <p className="text-xs font-medium leading-4 tracking-[0.5px]">{pillar.cardLine}</p>
+              <p className="text-xs font-medium leading-4 tracking-[0.5px]">{pillar.tags}</p>
             </div>
           </button>
         ))}
@@ -153,13 +151,10 @@ export default function ProgramJourney() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Pillar ${selectedPillar.num}: ${selectedPillar.title}`}
-            className="max-h-[85vh] w-full max-w-sm overflow-hidden overflow-y-auto rounded-2xl bg-[#faf3e0] shadow-2xl md:max-w-lg"
+            className="w-full max-w-sm overflow-hidden rounded-2xl bg-[#faf3e0] shadow-2xl max-h-[85vh] overflow-y-auto"
           >
             {/* Photo Hero — badge, close, title & tagline all overlay the image */}
-            <div className="relative h-44 w-full shrink-0 md:h-60">
+            <div className="relative h-44 w-full shrink-0">
               <img
                 src={`/images/${selectedPillar.file}`}
                 alt={selectedPillar.title}
@@ -179,7 +174,7 @@ export default function ProgramJourney() {
               <button
                 onClick={() => closeModal(null)}
                 aria-label="Close"
-                className="absolute right-3 top-3 flex size-10 items-center justify-center rounded-full bg-white text-[#3d3326] shadow-md transition-colors hover:bg-white/90"
+                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#3d3326] shadow-md transition-colors hover:bg-white/90"
               >
                 ✕
               </button>
@@ -264,7 +259,6 @@ export default function ProgramJourney() {
           </div>
         </div>
       )}
-      </div>
     </section>
   );
 }

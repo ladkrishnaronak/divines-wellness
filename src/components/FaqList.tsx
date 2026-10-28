@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Search, ChevronDown } from "lucide-react";
 
 // NOTE: Questions come from the Figma design (node 25:2).
@@ -103,14 +102,10 @@ export default function FaqList() {
     : faqs;
 
   return (
-    // Phones/tablet: title, search, questions stacked.
-    // Desktop: 3 columns — title + search stay on the left, questions fill the other two.
-    <div className="container-site grid gap-7 pb-12 pt-10 md:pt-12 lg:grid-cols-3 lg:gap-12 lg:pb-20 lg:pt-16">
-      <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-5 text-center lg:sticky lg:top-[100px] lg:mx-0 lg:items-start lg:self-start lg:text-left">
-        <h1 className="text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px] text-[#1a140f] lg:text-[40px]">
-          Frequently Asked Questions
-        </h1>
-        <div className="flex w-full items-center gap-2.5 rounded-[12px] border border-[#b8a180] bg-[#fffcf7] px-3.5 py-3 focus-within:outline focus-within:outline-[3px] focus-within:outline-[#d9a765]">
+    <>
+      {/* Search */}
+      <div className="flex w-full max-w-md items-start justify-center px-6 pb-7 lg:max-w-2xl">
+        <div className="flex w-full flex-1 items-center gap-2.5 rounded-[12px] border border-[#b8a180] bg-[#fffcf7] px-3.5 py-3">
           <Search size={18} strokeWidth={2} className="shrink-0 text-[#594d3d]" aria-hidden="true" />
           <input
             type="search"
@@ -118,19 +113,13 @@ export default function FaqList() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search FAQs..."
             aria-label="Search frequently asked questions"
-            className="w-full bg-transparent text-base font-medium leading-5 tracking-[0.1px] text-[#2e261c] outline-none placeholder:text-[#594d3d] focus-visible:outline-none"
+            className="w-full bg-transparent text-sm font-semibold leading-5 tracking-[0.1px] text-[#2e261c] outline-none placeholder:text-[#594d3d]"
           />
         </div>
-        <p className="hidden text-sm leading-6 text-[#4a3d2e] lg:block">
-          Can&rsquo;t find your answer?{" "}
-          <Link href="/contact" className="font-semibold text-[#7a6642] underline underline-offset-2">
-            Contact us
-          </Link>{" "}
-          and our team will help.
-        </p>
       </div>
 
-      <div className="mx-auto flex w-full max-w-2xl flex-col gap-2.5 lg:col-span-2 lg:mx-0 lg:max-w-none lg:gap-3">
+      {/* Accordion list */}
+      <div className="flex w-full max-w-md flex-col gap-2.5 px-6 pb-10 lg:max-w-2xl">
         {visible.length === 0 && (
           <p className="py-8 text-center text-sm text-[#7d6e5e]">
             No questions match &ldquo;{query}&rdquo;. Try a different word.
@@ -149,34 +138,27 @@ export default function FaqList() {
               <button
                 onClick={() => setOpenIndex(isOpen ? null : realIndex)}
                 aria-expanded={isOpen}
-                className="flex min-h-14 w-full items-center justify-between gap-3 p-[18px] text-left md:px-6"
+                className="flex w-full items-center justify-between gap-3 p-[18px] text-left"
               >
-                <span className="text-sm font-semibold leading-[1.4] text-[#2e261c] md:text-base">{faq.q}</span>
+                <span className="text-[13px] font-semibold leading-[1.4] text-[#2e261c]">{faq.q}</span>
                 <ChevronDown
-                  size={18}
+                  size={16}
                   strokeWidth={2}
-                  className={`shrink-0 text-[#2e261c] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                  aria-hidden="true"
+                  className={`size-4 shrink-0 text-[#2e261c] transition-transform duration-200 ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="border-t border-[#e8d9be] px-[18px] pb-[18px] pt-3.5 md:px-6">
-                  <p className="text-sm leading-[1.7] text-[#2e261c] md:text-[15px]">{faq.a}</p>
+                <div className="border-t border-[#e8d9be] px-[18px] pb-[18px] pt-3.5">
+                  <p className="text-[13px] leading-[1.6] text-[#2e261c]">{faq.a}</p>
                 </div>
               )}
             </div>
           );
         })}
-
-        <p className="mt-4 text-center text-sm leading-6 text-[#4a3d2e] lg:hidden">
-          Can&rsquo;t find your answer?{" "}
-          <Link href="/contact" className="font-semibold text-[#7a6642] underline underline-offset-2">
-            Contact us
-          </Link>
-          .
-        </p>
       </div>
-    </div>
+    </>
   );
 }

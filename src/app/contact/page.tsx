@@ -88,20 +88,18 @@ export default function ContactPage() {
     <div className="flex w-full flex-1 flex-col items-center bg-white">
       {/* Title — Figma node 797:906: H2 (Poppins SemiBold 24px, tracking -0.2px).
           The design has no subtitle under the title, so none is shown here. */}
-      <div className="container-site flex flex-col items-start gap-2 pb-2 pt-6 md:items-center md:pt-12 md:text-center lg:pt-16">
-        <h1 className="w-full text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f] sm:text-3xl lg:text-4xl">
+      <div className="flex w-full max-w-2xl flex-col items-start pb-2 pt-6 px-6 md:max-w-3xl md:px-10 lg:max-w-4xl">
+        <h1 className="w-full text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f]">
           Contact Us
         </h1>
-        <p className="hidden text-base text-[#4a3d2e] md:block">Visit us in Surat, call, WhatsApp or email — we&rsquo;re happy to help.</p>
       </div>
 
       {/* Contact rows — Figma node 797:908 ("row-list") */}
-      {/* Phones: stacked rows. Tablet & desktop: 3 cards side by side. */}
-      <div className="container-site grid gap-2 pb-6 pt-3 md:grid-cols-3 md:gap-5 md:pb-24 md:pt-8 lg:gap-8">
+      <div className="flex w-full max-w-2xl flex-col gap-6 px-6 pb-6 pt-5 md:max-w-3xl md:px-10 lg:max-w-4xl">
         {contactRows.map(({ Icon, label, action, href, lines }) => {
           const external = href.startsWith("http");
           return (
-            <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4 md:h-full md:flex-col md:items-center md:gap-4 md:border md:border-[#efe6d4] md:bg-[#fffcf7] md:p-6 md:text-center md:shadow-[0_8px_24px_rgba(61,50,38,0.06)] lg:p-8">
+            <div key={label} className="flex w-full items-center gap-4 rounded-[16px] p-4">
               {/* The round icon is the tap target: opens Maps / dialer / email app */}
               <a
                 href={href}
@@ -114,9 +112,9 @@ export default function ContactPage() {
                 <Icon size={20} strokeWidth={2} className="text-white" aria-hidden="true" />
               </a>
               <div className="flex min-w-0 flex-1 flex-col gap-1">
-                <p className="text-lg font-semibold leading-[1.4] text-[#1a140f] md:text-xl">{label}</p>
+                <p className="text-xl font-semibold leading-[1.4] text-[#1a140f]">{label}</p>
                 {lines.map((text) => (
-                  <p key={text} className="text-sm leading-[1.6] text-[#2e261c] md:text-[15px]">
+                  <p key={text} className="text-sm leading-[1.6] text-[#2e261c]">
                     {text}
                   </p>
                 ))}
