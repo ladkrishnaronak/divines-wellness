@@ -26,10 +26,13 @@ export default function HeroVideo({
   src,
   poster,
   title,
+  flush = false,
 }: {
   src: string;
   poster: string;
   title: string;
+  /** Edge-to-edge: square corners, no shadow. */
+  flush?: boolean;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -185,8 +188,8 @@ export default function HeroVideo({
       aria-label={`${title} video player. Space to play or pause, arrow keys to skip 5 seconds.`}
       onKeyDown={onKey}
       onMouseMove={started ? pokeControls : undefined}
-      className={`group relative aspect-video w-full overflow-hidden rounded-[16px] bg-[#1a140f] shadow-[0_12px_32px_rgba(38,32,22,0.18)] outline-none focus-visible:ring-4 focus-visible:ring-[#d9a765] ${
- isFull ? "rounded-none" : ""
+      className={`group relative aspect-video w-full overflow-hidden bg-[#1a140f] outline-none focus-visible:ring-4 focus-visible:ring-[#d9a765] ${
+ isFull || flush ? "rounded-none" : "rounded-[16px] shadow-[0_12px_32px_rgba(38,32,22,0.18)]"
  }`}
     >
       <video

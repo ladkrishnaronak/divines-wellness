@@ -2,15 +2,16 @@ import HeroVideo from "@/components/HeroVideo";
 
 export default function Hero() {
   return (
-    <section className="w-full bg-[#f5edde] flex justify-center pt-[10px] px-4 rounded-b-[16px]">
+    <section className="w-full bg-[#f5edde] flex justify-center pt-[10px] rounded-b-[16px]">
       <div className="flex w-full max-w-6xl flex-col items-center justify-center">
-        {/* Transformation Image */}
-        <div className="flex flex-col items-center">
-          <div className="relative w-[350px] max-w-[90vw] overflow-hidden rounded-[16px]">
+        {/* Hero video: always the full width of the centre column (edge to edge) */}
+        <div className="flex w-full flex-col items-center">
+          <div className="relative w-full overflow-hidden">
             <HeroVideo
               src="/videos/hero.mp4"
               poster="/images/hero-transformation.png"
               title="What we do, in a simple format"
+              flush
             />
           </div>
           <p className="w-[350px] max-w-[90vw] text-center text-xs font-medium leading-4 tracking-[0.5px] text-[#2e261c]">
