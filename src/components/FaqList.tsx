@@ -104,7 +104,7 @@ export default function FaqList() {
   return (
     <>
       {/* Search */}
-      <div className="flex w-full max-w-md items-start justify-center px-6 pb-7 lg:max-w-2xl">
+      <div className="flex w-full max-w-md items-start justify-center px-6 pb-7">
         <div className="flex w-full flex-1 items-center gap-2.5 rounded-[12px] border border-[#b8a180] bg-[#fffcf7] px-3.5 py-3">
           <Search size={18} strokeWidth={2} className="shrink-0 text-[#594d3d]" aria-hidden="true" />
           <input
@@ -119,7 +119,7 @@ export default function FaqList() {
       </div>
 
       {/* Accordion list */}
-      <div className="flex w-full max-w-md flex-col gap-2.5 px-6 pb-10 lg:max-w-2xl">
+      <div className="flex w-full max-w-md flex-col gap-2.5 px-6 pb-10">
         {visible.length === 0 && (
           <p className="py-8 text-center text-sm text-[#7d6e5e]">
             No questions match &ldquo;{query}&rdquo;. Try a different word.
@@ -145,8 +145,8 @@ export default function FaqList() {
                   size={16}
                   strokeWidth={2}
                   className={`size-4 shrink-0 text-[#2e261c] transition-transform duration-200 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
+ isOpen ? "rotate-180" : ""
+ }`}
                 />
               </button>
 

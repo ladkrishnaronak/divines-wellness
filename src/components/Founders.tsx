@@ -49,16 +49,16 @@ export default function Founders() {
   return (
     <section
       id="stories"
-      className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11 sm:px-12 md:px-14 md:py-14 lg:px-16 lg:py-16"
+      className="flex w-full flex-col items-center justify-center gap-7 bg-[#fffcf7] px-6 pb-10 pt-11"
     >
-      <h2 className="w-full max-w-lg text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f] md:max-w-3xl lg:max-w-4xl">
+      <h2 className="w-full max-w-lg text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f]">
         Meet The Founders
       </h2>
       <p className="w-full max-w-md text-center text-sm font-normal leading-5 tracking-[0.25px] text-[#2e261c]">
         They didn&apos;t just study wellness - they lived it. Two doctors who healed from within, now guiding you to do the same.
       </p>
 
-      <div className="grid w-full max-w-lg grid-cols-1 items-start gap-4 md:max-w-3xl md:grid-cols-2 md:gap-5 lg:max-w-4xl lg:gap-6">
+      <div className="grid w-full max-w-lg grid-cols-1 items-start gap-4">
         {founders.map((founder, idx) => {
           const isOpen = expandedId === idx;
           return (
@@ -114,7 +114,7 @@ export default function Founders() {
         &ldquo;Step into a healthier future-where prevention, balance, and vitality become your way of life.&rdquo;
       </p>
 
-      <div id="enroll" className="flex h-[45px] w-full max-w-lg gap-3 md:max-w-xl lg:h-14 lg:max-w-2xl">
+      <div id="enroll" className="flex h-[45px] w-full max-w-lg gap-3">
         <Link
           href="/stories"
           className="flex flex-1 items-center justify-center rounded-[16px] border-[1.5px] border-[#3d3326] bg-[#fffcf7] text-sm font-semibold leading-[1.4] tracking-[0.2px] text-[#1a140f] transition-colors hover:bg-[#3d3326] hover:text-white"

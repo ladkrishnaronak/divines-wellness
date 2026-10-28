@@ -185,9 +185,9 @@ export default function HeroVideo({
       aria-label={`${title} video player. Space to play or pause, arrow keys to skip 5 seconds.`}
       onKeyDown={onKey}
       onMouseMove={started ? pokeControls : undefined}
-      className={`group relative aspect-video w-full overflow-hidden rounded-[16px] bg-[#1a140f] shadow-[0_12px_32px_rgba(38,32,22,0.18)] outline-none focus-visible:ring-4 focus-visible:ring-[#d9a765] lg:rounded-[24px] ${
-        isFull ? "rounded-none" : ""
-      }`}
+      className={`group relative aspect-video w-full overflow-hidden rounded-[16px] bg-[#1a140f] shadow-[0_12px_32px_rgba(38,32,22,0.18)] outline-none focus-visible:ring-4 focus-visible:ring-[#d9a765] ${
+ isFull ? "rounded-none" : ""
+ }`}
     >
       <video
         ref={videoRef}
@@ -219,8 +219,8 @@ export default function HeroVideo({
           aria-label={`Play video: ${title}`}
           className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors hover:bg-black/20"
         >
-          <span className="flex size-16 items-center justify-center rounded-full bg-[rgba(61,51,38,0.82)] shadow-lg ring-4 ring-white/30 transition-transform group-hover:scale-105 md:size-20">
-            <Play size={28} fill="white" className="ml-1 text-white md:size-9" aria-hidden="true" />
+          <span className="flex size-16 items-center justify-center rounded-full bg-[rgba(61,51,38,0.82)] shadow-lg ring-4 ring-white/30 transition-transform group-hover:scale-105">
+            <Play size={28} fill="white" className="ml-1 text-white" aria-hidden="true" />
           </span>
         </button>
       )}
@@ -252,9 +252,9 @@ export default function HeroVideo({
       {/* Control bar */}
       {started && (
         <div
-          className={`absolute inset-x-0 bottom-0 flex flex-col gap-1 bg-gradient-to-t from-black/75 via-black/40 to-transparent px-3 pb-2 pt-8 text-white transition-opacity duration-300 md:px-4 md:pb-3 ${
-            showBar || phase === "ended" ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
+          className={`absolute inset-x-0 bottom-0 flex flex-col gap-1 bg-gradient-to-t from-black/75 via-black/40 to-transparent px-3 pb-2 pt-8 text-white transition-opacity duration-300 ${
+ showBar || phase === "ended" ? "opacity-100" : "pointer-events-none opacity-0"
+ }`}
           onFocus={() => setControlsOn(true)}
         >
           <input
@@ -295,7 +295,7 @@ export default function HeroVideo({
             >
               {muted ? <VolumeX size={20} aria-hidden="true" /> : <Volume2 size={20} aria-hidden="true" />}
             </button>
-            <span className="ml-1 text-xs font-medium tabular-nums md:text-sm" aria-hidden="true">
+            <span className="ml-1 text-xs font-medium tabular-nums" aria-hidden="true">
               {fmt(time)} / {fmt(duration)}
             </span>
             <button

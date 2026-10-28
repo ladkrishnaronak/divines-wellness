@@ -39,13 +39,13 @@ const DURATION = 550; // ms — keep in sync with duration-[550ms] below
 function CardFace({ item }: { item: (typeof items)[number] }) {
   return (
     <>
-      <div className="flex size-[27px] items-center justify-center rounded-full border-[1.5px] border-[#b89a5a] bg-[#f5edd9] sm:size-9 lg:size-10">
-        <item.Icon size={14} strokeWidth={1.75} className="text-[#7a6a55] sm:size-[18px] lg:size-5" />
+      <div className="flex size-[27px] items-center justify-center rounded-full border-[1.5px] border-[#b89a5a] bg-[#f5edd9]">
+        <item.Icon size={14} strokeWidth={1.75} className="text-[#7a6a55]" />
       </div>
-      <p className="w-full text-center text-[9px] font-medium uppercase tracking-[0.3px] text-[#4a3d2e] sm:text-xs lg:text-sm">
+      <p className="w-full text-center text-[9px] font-medium uppercase tracking-[0.3px] text-[#4a3d2e]">
         {item.label}
       </p>
-      <p className="w-full text-center text-[11px] font-bold leading-tight text-[#3d3326] sm:text-sm lg:text-base">
+      <p className="w-full text-center text-[11px] font-bold leading-tight text-[#3d3326]">
         {item.value}
       </p>
     </>
@@ -95,13 +95,13 @@ export default function ProgramOverview() {
   const item = active !== null ? items[active] : null;
 
   return (
-    <section className="w-full bg-white flex items-center justify-center px-3 py-3.5 shadow-[0px_2px_4px_rgba(0,0,0,0.04)] sm:px-6 sm:py-5 lg:py-7">
+    <section className="w-full bg-white flex items-center justify-center px-3 py-3.5 shadow-[0px_2px_4px_rgba(0,0,0,0.04)]">
       {/* The row keeps its layout; it only grows a little taller while a card is open */}
       <div
         ref={rowRef}
-        className={`relative flex w-full max-w-md items-center justify-center gap-2 transition-[min-height] duration-[550ms] ease-out [perspective:1200px] motion-reduce:transition-none sm:max-w-2xl sm:gap-5 lg:max-w-3xl lg:gap-8 ${
-          expanded ? "min-h-[96px] sm:min-h-[104px]" : "min-h-0"
-        }`}
+        className={`relative flex w-full max-w-md items-center justify-center gap-2 transition-[min-height] duration-[550ms] ease-out [perspective:1200px] motion-reduce:transition-none ${
+ expanded ? "min-h-[96px] " : "min-h-0"
+ }`}
       >
         {items.map((it, idx) => (
           <button
@@ -113,9 +113,9 @@ export default function ProgramOverview() {
             onClick={() => toggle(idx)}
             aria-expanded={active === idx}
             aria-controls="program-overview-detail"
-            className={`flex w-1/4 max-w-[92px] flex-1 flex-col items-center justify-center gap-[3px] self-center rounded-[8px] border border-[#e8dcc8] bg-white py-[7px] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-[#f5edd8]/40 sm:py-2.5 lg:py-3.5 ${
-              active === idx ? "invisible" : ""
-            }`}
+            className={`flex w-1/4 max-w-[92px] flex-1 flex-col items-center justify-center gap-[3px] self-center rounded-[8px] border border-[#e8dcc8] bg-white py-[7px] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-[#f5edd8]/40 ${
+ active === idx ? "invisible" : ""
+ }`}
           >
             <CardFace item={it} />
           </button>

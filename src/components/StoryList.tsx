@@ -87,7 +87,7 @@ export default function StoryList() {
             aria-roledescription="slide"
             aria-label={`${idx + 1} of ${stories.length}`}
           >
-            <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)] md:max-w-md">
+            <article className="mx-auto flex w-full max-w-[350px] flex-col gap-4 overflow-hidden rounded-[24px] border border-[#eae2cf] bg-white p-5 shadow-[0px_8px_24px_0px_rgba(61,50,38,0.06)]">
               <div className="flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden rounded-[16px] bg-[#f2ede3]">
                 {story.image ? (
                   <img
@@ -161,8 +161,8 @@ export default function StoryList() {
             aria-label={`Show story ${idx + 1} of ${stories.length}`}
             onClick={() => goTo(idx)}
             className={`rounded-full transition-all duration-300 ${
-              idx === active ? "size-2 bg-[#b89959]" : "size-[5px] bg-[#d9ccb2] hover:bg-[#c4ad83]"
-            }`}
+ idx === active ? "size-2 bg-[#b89959]" : "size-[5px] bg-[#d9ccb2] hover:bg-[#c4ad83]"
+ }`}
           />
         ))}
       </div>

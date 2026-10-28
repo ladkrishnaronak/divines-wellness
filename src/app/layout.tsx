@@ -20,7 +20,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${poppins.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#f5edd9] font-sans">
         <Header />
-        {children}
+        {/* Phones: full width. Tablet & desktop: the same phone layout in a
+            600px centre column, with plain background on the left and right. */}
+        <div className="mx-auto flex w-full max-w-[600px] flex-1 flex-col">{children}</div>
       </body>
     </html>
   );

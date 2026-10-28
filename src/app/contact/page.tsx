@@ -88,14 +88,14 @@ export default function ContactPage() {
     <div className="flex w-full flex-1 flex-col items-center bg-white">
       {/* Title — Figma node 797:906: H2 (Poppins SemiBold 24px, tracking -0.2px).
           The design has no subtitle under the title, so none is shown here. */}
-      <div className="flex w-full max-w-2xl flex-col items-start pb-2 pt-6 px-6 md:max-w-3xl md:px-10 lg:max-w-4xl">
+      <div className="flex w-full max-w-2xl flex-col items-start pb-2 pt-6 px-6">
         <h1 className="w-full text-2xl font-semibold leading-[1.3] tracking-[-0.2px] text-[#1a140f]">
           Contact Us
         </h1>
       </div>
 
       {/* Contact rows — Figma node 797:908 ("row-list") */}
-      <div className="flex w-full max-w-2xl flex-col gap-6 px-6 pb-6 pt-5 md:max-w-3xl md:px-10 lg:max-w-4xl">
+      <div className="flex w-full max-w-2xl flex-col gap-6 px-6 pb-6 pt-5">
         {contactRows.map(({ Icon, label, action, href, lines }) => {
           const external = href.startsWith("http");
           return (
@@ -128,14 +128,14 @@ export default function ContactPage() {
           is the sun's curve, the fill is sunlight fading into cream, and glow
           rings radiate out from the edge. Pinned to the bottom via mt-auto. */}
       <footer
-        className="relative mt-auto w-full rounded-t-[50%_90px] bg-[radial-gradient(120%_85%_at_50%_0%,#eccb8f_0%,#f0d9ac_28%,#f2e6cf_52%,#f2ede3_72%)] pt-[62px] sm:rounded-t-[50%_118px] sm:pt-[84px] lg:rounded-t-[50%_141px] lg:pt-[100px]"
+        className="relative mt-auto w-full rounded-t-[50%_90px] bg-[radial-gradient(120%_85%_at_50%_0%,#eccb8f_0%,#f0d9ac_28%,#f2e6cf_52%,#f2ede3_72%)] pt-[62px]"
       >
         {/* Glow rings + sunlit edge. The SVG spans the ring space above the
             footer plus the dome height, so its ellipses share the dome's centre. */}
         <svg
           viewBox="0 0 1000 160"
           preserveAspectRatio="none"
-          className="pointer-events-none absolute -top-[70px] left-0 h-[160px] w-full sm:-top-[92px] sm:h-[210px] lg:-top-[109px] lg:h-[250px]"
+          className="pointer-events-none absolute -top-[70px] left-0 h-[160px] w-full"
           aria-hidden="true"
         >
           <defs>
